@@ -1,0 +1,70 @@
+133c133
+< <p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <span Class="emphasis">-&#35;, --progress-bar</span> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
+---
+> <p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
+143,144c143,144
+< <p class="level0">When <a class="emphasis" href="#-">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-">-:, --next</a>. </p>
+< <p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <span Class="emphasis">-&#35;, --progress-bar</span>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
+---
+> <p class="level0">When <a class="emphasis" href="#-:">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-:">-:, --next</a>. </p>
+> <p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
+300c300
+< <p class="level1">url = &quot;<a href="https://curl.se/docs/&quot;">https://curl.se/docs/&quot;</a> </p><pre class="level1">
+---
+> <p class="level1">url = &quot;<a href="https://curl.se/docs/">https://curl.se/docs/</a>&quot; </p><pre class="level1">
+619c619
+< <p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
+---
+> <p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-:">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
+675c675
+< <p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1416c1416
+< <p class="level0"><a name="-"></a><span class="nroffip">-:, --next</span> </p>
+---
+> <p class="level0"><a name="-:"></a><span class="nroffip">-:, --next</span> </p>
+1418c1418
+< <p class="level1"><a class="emphasis" href="#-">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
+---
+> <p class="level1"><a class="emphasis" href="#-:">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-:">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
+1423c1423
+< <p class="level1"><a class="emphasis" href="#-">-:, --next</a> can be used several times in a command line </p>
+---
+> <p class="level1"><a class="emphasis" href="#-:">-:, --next</a> can be used several times in a command line </p>
+1445c1445
+< <p class="level1">See also <span Class="emphasis">-&#35;, --progress-bar</span>. </p>
+---
+> <p class="level1">See also <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a>. </p>
+1530c1530
+< <p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1584c1584
+< <p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1600c1600
+< <p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
+---
+> <p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
+1670c1670
+< <p class="level0"><a name="-"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
+---
+> <p class="level0"><a name="-&#35;"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
+1674c1674
+< <p class="level1">Providing <span Class="emphasis">-&#35;, --progress-bar</span> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
+---
+> <p class="level1">Providing <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
+1973c1973
+< <p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a href="http://)">http://)</a> and the embedded user + password. </p>
+---
+> <p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a>http://</a>) and the embedded user + password. </p>
+2715c2715
+< <p class="level1">If the given URL is missing a scheme name (such as &quot;<a href="http://&quot;">http://&quot;</a> or &quot;<a href="ftp://&quot;">ftp://&quot;</a> etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
+---
+> <p class="level1">If the given URL is missing a scheme name (such as &quot;<a>http://</a>&quot; or &quot;<a>ftp://</a>&quot; etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
+2723c2723
+< <p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>
+---
+> <p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>

@@ -1,0 +1,18 @@
+188,195c188,195
+< <p class="level0">AT (<a href="http://en.wikipedia.org/wiki/AT_commands).">http://en.wikipedia.org/wiki/AT_commands).</a> </p>
+< <p class="level0">3GPP (<a href="http://en.wikipedia.org/wiki/3GPP).">http://en.wikipedia.org/wiki/3GPP).</a> </p>
+< <p class="level0">MCCMNC (<a href="http://en.wikipedia.org/wiki/Mobile_Network_Code).">http://en.wikipedia.org/wiki/Mobile_Network_Code).</a> </p>
+< <p class="level0">USSD (<a href="http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).">http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).</a> </p>
+< <p class="level0">CDMA (<a href="http://en.wikipedia.org/wiki/Code_division_multiple_access).">http://en.wikipedia.org/wiki/Code_division_multiple_access).</a> </p>
+< <p class="level0">OTA (<a href="http://en.wikipedia.org/wiki/Over-the-air_programming).">http://en.wikipedia.org/wiki/Over-the-air_programming).</a> </p>
+< <p class="level0">GPS (<a href="http://en.wikipedia.org/wiki/Global_Positioning_System)">http://en.wikipedia.org/wiki/Global_Positioning_System)</a> </p>
+< <p class="level0">NMEA (<a href="http://en.wikipedia.org/wiki/NMEA_0183)">http://en.wikipedia.org/wiki/NMEA_0183)</a> </p><p class="roffit">
+---
+> <p class="level0">AT (<a href="http://en.wikipedia.org/wiki/AT_commands">http://en.wikipedia.org/wiki/AT_commands</a>). </p>
+> <p class="level0">3GPP (<a href="http://en.wikipedia.org/wiki/3GPP">http://en.wikipedia.org/wiki/3GPP</a>). </p>
+> <p class="level0">MCCMNC (<a href="http://en.wikipedia.org/wiki/Mobile_Network_Code">http://en.wikipedia.org/wiki/Mobile_Network_Code</a>). </p>
+> <p class="level0">USSD (<a href="http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data">http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data</a>). </p>
+> <p class="level0">CDMA (<a href="http://en.wikipedia.org/wiki/Code_division_multiple_access">http://en.wikipedia.org/wiki/Code_division_multiple_access</a>). </p>
+> <p class="level0">OTA (<a href="http://en.wikipedia.org/wiki/Over-the-air_programming">http://en.wikipedia.org/wiki/Over-the-air_programming</a>). </p>
+> <p class="level0">GPS (<a href="http://en.wikipedia.org/wiki/Global_Positioning_System">http://en.wikipedia.org/wiki/Global_Positioning_System</a>) </p>
+> <p class="level0">NMEA (<a href="http://en.wikipedia.org/wiki/NMEA_0183">http://en.wikipedia.org/wiki/NMEA_0183</a>) </p><p class="roffit">

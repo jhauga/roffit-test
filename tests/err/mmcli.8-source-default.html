@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<title>mmcli man page</title>
+<meta name="generator" content="roffit">
+<STYLE type="text/css">
+pre {
+  overflow: auto;
+  margin: 0;
+}
+
+P.level0, pre.level0 {
+ padding-left: 2em;
+}
+
+P.level1, pre.level1 {
+ padding-left: 4em;
+}
+
+P.level2, pre.level2 {
+ padding-left: 6em;
+}
+
+span.emphasis {
+ font-style: italic;
+}
+
+span.bold {
+ font-weight: bold;
+}
+
+span.manpage {
+ font-weight: bold;
+}
+
+h2.nroffsh {
+ background-color: #e0e0e0;
+}
+
+span.nroffip {
+ font-weight: bold;
+ font-size: 120%;
+ font-family: monospace;
+}
+
+p.roffit {
+ text-align: center;
+ font-size: 80%;
+}
+</STYLE>
+</head><body>
+<a name="NAME"></a><h2 class="nroffsh">Name</h2>
+<p class="level0">mmcli - Control and monitor the ModemManager </p><a name="SYNOPSIS"></a><h2 class="nroffsh">Synopsis</h2>
+<p class="level0"><span Class="bold">mmcli</span> [<span Class="emphasis">OPTION</span>...] </p><a name="DESCRIPTION"></a><h2 class="nroffsh">Description</h2>
+<p class="level0">ModemManager is a DBus-powered Linux daemon which provides a unified high level API for communicating with (mobile broadband) modems. It acts as a standard RIL (Radio Interface Layer) and may be used by different connection managers, like NetworkManager. Thanks to the built-in plugin architecture, ModemManager talks to very different kinds of modems with very different kinds of ports. In addition to the standard AT serial ports, Qualcomm-based QCDM and QMI ports are also supported. </p><a name="HELP"></a><h2 class="nroffsh">Help options</h2>
+<p class="level0"><span Class="bold">-h, --help</span> Show summary of options by group. </p>
+<p class="level0"><span Class="bold">--help-all</span> Show all groups and options. </p>
+<p class="level0"><span Class="bold">--help-manager</span> Show manager specific options. </p>
+<p class="level0"><span Class="bold">--help-common</span> Show common options. These are used for defining the device an option operates on. For example, modems, bearers, SIMs, SMS&#39;, etc. </p>
+<p class="level0"><span Class="bold">--help-modem</span> Show modem specific options. </p>
+<p class="level0"><span Class="bold">--help-3gpp</span> Show 3GPP specific options. </p>
+<p class="level0"><span Class="bold">--help-cdma</span> Show CDMA specific options. </p>
+<p class="level0"><span Class="bold">--help-simple</span> Show simple options. These are useful for getting connected or disconnected and understanding the state of things as fast as possible without worrying so much about the details. </p>
+<p class="level0"><span Class="bold">--help-location</span> Show location or positioning specific options. </p>
+<p class="level0"><span Class="bold">--help-messaging</span> Show messaging specific options. See also <span Class="bold">--help-sms</span> which is related. </p>
+<p class="level0"><span Class="bold">--help-time</span> Show time specific options. </p>
+<p class="level0"><span Class="bold">--help-firmware</span> Show firmware specific options. </p>
+<p class="level0"><span Class="bold">--help-oma</span> Show OMA specific options. </p>
+<p class="level0"><span Class="bold">--help-sim</span> Show SIM card specific options. </p>
+<p class="level0"><span Class="bold">--help-bearer</span> Show bearer specific options. </p>
+<p class="level0"><span Class="bold">--help-sms</span> Show SMS specific options. See also <span Class="bold">--help-messaging</span> which is related. </p><a name="MANAGER"></a><h2 class="nroffsh">Manager options</h2>
+<p class="level0"><span Class="bold">-G, --set-logging=[ERR|WARN|INFO|DEBUG]</span> Set the logging level in ModemManager daemon. For debugging information you can supply <span Class="bold">DEBUG</span>. Each value above <span Class="bold">DEBUG</span> provides less detail. In most cases <span Class="bold">ERR</span> (for displaying errors) are the important messages. </p>
+<p class="level0">The default mode is <span Class="bold">ERR</span>. </p>
+<p class="level0"><span Class="bold">-L, --list-modems</span> List available modems. </p>
+<p class="level0"><span Class="bold">-M, --monitor-modems</span> List available modems and monitor modems added or removed. </p>
+<p class="level0"><span Class="bold">-S, --scan-modems</span> Scan for any potential new modems. This is only useful when expecting pure RS232 modems, as they are not notified automatically by the kernel. </p><a name="COMMON"></a><h2 class="nroffsh">Common options</h2>
+<p class="level0">All options below take a <span Class="bold">PATH</span> or <span Class="bold">INDEX</span> argument. If no action is provided, the default information about the modem, bearer, etc. is shown instead. </p>
+<p class="level0">The <span Class="bold">PATH</span> and <span Class="bold">INDEX</span> are created automatically when the modem is plugged in. They can be found using <span Class="bold">mmcli -L</span>. This produces something like (for modems only): </p>
+<p class="level1">Found 1 modems: &nbsp; /org/freedesktop/ModemManager1/Modem/<span Class="bold">4</span> </p>
+<p class="level0">In this case, the <span Class="bold">INDEX</span> is <span Class="bold">4</span> and the <span Class="bold">PATH</span> is the entire string above. </p>
+<p class="level0">However, for the bearers, SIMs and SMS cases, the <span Class="bold">PATH</span> is slightly different. The <span Class="emphasis">Modem</span> is replaced with the object name in use, like <span Class="emphasis">Bearer</span>. For example: </p>
+<p class="level1">/org/freedesktop/ModemManager1/<span Class="emphasis">Bearer</span>/4 </p>
+<p class="level0"><span Class="bold">-m, --modem=[PATH|INDEX]</span> Specify a modem. </p>
+<p class="level0"><span Class="bold">-b, --bearer=[PATH|INDEX]</span> Specify a bearer. </p>
+<p class="level0"><span Class="bold">-i, --sim=[PATH|INDEX]</span> Specify a SIM card. </p>
+<p class="level0"><span Class="bold">-s, --sms=[PATH|INDEX]</span> Specify an SMS. </p><a name="MODEM"></a><h2 class="nroffsh">Modem options</h2>
+<p class="level0">All of the modem options below make use of the <span Class="bold">--modem</span> or <span Class="bold">-m</span> switch to specify the modem to act on. </p>
+<p class="level0">Some operations require a <span Class="bold">MODE</span>. <span Class="bold">MODE</span> can be any combination of the modes actually supported by the modem. In the perfect case, the following are possible: </p>
+<p class="level0">&nbsp; <span Class="bold">&#39;2G&#39;</span>  - 2G technologies, e.g. EDGE, CDMA1x &nbsp; <span Class="bold">&#39;3G&#39;</span>  - 3G technologies, e.g. HSPA, EV-DO &nbsp; <span Class="bold">&#39;4G&#39;</span>  - 4G technologies, e.g. LTE &nbsp; <span Class="bold">&#39;ANY&#39;</span> - for all supported modes. </p>
+<p class="level0"><span Class="bold">-w, --monitor-state</span> Monitor the state of a given modem. </p>
+<p class="level0"><span Class="bold">-e, --enable</span> Enable a given modem. </p>
+<p class="level0">This powers the antenna, starts the automatic registration process and in general prepares the modem to be connected. </p>
+<p class="level0"><span Class="bold">-d, --disable</span> Disable a given modem. </p>
+<p class="level0">This disconnects the existing connection(s) for the modem and puts it into a low power mode. </p>
+<p class="level0"><span Class="bold">-r, --reset</span> Resets the modem to the settings it had when it was power cycled. </p>
+<p class="level0"><span Class="bold">--factory-reset=CODE</span> Resets the modem to its original factory default settings. </p>
+<p class="level0">The <span Class="bold">CODE</span> provided is vendor specific. Without the correct vendor code, it&#39;s unlikely this operation will succeed. This is not a common user action. </p>
+<p class="level0"><span Class="bold">--command=COMMAND</span> Send an AT <span Class="bold">COMMAND</span> to the given modem. For example, <span Class="bold">COMMAND</span> could be &#39;AT+GMM&#39; to probe for phone model information. This operation is only available when ModemManager is run in debug mode. </p>
+<p class="level0"><span Class="bold">--list-bearers</span> List packet data bearers that are available for the given modem. </p>
+<p class="level0"><span Class="bold">--create-bearer=[&#39;KEY1=VALUE1,KEY2=VALUE2,...&#39;]</span> Create a new packet data bearer for a given modem. The <span Class="bold">KEY</span>s and some <span Class="bold">VALUE</span>s are listed below: </p>
+<p class="level1"><span Class="bold">&#39;apn&#39;</span> Access Point Name. Required in 3GPP. </p>
+<p class="level1"><span Class="bold">&#39;ip-type&#39;</span> Addressing type. Given as a MMBearerIpFamily value (e.g. &#39;ipv4&#39;, &#39;ipv6&#39;, &#39;ipv4v6&#39;). Optional in 3GPP and CDMA. </p>
+<p class="level1"><span Class="bold">&#39;allowed-auth&#39;</span> Authentication method to use. Given as a MMBearerAllowedAuth value (e.g. &#39;none|pap|chap|mschap|mschapv2|eap&#39;). Optional in 3GPP. </p>
+<p class="level1"><span Class="bold">&#39;user&#39;</span> User name (if any) required by the network. Optional in 3GPP. </p>
+<p class="level1"><span Class="bold">&#39;password&#39;</span> Password (if any) required by the network. Optional in 3GPP. </p>
+<p class="level1"><span Class="bold">&#39;allow-roaming&#39;</span> Flag to tell whether connection is allowed during roaming, given as a boolean value (i.e &#39;yes&#39; or &#39;no&#39;). Optional in 3GPP. </p>
+<p class="level1"><span Class="bold">&#39;rm-protocol&#39;</span> Protocol of the Rm interface, given as a MMModemCdmaRmProtocol value (e.g. &#39;async&#39;, &#39;packet-relay&#39;, &#39;packet-network-ppp&#39;, &#39;packet-network-slip&#39;, &#39;stu-iii&#39;). Optional in CDMA. </p>
+<p class="level1"><span Class="bold">&#39;number&#39;</span> Telephone number to dial. Required in POTS. </p>
+<p class="level0"><span Class="bold">--delete-bearer=PATH</span> Delete bearer from a given modem. This option explicitly uses a <span Class="bold">PATH</span> to define the bearer, you can not use an <span Class="bold">INDEX</span> to be deleted. </p>
+<p class="level0"><span Class="bold">--set-allowed-modes=[MODE1|MODE2|...]</span> Set allowed modes for a given modem. For possible modes, see the beginning of this section. </p>
+<p class="level0"><span Class="bold">--set-bands=[BAND1|BAND2|...]</span> Set bands to be used for a given modem. These are frequency ranges the modem should use. There are quite a number of supported bands and listing them all here would be quite extensive. For details, see the MMModemBand documentation. </p>
+<p class="level0">An example would be: &#39;egsm|dcs|pcs|g850&#39; to select all the GSM frequency bands. </p>
+<p class="level0"><span Class="bold">--set-preferred-mode=MODE</span> Set the preferred <span Class="bold">MODE</span> for the given modem. The <span Class="bold">MODE</span> <span Class="emphasis">MUST</span> be one of the allowed modes as set with the <span Class="bold">--set-allowed-modes</span> option. Possible <span Class="bold">MODE</span> arguments are detailed at the beginning of this section. </p><a name="3GPP"></a><h2 class="nroffsh">3gpp options</h2>
+<p class="level0">The 3rd Generation Partnership Project (3GPP) is a collaboration between groups of telecommunications associations. These options pertain to devices which support 3GPP. </p>
+<p class="level0">Included are options to control USSD (Unstructured Supplementary Service Data) sessions. </p>
+<p class="level0">All of the 3GPP options below make use of the <span Class="bold">--modem</span> or <span Class="bold">-m</span> switch to specify the modem to act on. </p>
+<p class="level0"><span Class="bold">--3gpp-scan</span> Scan for available 3GPP networks. </p>
+<p class="level0"><span Class="bold">--3gpp-register-home</span> Request a given modem to register in its home network. </p>
+<p class="level0">This registers with the default network(s) specified by the modem, </p>
+<p class="level0"><span Class="bold">--3gpp-register-in-operator=MCCMNC</span> Request a given modem to register on the network of the given <span Class="bold">MCCMNC</span> (Mobile Country Code, Mobile Network Code) based operator. This code is used for GSM/LTE, CDMA, iDEN, TETRA and UMTS public land mobile networks and some satellite mobile networks. The ITU-T Recommendation E.212 defines mobile country codes. </p>
+<p class="level0"><span Class="bold">--3gpp-ussd-status</span> Request the status of <span Class="emphasis">ANY</span> ongoing USSD session. </p>
+<p class="level0"><span Class="bold">--3gpp-ussd-initiate=COMMAND</span> Request the given modem to initiate a USSD session with <span Class="bold">COMMAND</span>. </p>
+<p class="level0">For example, <span Class="bold">COMMAND</span> could be &#39;*101&#35;&#39; to give your current pre-pay balance. </p>
+<p class="level0"><span Class="bold">--3gpp-ussd-respond=RESPONSE</span> When initiating an USSD session, a </span>RESPONSE</span> may be needed by a network-originated request. This option allows for that. </p>
+<p class="level0"><span Class="bold">--3gpp-ussd-cancel</span> Cancel an ongoing USSD session for a given modem. </p><a name="CDMA"></a><h2 class="nroffsh">Cdma options</h2>
+<p class="level0">All CDMA (Code Division Multiple Access) options require the <span Class="bold">--modem</span> or <span Class="bold">-m</span> option. </p>
+<p class="level0"><span Class="bold">--cdma-activate=CARRIER</span> Activate the given modem using OTA (Over the Air) settings. The <span Class="bold">CARRIER</span> is a code provided by the network for the default settings they provide. </p><a name="SIMPLE"></a><h2 class="nroffsh">Simple options</h2>
+<p class="level0">All simple options must be used with <span Class="bold">--modem</span> or <span Class="bold">-m</span>. </p>
+<p class="level0"><span Class="bold">--simple-connect=[&#39;KEY1=VALUE1,KEY2=VALUE2,...&#39;]</span> Run a full connection sequence using <span Class="bold">KEY</span> / <span Class="bold">VALUE</span> pairs. You can use the <span Class="bold">--create-bearer</span> options, plus any of the following ones: </p>
+<p class="level1"><span Class="bold">&#39;pin&#39;</span> SIM-PIN unlock code. </p>
+<p class="level1"><span Class="bold">&#39;operator-id&#39;</span> ETSI MCC-MNC of a network to force registration. </p>
+<p class="level0"><span Class="bold">--simple-disconnect</span> Disconnect <span Class="emphasis">ALL</span> connected bearers for a given modem. </p>
+<p class="level0"><span Class="bold">--simple-status</span> Display the status of the given modem. </p><a name="LOCATION"></a><h2 class="nroffsh">Location options</h2>
+<p class="level0">These options detail how to discover your location using Global Positioning System (GPS) or directly from your mobile network infrastructure (either 3GPP or 3GPP2). </p>
+<p class="level0">All location options must be used with <span Class="bold">--modem</span> or <span Class="bold">-m</span>. </p>
+<p class="level0"><span Class="bold">--location-status</span> Show the current status for discovering our location. </p>
+<p class="level0"><span Class="bold">--location-get</span> Show all location information available. </p>
+<p class="level0"><span Class="bold">--location-enable-3gpp</span> Enable location discovery using the 3GPP network. </p>
+<p class="level0"><span Class="bold">--location-disable-3gpp</span> Disable location discovery using the 3GPP network. </p>
+<p class="level0"><span Class="bold">--location-get-3gpp</span> Show 3GPP based location information (MCC, MNC, LAC, CI). </p>
+<p class="level0"><span Class="bold">--location-enable-gps-nmea</span> Enable location discovery using GPS and reported with NMEA traces. </p>
+<p class="level0"><span Class="bold">--location-disable-gps-nmea</span> Disable location discovery using GPS and NMEA traces. </p>
+<p class="level0"><span Class="bold">--location-get-gps-nmea</span> Show GPS based location with NMEA trace information. </p>
+<p class="level0"><span Class="bold">--location-enable-gps-raw</span> Enable location discovery using GPS and reported with raw (i.e. longitude/latitude) values. </p>
+<p class="level0"><span Class="bold">--location-disable-gps-raw</span> Disable location discovery using GPS and raw values. </p>
+<p class="level0"><span Class="bold">--location-get-gps-raw</span> Show GPS based location information with raw values (e.g. latitude, longitude). </p>
+<p class="level0"><span Class="bold">--location-enable-cdma-bs</span> Enable location discovery using the 3GPP2 network. </p>
+<p class="level0"><span Class="bold">--location-disable-cdma-bs</span> Disable location discovery using the 3GPP2 network. </p>
+<p class="level0"><span Class="bold">--location-get-cdma-bs</span> Show 3GPP2 based location information (location of the CDMA base station). </p>
+<p class="level0"><span Class="bold">--location-enable-gps-unmanaged</span> Enable location discovery using GPS but without taking control of the NMEA tty port. </p>
+<p class="level0"><span Class="bold">--location-disable-gps-unmanaged</span> Disable location discovery using GPS and unmanaged port. </p><a name="MESSAGING"></a><h2 class="nroffsh">Messaging options</h2>
+<p class="level0">All messaging options must be used with <span Class="bold">--modem</span> or <span Class="bold">-m</span>. </p>
+<p class="level0"><span Class="bold">--messaging-status</span> Show the status of the messaging support. </p>
+<p class="level0"><span Class="bold">--messaging-list-sms</span> List SMS messages available on a given modem. </p>
+<p class="level0"><span Class="bold">--messaging-create-sms=[&#39;KEY1=VALUE1,...&#39;]</span> Create a new SMS on a given modem. <span Class="bold">KEY</span>s can be any of the following: </p>
+<p class="level1"><span Class="bold">&#39;number&#39;</span> &nbsp;Number to which the message is addressed. </p>
+<p class="level1"><span Class="bold">&#39;text&#39;</span> Message text, in UTF-8. When sending, if the text is larger than the limit of the technology or modem, the message will be broken into multiple parts or messages. Note that text and data are never given at the same time. </p>
+<p class="level1"><span Class="bold">&#39;smsc&#39;</span> Indicates the SMS service center number. </p>
+<p class="level1"><span Class="bold">&#39;validity&#39;</span> Specifies when the SMS expires in the SMSC. </p>
+<p class="level1"><span Class="bold">&#39;class&#39;</span> 3GPP message class (0..3). </p>
+<p class="level1"><span Class="bold">&#39;delivery-report-request&#39;</span> Specifies whether delivery report is requested when sending the SMS (&#39;yes&#39; or &#39;no&#39;) </p>
+<p class="level1"><span Class="bold">&#39;storage&#39;</span> Specifies the storage where this message is kept. Storages may be &#39;sm&#39;, &#39;me&#39;, &#39;mt&#39;, &#39;sr&#39;, &#39;bm&#39;, &#39;ta&#39;. </p>
+<p class="level0"><span Class="bold">--messaging-create-sms-with-data=PATH</span> Use <span Class="bold">PATH</span> to a filename as the data to create a new SMS. </p>
+<p class="level0"><span Class="bold">--messaging-delete-sms=PATH</span> Delete an SMS from a given modem. <span Class="bold">PATH</span> indicates the SMS path. </p><a name="TIME"></a><h2 class="nroffsh">Time options</h2>
+<p class="level0">All time operations require the <span Class="bold">--modem</span> or <span Class="bold">-m</span> option. </p>
+<p class="level0"><span Class="bold">--time</span> Display the current network time from the operator. This includes the timezone which is usually of importance. </p><a name="FIRMWARE"></a><h2 class="nroffsh">Firmware options</h2>
+<p class="level0">All firmware options require the <span Class="bold">--modem</span> or <span Class="bold">-m</span> option. </p>
+<p class="level0"><span Class="bold">--firmware-list</span> List all the firmware images installed on a given modem. </p>
+<p class="level0"><span Class="bold">--firmware-select=ID</span> Select a firmware image from those installed on a given modem. A list of available firmware images can be seen using the <span Class="bold">--firmware-list</span> option. </p>
+<p class="level0">The <span Class="bold">ID</span> provided is a <span Class="emphasis">UNIQUE</span> identifier for the firmware. </p><a name="OMA"></a><h2 class="nroffsh">Oma options</h2>
+<p class="level0">All OMA options require the <span Class="bold">--modem</span> or <span Class="bold">-m</span> option. </p>
+<p class="level0"><span Class="bold">--oma-status</span> Show the status of the OMA device management subsystem. </p>
+<p class="level0"><span Class="bold">--oma-start-client-initiated-session=[SESSION TYPE]</span> Request to start a client initiated session. </p>
+<p class="level0">The given session type must be one of: &nbsp;&#39;client-initiated-device-configure&#39; &nbsp;&#39;client-initiated-prl-update&#39; &nbsp;&#39;client-initiated-hands-free-activation&#39; </p>
+<p class="level0"><span Class="bold">--oma-accept-network-initiated-session=[SESSION ID]</span> Request to accept a network initiated session. </p>
+<p class="level0"><span Class="bold">--oma-reject-network-initiated-session=[SESSION ID]</span> Request to reject a network initiated session. </p>
+<p class="level0"><span Class="bold">--oma-cancel-session</span> Request to cancel current OMA session, if any. </p><a name="SIM"></a><h2 class="nroffsh">Sim options</h2>
+<p class="level0"><span Class="bold">--pin=PIN</span> Send <span Class="bold">PIN</span> code to a given SIM card. </p>
+<p class="level0"><span Class="bold">--puk=PUK</span> Send <span Class="bold">PUK</span> code to a given SIM card. This must be used <span Class="emphasis">WITH</span> <span Class="bold">--pin</span>. </p>
+<p class="level0"><span Class="bold">--enable-pin</span> Enable PIN request for a given SIM card. This must be used <span Class="emphasis">WITH</span> <span Class="bold">--pin</span>. </p>
+<p class="level0"><span Class="bold">--disable-pin</span> Disable PIN request for a given SIM card. This must be used <span Class="emphasis">WITH</span> <span Class="bold">--pin</span>. </p>
+<p class="level0"><span Class="bold">--change-pin=PIN</span> Change the PIN for a given SIM card. It will be set to <span Class="bold">PIN</span>. This must be used <span Class="emphasis">WITH</span> <span Class="bold">--pin</span> to supply the old PIN number. </p><a name="BEARER"></a><h2 class="nroffsh">Bearer options</h2>
+<p class="level0">All bearer options require the <span Class="bold">--bearer</span> or <span Class="bold">-b</span> option. </p>
+<p class="level0"><span Class="bold">-c, --connect</span> Connect to a given bearer. </p>
+<p class="level0"><span Class="bold">-x, --disconnect</span> Disconnect from a given bearer. </p><a name="SMS"></a><h2 class="nroffsh">Sms options</h2>
+<p class="level0">All SMS options require the <span Class="bold">--sms</span> or <span Class="bold">-s</span> option. </p>
+<p class="level0"><span Class="bold">--send</span> Send an SMS. </p>
+<p class="level0"><span Class="bold">--store</span> This option will store the SMS in the default storage defined by the modem, which may be either modem-memory or SMS-memory. To know what the existing default storage is, see the <span Class="bold">--messaging-status</span> option. </p>
+<p class="level0"><span Class="bold">--store-in-storage=STORAGE</span> This option states which <span Class="bold">STORAGE</span> to use for SMS messages. Possible values for <span Class="bold">STORAGE</span> include: </p>
+<p class="level1"><span Class="bold">&#39;sm&#39;</span> SIM card storage area. </p>
+<p class="level1"><span Class="bold">&#39;me&#39;</span> Mobile equipment storage area. </p>
+<p class="level1"><span Class="bold">&#39;mt&#39;</span> Sum of SIM and Mobile equipment storages </p>
+<p class="level1"><span Class="bold">&#39;sr&#39;</span> Status report message storage area. </p>
+<p class="level1"><span Class="bold">&#39;bm&#39;</span> Broadcast message storage area. </p>
+<p class="level1"><span Class="bold">&#39;ta&#39;</span> Terminal adaptor message storage area. </p>
+<p class="level0"><span Class="bold">--create-file-with-data\=PATH</span> This option takes an SMS that has <span Class="emphasis">DATA</span> (not <span Class="emphasis">TEXT</span>) and will create a local file described by <span Class="bold">PATH</span> and store the content of the SMS there. </p><a name="APPLICATION"></a><h2 class="nroffsh">Application options</h2>
+<p class="level0"><span Class="bold">-v, --verbose</span> Perform actions with more details reported and/or logged. </p>
+<p class="level0"><span Class="bold">-V, --version</span> Returns the version of this program. </p>
+<p class="level0"><span Class="bold">-a, --async</span> Use asynchronous methods. This is purely a development tool and has no practical benefit to most user operations. </p>
+<p class="level0"><span Class="bold">--timeout=SECONDS</span> Use <span Class="bold">SECONDS</span> for the timeout when performing operations with this command. This option is useful when executing long running operations, like --3gpp-scan. </p><a name="EXAMPLES"></a><h2 class="nroffsh">Examples</h2><a name="Send"></a><h2 class="nroffsh">Send the pin to the sim card</h2>
+<p class="level0">You&#39;ll need first to know which the proper path/index is for the SIM in your modem: </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 | grep SIM &nbsp;   SIM | path: &#39;/org/freedesktop/ModemManager1/SIM/0&#39; </p>
+<p class="level0">And after that, you can just use the SIM index: </p>
+<p class="level0">&nbsp;   $ mmcli -i 0 --pin=1234 &nbsp;   successfully sent PIN code to the SIM </p><a name="Simple"></a><h2 class="nroffsh">Simple connect and disconnect</h2>
+<p class="level0">You can launch the simple connection process like: </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 --simple-connect=&quot;pin=1234,apn=internet&quot; &nbsp;   successfully connected the modem </p>
+<p class="level0">Then, you can disconnect it like: </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 --simple-disconnect &nbsp;   successfully disconnected all bearers in the modem </p><a name="3GPP"></a><h2 class="nroffsh">3gpp network scan</h2>
+<p class="level0">Scanning for 3GPP networks may really take a long time, so a specific timeout must be given: </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 --3gpp-scan --timeout=300 </p>
+<p class="level0">&nbsp;   Found 4 networks: &nbsp;   21404 - Yoigo (umts, available) &nbsp;   21407 - Movistar (umts, current) &nbsp;   21401 - vodafone ES (umts, forbidden) &nbsp;   21403 - Orange (umts, forbidden) </p><a name="Creating"></a><h2 class="nroffsh">Creating a new sms message &amp; storing it</h2>
+<p class="level0">Using the “sm” (SIM), you can do this using: </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 --messaging-create-sms=&quot;text=&#39;Hello world&#39;,number=&#39;+1234567890&#39;&quot; &nbsp;   Successfully created new SMS: &nbsp;       /org/freedesktop/ModemManager1/SMS/21 (unknown) </p>
+<p class="level0">&nbsp;   $ sudo mmcli -s 21 --store-in-storage=&quot;sm&quot; &nbsp;   successfully stored the SMS </p>
+<p class="level0">&nbsp;   $ sudo mmcli -s 21 &nbsp;   SMS &#39;/org/freedesktop/ModemManager1/SMS/21&#39; &nbsp;     ----------------------------------- &nbsp;     Content    |              number: &#39;+1234567890&#39; &nbsp;                |                text: &#39;Hello world&#39; &nbsp;     ----------------------------------- &nbsp;     Properties |            PDU type: &#39;submit&#39; &nbsp;                |               state: &#39;stored&#39; &nbsp;                |                smsc: &#39;unknown&#39; &nbsp;                |            validity: &#39;0&#39; &nbsp;                |               class: &#39;0&#39; &nbsp;                |             storage: &#39;sm&#39; &nbsp;                |     delivery report: &#39;not requested&#39; &nbsp;                |   message reference: &#39;0&#39; </p>
+<p class="level0">&nbsp;   $ sudo mmcli -m 0 --messaging-status &nbsp;   /org/freedesktop/ModemManager1/Modem/0 &nbsp;     ---------------------------- &nbsp;     Messaging | supported storages: &#39;sm, me&#39; &nbsp;               |    default storage: &#39;me&#39; </p><a name="Sending"></a><h2 class="nroffsh">Sending sms messages from files</h2>
+<p class="level0">As you can see below, the important part is the <span Class="bold">--messaging-create-sms-with-data</span> and the <span Class="bold">PATH</span> provided. </p>
+<p class="level0">&nbsp;   $ sudo mmcli -m 0 &bsol; &nbsp;          --messaging-create-sms=&quot;number=&#39;+1234567890&#39;&quot; &bsol; &nbsp;          --messaging-create-sms-with-data=/path/to/your/file &nbsp;   Successfully created new SMS: &nbsp;       /org/freedesktop/ModemManager1/SMS/22 (unknown) </p>
+<p class="level0">&nbsp;   $ sudo mmcli -s 22 --send &nbsp;   successfully sent the SMS </p><a name="Listing"></a><h2 class="nroffsh">Listing sms messages</h2>
+<p class="level0">When the receiver gets all the parts of the message, they can now recover the sent file with another <span Class="bold">mmcli</span> command in their ModemManager setup: </p>
+<p class="level0">&nbsp;   $&gt; sudo mmcli -m 0 --messaging-list-sms &nbsp;   Found 1 SMS messages: &nbsp;       /org/freedesktop/ModemManager1/SMS/0 (received) </p>
+<p class="level0">&nbsp;   $&gt; sudo mmcli -s 0 --create-file-with-data=/path/to/the/output/file </p><a name="GPS"></a><h2 class="nroffsh">Gps location status</h2>
+<p class="level0">You first need to check whether the modem has GPS-specific location capabilities. Note that we’ll assume the modem is exposed as index 0; if you have more than one modem, just use --list-modems to check the proper modem index: </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 --location-status &nbsp;   /org/freedesktop/ModemManager1/Modem/0 &nbsp;     ---------------------------- &nbsp;     Location | capabilities: &#39;3gpp-lac-ci, gps-raw, gps-nmea&#39; &nbsp;              |      enabled: &#39;none&#39; &nbsp;              |      signals: &#39;no&#39; </p>
+<p class="level0">The output says that the modem supports 3GPP Location area code/Cell ID, GPS raw and GPS-NMEA location sources. None is enabled yet, as we didn’t enable the modem, which we can do issuing: </p>
+<p class="level0">&nbsp;   $ sudo mmcli -m 0 --enable &nbsp;   successfully enabled the modem </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 --location-status &nbsp;   /org/freedesktop/ModemManager1/Modem/0 &nbsp;     ---------------------------- &nbsp;     Location | capabilities: &#39;3gpp-lac-ci, gps-raw, gps-nmea&#39; &nbsp;              |      enabled: &#39;3gpp-lac-ci&#39; &nbsp;              |      signals: &#39;no&#39; </p><a name="GPS"></a><h2 class="nroffsh">Gps location technology enabling</h2>
+<p class="level0">We can enable the RAW and NMEA GPS location sources using: </p>
+<p class="level0">&nbsp;   $ sudo mmcli -m 0 &bsol; &nbsp;                --location-enable-gps-raw &bsol; &nbsp;                --location-enable-gps-nmea &nbsp;   successfully setup location gathering </p>
+<p class="level0">If we do check again the status, we’ll see the GPS-specific locations are enabled: </p>
+<p class="level0">&nbsp;   $ mmcli -m 0 --location-status &nbsp;   /org/freedesktop/ModemManager1/Modem/0 &nbsp;     ---------------------------- &nbsp;     Location | capabilities: &#39;3gpp-lac-ci, gps-raw, gps-nmea&#39; &nbsp;              |      enabled: &#39;3gpp-lac-ci, gps-raw, gps-nmea&#39; &nbsp;              |      signals: &#39;no&#39; </p><a name="GPS"></a><h2 class="nroffsh">Gps location retrieval</h2>
+<p class="level0">You can query location source specific information with <span Class="bold">--location-get-3gpp</span>, <span Class="bold">--location-get-gps-nmea</span> and <span Class="bold">--location-get-gps-raw</span>; but also for all at the same time: </p>
+<p class="level0">&nbsp;   $ sudo mmcli -m 0 --location-get &nbsp;   /org/freedesktop/ModemManager1/Modem/0 &nbsp;     ------------------------- &nbsp;     3GPP location   | Mobile country code: &#39;214&#39; &nbsp;                     | Mobile network code: &#39;3&#39; &nbsp;                     |  Location area code: &#39;21071&#39; &nbsp;                     |             Cell ID: &#39;7033737&#39; &nbsp;     ------------------------- &nbsp;     GPS NMEA traces | $GPGGA,,,,,,0,,,,,,,,*66 &nbsp;                     | $GPRMC,,V,,,,,,,,,,N*53 &nbsp;                     | $GPGSA,A,1,,,,,,,,,,,,,,,*1E &nbsp;                     | $GPGSV,4,1,16,24,,,,29,,,,05,,,,18,,,*7A &nbsp;                     | $GPGSV,4,2,16,22,,,,14,,,,11,,,,17,,,*7B &nbsp;                     | $GPGSV,4,3,16,03,,,,12,,,,30,,,,13,,,*78 &nbsp;                     | $GPGSV,4,4,16,23,,,,15,,,,27,,,,07,,,*79 &nbsp;                     | $GPVTG,,T,,M,,N,,K,N*2C &nbsp;     ------------------------- &nbsp;     Raw GPS         | Not available &nbsp;     ------------------------- &nbsp;     CDMA BS         | Not available </p>
+<p class="level0">An example of RAW GPS location information: </p>
+<p class="level0">&nbsp;   $ sudo mmcli -m 0 --location-get-gps-raw &nbsp;   /org/freedesktop/ModemManager1/Modem/0 &nbsp;     ------------------------- &nbsp;     Raw GPS         |  UTC time: &#39;155142.2&#39; &nbsp;                     | Longitude: &#39;-3.513941&#39; &nbsp;                     |  Latitude: &#39;40.502603&#39; &nbsp;                     |  Altitude: &#39;18.000000&#39; </p><a name="AUTHOR"></a><h2 class="nroffsh">Author</h2>
+<p class="level0">Martyn Russell &lt;martyn@lanedo.com&gt; </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<p class="level0"><span Class="bold">ModemManager</span>(8), <span Class="bold">NetworkManager</span>(8) </p>
+<p class="level0">AT (<a href="http://en.wikipedia.org/wiki/AT_commands).">http://en.wikipedia.org/wiki/AT_commands).</a> </p>
+<p class="level0">3GPP (<a href="http://en.wikipedia.org/wiki/3GPP).">http://en.wikipedia.org/wiki/3GPP).</a> </p>
+<p class="level0">MCCMNC (<a href="http://en.wikipedia.org/wiki/Mobile_Network_Code).">http://en.wikipedia.org/wiki/Mobile_Network_Code).</a> </p>
+<p class="level0">USSD (<a href="http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).">http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).</a> </p>
+<p class="level0">CDMA (<a href="http://en.wikipedia.org/wiki/Code_division_multiple_access).">http://en.wikipedia.org/wiki/Code_division_multiple_access).</a> </p>
+<p class="level0">OTA (<a href="http://en.wikipedia.org/wiki/Over-the-air_programming).">http://en.wikipedia.org/wiki/Over-the-air_programming).</a> </p>
+<p class="level0">GPS (<a href="http://en.wikipedia.org/wiki/Global_Positioning_System)">http://en.wikipedia.org/wiki/Global_Positioning_System)</a> </p>
+<p class="level0">NMEA (<a href="http://en.wikipedia.org/wiki/NMEA_0183)">http://en.wikipedia.org/wiki/NMEA_0183)</a> </p><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.
+</body></html>

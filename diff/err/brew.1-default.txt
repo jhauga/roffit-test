@@ -1,0 +1,4 @@
+124c124
+< <p class="level0">Open Homebrew&acute;s online documentation (<a href="https://docs.brew.sh)">https://docs.brew.sh)</a> in a browser. </p><a name="fBdoctorfR"></a><h2 class="nroffsh">\fbdoctor\fr, \fbdr\fr [\fb--list-checks\fr] [\fb--audit-debug\fr] [\fidiagnostic_check\fr \.\.\.]</h2>
+---
+> <p class="level0">Open Homebrew&acute;s online documentation (<a href="https://docs.brew.sh">https://docs.brew.sh</a>) in a browser. </p><a name="fBdoctorfR"></a><h2 class="nroffsh">\fbdoctor\fr, \fbdr\fr [\fb--list-checks\fr] [\fb--audit-debug\fr] [\fidiagnostic_check\fr \.\.\.]</h2>

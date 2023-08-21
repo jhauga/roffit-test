@@ -1,0 +1,26 @@
+<!-- generated with roffit -->
+<a name="NAME"></a><h2 class="nroffsh">Name</h2>
+<p class="level0">doh - query a DoH server </p><a name="SYNOPSIS"></a><h2 class="nroffsh">Synopsis</h2>
+<p class="level0"><span Class="bold">doh [options] [host] [server URL]</span> </p><a name="DESCRIPTION"></a><h2 class="nroffsh">Description</h2>
+<p class="level0"><span Class="bold">doh</span> sends DNS queries to a DNS-over-HTTPS (DoH) server. If no server URL is specified, it defaults to Cloudflare&#39;s public server. </p><a name="OPTIONS"></a><h2 class="nroffsh">Options</h2>
+<p class="level0"><a name="-h"></a><span class="nroffip">-h</span> </p>
+<p class="level1">Show the help output. </p>
+<p class="level0"><a name="-k"></a><span class="nroffip">-k</span> </p>
+<p class="level1">Run in insecure mode. It completely switches off certificate checking of the DoH server! </p>
+<p class="level0"><a name="-tTYPE"></a><span class="nroffip">-tTYPE</span> </p>
+<p class="level1">Set query type. Supported values are A, AAAA, CNAME and TXT. </p>
+<p class="level0"><a name="-T"></a><span class="nroffip">-T</span> </p>
+<p class="level1">Test mode. Returns an exit code if there isn&#39;t a proper DoH response. </p>
+<p class="level0"><a name="-v"></a><span class="nroffip">-v</span> </p>
+<p class="level1">Verbose mode. Shows lots of details from the underlying HTTPS connection and transfer. </p>
+<p class="level0"><a name="-4"></a><span class="nroffip">-4</span> </p>
+<p class="level1">Use only IPv4 transport to DOH server. </p>
+<p class="level0"><a name="-6"></a><span class="nroffip">-6</span> </p>
+<p class="level1">Use only IPv6 transport to DOH server. </p>
+<p class="level0"><a name="-r"></a><span class="nroffip">-r NAME:PORT:ADDRESS</span> </p>
+<p class="level1">Provide a fixed IP address for the given host name + port pair. This option can be provided several times. This preloads the DNS cache. </p>
+<p class="level1">Example: &quot;-r example.com:443:127.0.0.1&quot; </p>
+<p class="level0"><a name="-V"></a><span class="nroffip">-V</span> </p>
+<p class="level1">Show version number and exit. </p><a name="WWW"></a><h2 class="nroffsh">Www</h2>
+<p class="level0"><a href="https://github.com/curl/doh">https://github.com/curl/doh</a> </p><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.

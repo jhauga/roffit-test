@@ -1,0 +1,36 @@
+<!-- generated with roffit -->
+<a name="NAME"></a><h2 class="nroffsh">Name</h2>
+<p class="level0">ipsec_atoasr, ipsec_rangetoa - convert ASCII to Internet address, subnet, or range, convert Internet address range to ASCII </p><a name="SYNOPSIS"></a><h2 class="nroffsh">Synopsis</h2><pre class="level0">
+&#35;include &lt;libreswan.h&gt;
+&nbsp;
+</pre>
+
+<p class="level0"><span Class="bold">const char *atoasr(const\ char\ *\ </span><span Class="emphasis">src</span><span Class="bold">, size_t\ </span><span Class="emphasis">srclen</span><span Class="bold">, char\ *\ </span><span Class="emphasis">type</span><span Class="bold">, struct\ in_addr\ *\ </span><span Class="emphasis">addrs</span><span Class="bold">);</span> </p>
+<p class="level0"><span Class="bold">size_t rangetoa(struct\ in_addr\ *\ </span><span Class="emphasis">addrs</span><span Class="bold">, int\ </span><span Class="emphasis">format</span><span Class="bold">, char\ *\ </span><span Class="emphasis">dst</span><span Class="bold">, size_t\ </span><span Class="emphasis">dstlen</span><span Class="bold">);</span> </p><a name="DESCRIPTION"></a><h2 class="nroffsh">Description</h2>
+<p class="level0">These functions are obsolete; there is no current equivalent, because so far they have not proved useful. </p>
+<p class="level0"><span Class="emphasis">Atoasr</span> converts an ASCII address, subnet, or address range into a suitable combination of binary addresses (in network byte order). <span Class="emphasis">Rangetoa</span> converts an address range back into ASCII, using dotted-decimal form for the addresses (the other reverse conversions are handled by <span Class="bold">ipsec_addrtoa</span>(3) and <span Class="bold">ipsec_subnettoa</span>(3)). </p>
+<p class="level0">A single address can be any form acceptable to <span Class="bold">ipsec_atoaddr</span>(3): dotted decimal, DNS name, or hexadecimal number. A subnet specification uses the form <span Class="emphasis">network</span><span Class="bold">/</span><span Class="emphasis">mask</span> interpreted by <span Class="bold">ipsec_atosubnet</span>(3). </p>
+<p class="level0">An address range is two <span Class="bold">ipsec_atoaddr</span>(3) addresses separated by a ... delimiter. If there are four dots rather than three, the first is taken as part of the begin address, e.g. for a complete DNS name which ends with . to suppress completion attempts. The begin address of a range must be less than or equal to the end address. </p>
+<p class="level0">The <span Class="emphasis">srclen</span> parameter of <span Class="bold">atoasr</span> specifies the length of the ASCII string pointed to by <span Class="emphasis">src</span>; it is an error for there to be anything else (e.g., a terminating NUL) within that length. As a convenience for cases where an entire NUL-terminated string is to be converted, a <span Class="emphasis">srclen</span> value of 0 is taken to mean <span Class="bold">strlen(src)</span>. </p>
+<p class="level0">The <span Class="emphasis">type</span> parameter of <span Class="bold">atoasr</span> must point to a <span Class="bold">char</span> variable used to record which form was found. The <span Class="emphasis">addrs</span> parameter must point to a two-element array of <span Class="bold">struct in_addr</span> which receives the results. The values stored into <span Class="bold">*type</span>, and the corresponding values in the array, are: </p>
+<p class="level0">*type addrs[0] addrs[1] </p>
+<p class="level0">address <span Class="bold">*(Aqa*(Aq</span> address - subnet <span Class="bold">*(Aqs*(Aq</span> network mask range <span Class="bold">*(Aqr*(Aq</span> begin end </p>
+<p class="level0">The <span Class="emphasis">dstlen</span> parameter of <span Class="bold">rangetoa</span> specifies the size of the <span Class="emphasis">dst</span> parameter; under no circumstances are more than <span Class="emphasis">dstlen</span> bytes written to <span Class="emphasis">dst</span>. A result that will not fit is truncated. <span Class="emphasis">Dstlen</span> can be zero, in which case <span Class="emphasis">dst</span> need not be valid and no result is written, but the return value is unaffected; in all other cases, the (possibly truncated) result is NUL-terminated. The <span Class="emphasis">libreswan.h</span> header file defines a constant, <span Class="bold">RANGETOA_BUF</span>, which is the size of a buffer just large enough for worst-case results. </p>
+<p class="level0">The <span Class="emphasis">format</span> parameter of <span Class="bold">rangetoa</span> specifies what format is to be used for the conversion. The value 0 (not the ASCII character <span Class="bold">*(Aq0*(Aq</span>, but a zero value) specifies a reasonable default, and is in fact the only format currently available. This parameter is a hedge against future needs. </p>
+<p class="level0"><span Class="emphasis">Atoasr</span> returns NULL for success and a pointer to a string-literal error message for failure; see DIAGNOSTICS. <span Class="emphasis">Rangetoa</span> returns 0 for a failure, and otherwise always returns the size of buffer that would be needed to accommodate the full conversion result, including terminating NUL; it is the caller*(Aqs responsibility to check this against the size of the provided buffer to determine whether truncation has occurred. </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<p class="level0"><span Class="bold">ipsec_atoaddr</span>(3), <span Class="bold">ipsec_atosubnet</span>(3) </p><a name="DIAGNOSTICS"></a><h2 class="nroffsh">Diagnostics</h2>
+<p class="level0">Fatal errors in <span Class="bold">atoasr</span> are: empty input; error in <span Class="bold">ipsec_atoaddr</span>(3) or <span Class="bold">ipsec_atosubnet</span>(3) during conversion; begin address of range exceeds end address. </p>
+<p class="level0">Fatal errors in <span Class="bold">rangetoa</span> are: unknown format. </p><a name="HISTORY"></a><h2 class="nroffsh">History</h2>
+<p class="level0">Written for the FreeS/WAN project by Henry Spencer. </p><a name="BUGS"></a><h2 class="nroffsh">Bugs</h2>
+<p class="level0">The restriction of error reports to literal strings (so that callers don*(Aqt need to worry about freeing them or copying them) does limit the precision of error reporting. </p>
+<p class="level0">The error-reporting convention lends itself to slightly obscure code, because many readers will not think of NULL as signifying success. A good way to make it clearer is to write something like: </p><pre class="level1">
+<span class="bold">const char *error;</span>
+&nbsp;
+<span class="bold">error = atoasr( /* ... */ );</span>
+<span class="bold">if (error != NULL) {</span>
+<span class="bold">        /* something went wrong */</span>
+</pre>
+<a name="AUTHOR"></a><h2 class="nroffsh">Author</h2>
+<p class="level0"><span Class="bold">Paul Wouters</span> </p>
+<p class="level1">placeholder to suppress warning </p><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.

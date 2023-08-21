@@ -1,0 +1,12 @@
+diff/err/CURLOPT_PROXY.3--bare.txt
+diff/err/CURLOPT_PROXY.3-default.txt
+diff/err/brew.1--bare.txt
+diff/err/brew.1-default.txt
+diff/err/curl.1--bare.txt
+diff/err/curl.1-default.txt
+diff/err/mc.1.in--bare.txt
+diff/err/mc.1.in-default.txt
+diff/err/mmcli.8--bare.txt
+diff/err/mmcli.8-default.txt
+diff/err/svnfiltereddump.1--bare.txt
+diff/err/svnfiltereddump.1-default.txt

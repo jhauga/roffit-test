@@ -1,0 +1,213 @@
+<!-- generated with roffit -->
+<a name="NAME"></a><h2 class="nroffsh">Name</h2>
+<p class="level0">trurl - transpose URLs </p><a name="SYNOPSIS"></a><h2 class="nroffsh">Synopsis</h2>
+<p class="level0"><span Class="bold">trurl [options / URLs]</span> </p><a name="DESCRIPTION"></a><h2 class="nroffsh">Description</h2>
+<p class="level0"><span Class="bold">trurl</span> parses, manipulates and outputs URLs and parts of URLs. </p>
+<p class="level0">It uses the <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> definition of URLs and it uses libcurl&#39;s URL parser to do so, which includes a few &quot;extensions&quot;. The URL support is limited to &quot;hierarchical&quot; URLs, the ones that use &quot;://&quot; separators after the scheme. </p>
+<p class="level0">Typically you pass in one or more URLs and decide what of that you want output. Possibly modifying the URL as well. </p>
+<p class="level0">trurl knows URLs and every URL consists of up to ten separate and independent &quot;components&quot;. These components can be extracted, removed and updated with trurl and they are referred to by their respective names: scheme, user, password, options, host, port, path, query, fragment and zoneid. </p><a name="OPTIONS"></a><h2 class="nroffsh">Options</h2>
+<p class="level0">Options start with one or two dashes. Many of the options require an additional value next to them. </p>
+<p class="level0">Any other argument is interpreted as a URL argument, and is treated as if it was following a <a class="emphasis" href="#--url">--url</a> option. </p>
+<p class="level0">The first argument that is exactly two dashes (&quot;--&quot;), marks the end of options; any argument after the end of options is interpreted as a URL argument even if it starts with a dash. </p>
+<p class="level0"><a name="-a"></a><span class="nroffip">-a, --append [component]=[data]</span> </p>
+<p class="level1">Append data to a component. This can only append data to the path and the query components. </p>
+<p class="level1">For path, this URL encodes and appends the new segment to the path, separated with a slash. </p>
+<p class="level1">For query, this URL encodes and appends the new segment to the query, separated with an ampersand (&amp;). If the appended segment contains an equal sign (&#39;=&#39;) that one will be kept verbatim and both sides of the first occurrence will be URL encoded separately. </p>
+<p class="level0"><a name="--accept-space"></a><span class="nroffip">--accept-space</span> </p>
+<p class="level1">When set, trurl will try to accept spaces as part of the URL and instead URL encode such occurrences accordingly. </p>
+<p class="level1">According to <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>, a space cannot legally be part of a URL. This option provides a best-effort to convert the provided string into a valid URL. </p>
+<p class="level0"><a name="--default-port"></a><span class="nroffip">--default-port</span> </p>
+<p class="level1">When set, trurl will use the scheme&#39;s default port number for URLs with a known scheme, and without an explicit port number. </p>
+<p class="level1">Note that trurl only knows default port numbers for URL schemes that are supported by libcurl. </p>
+<p class="level1">Since, by default, trurl removes default port numbers from URLs with a known scheme, this option is pretty much ignored unless one of <span Class="emphasis">--get</span>, <a class="emphasis" href="#--json">--json</a>, and <a class="emphasis" href="#--keep-port">--keep-port</a> is not also specified. </p>
+<p class="level0"><a name="-f"></a><span class="nroffip">-f, --url-file [file name]</span> </p>
+<p class="level1">Read URLs to work on from the given file. Use the file name &quot;-&quot; (a single minus) to tell trurl to read the URLs from stdin. </p>
+<p class="level1">Each line needs to be a single valid URL. trurl will remove one carriage return character at the end of the line if present, trim off all the trailing space and tab characters, and skip all empty (after trimming) lines. </p>
+<p class="level1">The maximum line length supported in a file like this is 4094 bytes. Lines that exceed that length are skipped, and a warning is printed to stderr when they are encountered. </p>
+<p class="level0"><a name="-g"></a><span class="nroffip">-g, --get [format]</span> </p>
+<p class="level1">Output text and URL data according to the provided format string. Components from the URL can be output when specified as <span Class="bold">{component}</span> or <span Class="bold">[component]</span>, with the name of the part show within curly braces or brackets. You can not mix braces and brackets for this purpose in the same command line. </p>
+<p class="level1">The following component names are available (case sensitive): url, scheme, user, password, options, host, port, path, query, fragment and zoneid. </p>
+<p class="level1"><span Class="bold">{component}</span> will expand to nothing if the given component does not have a value. </p>
+<p class="level1">Components are shown URL decoded by default. If you instead write the component prefixed with a colon like &quot;{:path}&quot;, it gets output URL encoded. </p>
+<p class="level1">You may also prefix components with <span Class="bold">default:</span> and/or <span Class="bold">puny:</span>, in any order. </p>
+<p class="level1">If <span Class="bold">default:</span> is specified, like &quot;{default:url}&quot; or &quot;{default:port}&quot;, and the port is not explicitly specified in the URL, the scheme&#39;s default port will be output if it is known. </p>
+<p class="level1">If <span Class="bold">puny:</span> is specified, like &quot;{puny:url}&quot; or &quot;{puny:host}&quot;, the &quot;punycoded&quot; version of the host name will be used in the output. </p>
+<p class="level1">If <a class="emphasis" href="#--default-port">--default-port</a> is specified, all formats are expanded as if they used <span Class="emphasis">default:</span>; and if <a class="emphasis" href="#--punycode">--punycode</a> is used, all formats are expanded as if they used <span Class="emphasis">puny:</span>. Also note that &quot;{url}&quot; is affected by the <a class="emphasis" href="#--keep-port">--keep-port</a> option. </p>
+<p class="level1">Hosts provided as IPv6 numerical addresses will be provided within square brackets. Like &quot;[fe80::20c:29ff:fe9c:409b]&quot;. </p>
+<p class="level1">Hosts provided as IPv4 numerical addresses will be &quot;normalized&quot; and provided as four dot-separated decimal numbers when output. </p>
+<p class="level1">You can access specific keys in the query string using the format <span Class="bold">{query:key}</span>. Then the value of the first matching key will be output using a case sensitive match. When extracting a URL decoded query key that contains %00, such octet will be replaced with a single period &#39;.&#39; in the output. </p>
+<p class="level1">You can access specific keys in the query string and out all values using the format <span Class="bold">{query-all:key}</span>. This looks for &#39;key&#39; case sensitively and will output all values for that key space-separated. </p>
+<p class="level1">The &quot;format&quot; string supports the following backslash sequences: </p>
+<p class="level1">&bsol;&nbsp;- backslash </p>
+<p class="level1">&bsol;t - tab </p>
+<p class="level1">&bsol;n - newline </p>
+<p class="level1">&bsol;r - carriage return </p>
+<p class="level1">&bsol;{ - an open curly brace that does not start a variable </p>
+<p class="level1">&bsol;[ - an open bracket that does not start a variable </p>
+<p class="level1">All other text in the format string will be shown as-is. </p>
+<p class="level0"><a name="-h"></a><span class="nroffip">-h, --help</span> </p>
+<p class="level1">Show the help output. </p>
+<p class="level0"><a name="--iterate"></a><span class="nroffip">--iterate [component]=[item1 item2 ...]</span> </p>
+<p class="level1">Set the component to multiple values and output the result once for each iteration. Several combined iterations are allowed to generate combinations, but only one <a class="emphasis" href="#--iterate">--iterate</a> option per component. The listed items to iterate over should be separated by single spaces. </p>
+<p class="level0"><a name="--json"></a><span class="nroffip">--json</span> </p>
+<p class="level1">Outputs all set components of the URLs as JSON objects. All components of the URL that have data will get populated in the parts object using their component names. See below for details on the format. </p>
+<p class="level0"><a name="--keep-port"></a><span class="nroffip">--keep-port</span> </p>
+<p class="level1">By default, trurl removes default port numbers from URLs with a known scheme even if they are explicitly specified in the input URL. This options, makes trurl not remove them. </p>
+<p class="level0"><a name="--no-guess-scheme"></a><span class="nroffip">--no-guess-scheme</span> </p>
+<p class="level1">Disables libcurl&#39;s scheme guessing feature. URLs that do not contain a scheme will be treated as invalid URLs. </p>
+<p class="level0"><a name="--punycode"></a><span class="nroffip">--punycode</span> </p>
+<p class="level1">Uses the &quot;punycoded&quot; version of the host name, which is how International Domain Names are converted into plain ASCII. If the host name is not using IDN, the regular ASCII name is used. </p>
+<p class="level0"><a name="--query-separator"></a><span class="nroffip">--query-separator [what]</span> </p>
+<p class="level1">Specify the single letter used for separating query pairs. The default is &quot;&amp;&quot; but at least in the past sometimes semicolons &quot;;&quot; or even colons &quot;:&quot; have been used for this purpose. If your URL uses something other than the default letter, setting the right one makes sure trurl can do its query operations properly. </p>
+<p class="level0"><a name="--redirect"></a><span class="nroffip">--redirect [URL]</span> </p>
+<p class="level1">Redirect the URL to this new location. The redirection is performed on the base URL, so, if no base URL is specified, no redirection will be performed. </p>
+<p class="level0"><a name="-s"></a><span class="nroffip">-s, --set [component][:]=[data]</span> </p>
+<p class="level1">Set this URL component. Setting blank string (&quot;&quot;) will clear the component from the URL. </p>
+<p class="level1">The following components can be set: url, scheme, user, password, options, host, port, path, query, fragment and zoneid. </p>
+<p class="level1">If a simple &quot;=&quot;-assignment is used, the data is URL encoded when applied. If &quot;:=&quot; is used, the data is assumed to already be URL encoded and will be stored as-is. </p>
+<p class="level1">If no URL or <span Class="emphasis">--url-file</span> argument is provided, trurl will try to create a URL using the components provided by the <span Class="emphasis">--set</span> options. If not enough components are specified, this will fail. </p>
+<p class="level0"><a name="--sort-query"></a><span class="nroffip">--sort-query</span> </p>
+<p class="level1">The &quot;variable=content&quot; tuplets in the query component are sorted in a case insensitive alphabetical order. This helps making URLs identical that otherwise only had their query pairs in different orders. </p>
+<p class="level0"><a name="--url"></a><span class="nroffip">--url [URL]</span> </p>
+<p class="level1">Set the input URL to work with. The URL may be provided without a scheme, which then typically is not actually a legal URL but trurl will try to figure out what is meant and guess what scheme to use (unless <a class="emphasis" href="#--no-guess-scheme">--no-guess-scheme</a> is used). </p>
+<p class="level1">Providing multiple URLs will make trurl act on all URLs in a serial fashion. </p>
+<p class="level1">If the URL cannot be parsed for whatever reason, trurl will simply move on to the next provided URL - unless <a class="emphasis" href="#--verify">--verify</a> is used. </p>
+<p class="level0"><a name="--urlencode"></a><span class="nroffip">--urlencode</span> </p>
+<p class="level1">Outputs URL encoded version of components by default when using <span Class="emphasis">--get</span> or <a class="emphasis" href="#--json">--json</a>. </p>
+<p class="level0"><a name="--trim"></a><span class="nroffip">--trim [component]=[what]</span> </p>
+<p class="level1">Trims data off a component. Currently this can only trim a query component. </p>
+<p class="level1">&quot;what&quot; is specified as a full word or as a word prefix (using a single trailing asterisk (&#39;*&#39;)) which makes trurl remove the tuples from the query string that match the instruction. </p>
+<p class="level1">To match a literal trailing asterisk instead of using a wildcard, escape it with a backslash in front of it. Like &quot;&bsol;*&quot;. </p>
+<p class="level0"><a name="-v"></a><span class="nroffip">-v, --version</span> </p>
+<p class="level1">Show version information and exit. </p>
+<p class="level0"><a name="--verify"></a><span class="nroffip">--verify</span> </p>
+<p class="level1">When a URL is provided, return error immediately if it does not parse as a valid URL. In normal cases, trurl can forgive a bad URL input. </p><a name="JSON"></a><h2 class="nroffsh">Json output format</h2>
+<p class="level0">The <a class="emphasis" href="#--json">--json</a> option outputs a JSON array with one or more objects. One for each URL. </p>
+<p class="level0">Each URL JSON object contains a number of properties, a series of key/value pairs. The exact set depends on the given URL. </p>
+<p class="level0"><a name="url"></a><span class="nroffip">url</span> </p>
+<p class="level1">This key exists in every object. It is the complete URL. Affected by <a class="emphasis" href="#--default-port">--default-port</a>, <a class="emphasis" href="#--keep-port">--keep-port</a>, and <a class="emphasis" href="#--punycode">--punycode</a>. </p>
+<p class="level0"><a name="parts"></a><span class="nroffip">parts</span> </p>
+<p class="level1">This key exists in every object, and contains an object with a key for each of the settable URL components. If a component is missing, it means it is not present in the URL. The parts are URL decoded unless <a class="emphasis" href="#--urlencode">--urlencode</a> is used. </p>
+<p class="level2"><span Class="bold">scheme</span> The URL scheme. </p>
+<p class="level2"><span Class="bold">user</span> The user name. </p>
+<p class="level2"><span Class="bold">password</span> The password. </p>
+<p class="level2"><span Class="bold">options</span> The options. Note that only a few URL schemes support the &quot;options&quot; component. </p>
+<p class="level2"><span Class="bold">host</span> The and normalized host name. It might be a UTF-8 name if an IDN name was used. It can also be a normalized IPv4 or IPv6 address. An IPv6 address always starts with a bracket (<span Class="bold">[</span>) - and no other host names can contain such a symbol. If <a class="emphasis" href="#--punycode">--punycode</a> is used, the punycode version of the host is outputted instead. </p>
+<p class="level2"><span Class="bold">port</span> The provided port number as a string. If the port number was not provided in the URL, but the scheme is a known one, and <a class="emphasis" href="#--default-port">--default-port</a> is in use, the default port for that scheme will be provided here. </p>
+<p class="level2"><span Class="bold">path</span> The path. Including the leading slash. </p>
+<p class="level2"><span Class="bold">query</span> The full query, excluding the question mark separator. </p>
+<p class="level2"><span Class="bold">fragment</span> The fragment, excluding the pound sign separator. </p>
+<p class="level2"><span Class="bold">zoneid</span> The zone id, which can only be present in an IPv6 address. When this key is present, then <span Class="bold">host</span> is an IPv6 numerical address. </p>
+<p class="level0"><a name="params"></a><span class="nroffip">params</span> </p>
+<p class="level1">This key contains an array of query key/value objects. Each such pair is listed with &quot;key&quot; and &quot;value&quot; and their respective contents in the output. </p>
+<p class="level1">The key/values are extracted from the query where they are separated by ampersands (<span Class="bold">&amp;</span>) - or the user sets with <a class="bold" href="#--query-separator">--query-separator</a>. </p>
+<p class="level1">The query pairs are listed in the order of appearance in a left-to-right order, but can be made alpha-sorted with <a class="bold" href="#--sort-query">--sort-query</a>. </p>
+<p class="level1">It is only present if the URL has a query. </p><a name="EXAMPLES"></a><h2 class="nroffsh">Examples</h2>
+<p class="level0"><a name="Replace"></a><span class="nroffip">Replace the host name of a URL</span> </p><pre class="level1">
+$ trurl --url https://curl.se --set host=example.com
+https://example.com/
+</pre>
+
+<p class="level0"><a name="Create"></a><span class="nroffip">Create a URL by setting components</span> </p><pre class="level1">
+&nbsp;$ trurl --set host=example.com --set scheme=ftp
+&nbsp;ftp://example.com/
+</pre>
+
+<p class="level0"><a name="Redirect"></a><span class="nroffip">Redirect a URL</span> </p><pre class="level1">
+$ trurl --url https://curl.se/we/are.html --redirect here.html
+https://curl.se/we/here.html
+</pre>
+
+<p class="level0"><a name="Change"></a><span class="nroffip">Change port number</span> </p>
+<p class="level1">This also shows how trurl will remove dot-dot sequences </p><pre class="level1">
+$ trurl --url https://curl.se/we/../are.html --set port=8080
+https://curl.se:8080/are.html
+</pre>
+
+<p class="level0"><a name="Extract"></a><span class="nroffip">Extract the path from a URL</span> </p><pre class="level1">
+$ trurl --url https://curl.se/we/are.html --get &#39;{path}&#39;
+/we/are.html
+</pre>
+
+<p class="level0"><a name="Extract"></a><span class="nroffip">Extract the port from a URL</span> </p>
+<p class="level1">This gets the default port based on the scheme if the port is not set in the URL. </p><pre class="level1">
+$ trurl --url https://curl.se/we/are.html --get &#39;{default:port}&#39;
+443
+</pre>
+
+<p class="level0"><a name="Append"></a><span class="nroffip">Append a path segment to a URL</span> </p><pre class="level1">
+$ trurl --url https://curl.se/hello --append path=you
+https://curl.se/hello/you
+</pre>
+
+<p class="level0"><a name="Append"></a><span class="nroffip">Append a query segment to a URL</span> </p><pre class="level1">
+$ trurl --url &quot;https://curl.se?name=hello&quot; --append query=search=string
+&nbsp;https://curl.se/?name=hello&amp;search=string
+</pre>
+
+<p class="level0"><a name="Read"></a><span class="nroffip">Read URLs from stdin</span> </p><pre class="level1">
+$ cat urllist.txt | trurl --url-file -
+...
+</pre>
+
+<p class="level0"><a name="Output"></a><span class="nroffip">Output JSON</span> </p><pre class="level1">
+$ trurl &quot;https://fake.host/search?q=answers&amp;user=me&#35;frag&quot; --json
+[
+&nbsp; {
+&nbsp;   &quot;url&quot;: &quot;https://fake.host/search?q=answers&amp;user=me&#35;frag&quot;,
+&nbsp;   &quot;parts&quot;: [
+&nbsp;       &quot;scheme&quot;: &quot;https&quot;,
+&nbsp;       &quot;host&quot;: &quot;fake.host&quot;,
+&nbsp;       &quot;path&quot;: &quot;/search&quot;,
+&nbsp;       &quot;query&quot;: &quot;q=answers&amp;user=me&quot;
+&nbsp;       &quot;fragment&quot;: &quot;frag&quot;,
+&nbsp;   ],
+&nbsp;   &quot;params&quot;: [
+&nbsp;     {
+&nbsp;       &quot;key&quot;: &quot;q&quot;,
+&nbsp;       &quot;value&quot;: &quot;answers&quot;
+&nbsp;     },
+&nbsp;     {
+&nbsp;       &quot;key&quot;: &quot;user&quot;,
+&nbsp;       &quot;value&quot;: &quot;me&quot;
+&nbsp;     }
+&nbsp;   ]
+&nbsp; }
+]
+</pre>
+
+<p class="level0"><a name="Remove"></a><span class="nroffip">Remove tracking tuples from query</span> </p><pre class="level1">
+$ trurl &quot;https://curl.se?search=hey&amp;utm_source=tracker&quot; --trim query=&quot;utm_*&quot;
+https://curl.se/?search=hey
+</pre>
+
+<p class="level0"><a name="Show"></a><span class="nroffip">Show a specific query key value</span> </p><pre class="level1">
+$ trurl &quot;https://example.com?a=home&amp;here=now&amp;thisthen&quot; -g &#39;{query:a}&#39;
+home
+</pre>
+
+<p class="level0"><a name="Sort"></a><span class="nroffip">Sort the key/value pairs in the query component</span> </p><pre class="level1">
+$ trurl &quot;https://example.com?b=a&amp;c=b&amp;a=c&quot; --sort-query
+https://example.com?a=c&amp;b=a&amp;c=b
+</pre>
+
+<p class="level0"><a name="Work"></a><span class="nroffip">Work with a query that uses a semicolon separator</span> </p><pre class="level1">
+$ trurl &quot;https://curl.se?search=fool;page=5&quot; --trim query=&quot;search&quot; --query-separator &quot;;&quot;
+https://curl.se?page=5
+</pre>
+
+<p class="level0"><a name="Accept"></a><span class="nroffip">Accept spaces in the URL path</span> </p><pre class="level1">
+$ trurl &quot;https://curl.se/this has space/index.html&quot; --accept-space
+https://curl.se/this%20has%20space/index.html
+</pre>
+
+<p class="level0"><a name="Create"></a><span class="nroffip">Create multiple variations of a URL with different schemes</span> </p><pre class="level1">
+$ trurl &quot;https://curl.se/path/index.html&quot; --iterate &quot;scheme=http ftp sftp&quot;
+http://curl.se/path/index.html
+ftp://curl.se/path/index.html
+sftp://curl.se/path/index.html
+</pre>
+<a name="WWW"></a><h2 class="nroffsh">Www</h2>
+<p class="level0"><a href="https://curl.se/trurl">https://curl.se/trurl</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<p class="level0"><span Class="bold">curl_url_set</span>(3) <span Class="bold">curl_url_get</span>(3) </p><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.

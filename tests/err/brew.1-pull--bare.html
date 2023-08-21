@@ -1,0 +1,1050 @@
+<!-- generated with roffit -->
+
+<p class="level0">th Ronn/v0.7.3 </p><a name="NAME"></a><h2 class="nroffsh">Name</h2>
+<p class="level0"><span Class="bold">brew</span> - The Missing Package Manager for macOS (or Linux) </p><a name="SYNOPSIS"></a><h2 class="nroffsh">Synopsis</h2>
+<p class="level0"><span Class="bold">brew</span> <span Class="bold">--version</span> </p>
+<p class="level0"><br><span Class="bold">brew</span> <span Class="emphasis">command</span> [<span Class="bold">--verbose</span>|<span Class="bold">-v</span>] [<span Class="emphasis">options</span>] [<span Class="emphasis">formula</span>] ... </p><a name="DESCRIPTION"></a><h2 class="nroffsh">Description</h2>
+<p class="level0">Homebrew is the easiest and most flexible way to install the UNIX tools Apple didn&acute;t include with macOS. It can also install software not packaged for your Linux distribution without requiring <span Class="bold">sudo</span>. </p><a name="TERMINOLOGY"></a><h2 class="nroffsh">Terminology</h2>
+<p class="level0"><span Class="bold">formula</span> &nbsp;   Homebrew package definition built from upstream sources </p>
+<p class="level0"><span Class="bold">cask</span> &nbsp;   Homebrew package definition that installs macOS native applications </p>
+<p class="level0"><span Class="bold">keg</span> &nbsp;   installation destination directory of a given <span Class="bold">formula</span> version e.g. <span Class="bold">/usr/local/Cellar/foo/0.1</span> </p>
+<p class="level0"><span Class="bold">rack</span> &nbsp;   directory containing one or more versioned kegs e.g. <span Class="bold">/usr/local/Cellar/foo</span> </p>
+<p class="level0"><span Class="bold">keg-only</span> &nbsp;   a <span Class="bold">formula</span> is <span Class="bold">keg-only</span> if it is not symlinked into Homebrew&acute;s prefix (e.g. <span Class="bold">/usr/local</span>) </p>
+<p class="level0"><span Class="bold">cellar</span> &nbsp;   directory containing one or more named <span Class="bold">racks</span> e.g. <span Class="bold">/usr/local/Cellar</span> </p>
+<p class="level0"><span Class="bold">Caskroom</span> &nbsp;   directory containing one or more named <span Class="bold">casks</span> e.g. <span Class="bold">/usr/local/Caskroom</span> </p>
+<p class="level0"><span Class="bold">external command</span> &nbsp;   <span Class="bold">brew</span> subcommand defined outside of the Homebrew/brew GitHub repository </p>
+<p class="level0"><span Class="bold">tap</span> &nbsp;   directory (and usually Git repository) of <span Class="bold">formulae</span>, <span Class="bold">casks</span> and/or <span Class="bold">external commands</span> </p>
+<p class="level0"><span Class="bold">bottle</span> &nbsp;   pre-built <span Class="bold">keg</span> poured into the <span Class="bold">cellar</span>/<span Class="bold">rack</span> instead of building from upstream sources </p><a name="ESSENTIAL"></a><h2 class="nroffsh">Essential commands</h2>
+<p class="level0">For the full command list, see the <a class="emphasis" href="#COMMANDS">COMMANDS</a> section. </p>
+<p class="level0">With <span Class="bold">--verbose</span> or <span Class="bold">--debug</span>, many commands print extra debugging information. Note that these options should only appear after a command. </p>
+<p class="level0">Some command behaviour can be customised with environment variables; see the <a class="emphasis" href="#ENVIRONMENT">ENVIRONMENT</a> section. </p><a name="fBinstallfR"></a><h2 class="nroffsh">\fbinstall\fr \fiformula\fr</h2>
+<p class="level0">Install <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="emphasis">formula</span> is usually the name of the formula to install, but it has other syntaxes which are listed in the <a class="emphasis" href="#SPECIFYING">SPECIFYING FORMULAE</a> section. </p><a name="fBuninstallfR"></a><h2 class="nroffsh">\fbuninstall\fr \fiformula\fr</h2>
+<p class="level0">Uninstall <span Class="emphasis">formula</span>. </p><a name="fBlistfR"></a><h2 class="nroffsh">\fblist\fr</h2>
+<p class="level0">List all installed formulae. </p><a name="fBsearchfR"></a><h2 class="nroffsh">\fbsearch\fr [\fitext\fr|\fb/\fr\fitext\fr\fb/\fr]</h2>
+<p class="level0">Perform a substring search of cask tokens and formula names for <span Class="emphasis">text</span>. If <span Class="emphasis">text</span> is flanked by slashes, it is interpreted as a regular expression. The search for <span Class="emphasis">text</span> is extended online to <span Class="bold">homebrew/core</span> and <span Class="bold">homebrew/cask</span>. If no search term is provided, all locally available formulae are listed. </p><a name="COMMANDS"></a><h2 class="nroffsh">Commands</h2><a name="fBanalyticsfR"></a><h2 class="nroffsh">\fbanalytics\fr [\fisubcommand\fr]</h2>
+<p class="level0">Control Homebrew&acute;s anonymous aggregate user behaviour analytics. Read more at <span Class="emphasis"><a href="https://docs.brew.sh/Analytics">https://docs.brew.sh/Analytics</a></span>. </p>
+<p class="level0"><span Class="bold">brew analytics</span> [<span Class="bold">state</span>] &nbsp;   Display the current state of Homebrew&acute;s analytics. </p>
+<p class="level0"><span Class="bold">brew analytics</span> (<span Class="bold">on</span>|<span Class="bold">off</span>) &nbsp;   Turn Homebrew&acute;s analytics on or off respectively. </p><a name="fBautoremovefR"></a><h2 class="nroffsh">\fbautoremove\fr [\fb--dry-run\fr]</h2>
+<p class="level0">Uninstall formulae that were only installed as a dependency of another formula and are now no longer needed. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> List what would be uninstalled, but do not actually uninstall anything. </p><a name="fBcasksfR"></a><h2 class="nroffsh">\fbcasks\fr</h2>
+<p class="level0">List all locally installable casks including short names. </p><a name="fBcleanupfR"></a><h2 class="nroffsh">\fbcleanup\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Remove stale lock files and outdated downloads for all formulae and casks, and remove old versions of installed formulae. If arguments are specified, only do this for the given formulae and casks. Removes all downloads more than 120 days old. This can be adjusted with <span Class="bold">HOMEBREW_CLEANUP_MAX_AGE_DAYS</span>. </p>
+<p class="level0"><span Class="bold">--prune</span> Remove all cache files older than specified <span Class="emphasis">days</span>. If you want to remove everything, use <span Class="bold">--prune=all</span>. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Show what would be removed, but do not actually remove anything. </p>
+<p class="level0"><span Class="bold">-s</span> Scrub the cache, including downloads for even the latest versions. Note that downloads for any installed formulae or casks will still not be deleted. If you want to delete those too: <span Class="bold">rm -rf &quot;$(brew --cache)&quot;</span> </p>
+<p class="level0"><span Class="bold">--prune-prefix</span> Only prune the symlinks and directories from the prefix and remove no other files. </p><a name="fBcommandsfR"></a><h2 class="nroffsh">\fbcommands\fr [\fb--quiet\fr] [\fb--include-aliases\fr]</h2>
+<p class="level0">Show lists of built-in and external commands. </p>
+<p class="level0"><span Class="bold">-q</span>, <span Class="bold">--quiet</span> List only the names of commands without category headers. </p>
+<p class="level0"><span Class="bold">--include-aliases</span> Include aliases of internal commands. </p><a name="fBcompletionsfR"></a><h2 class="nroffsh">\fbcompletions\fr [\fisubcommand\fr]</h2>
+<p class="level0">Control whether Homebrew automatically links external tap shell completion files. Read more at <span Class="emphasis"><a href="https://docs.brew.sh/Shell-Completion">https://docs.brew.sh/Shell-Completion</a></span>. </p>
+<p class="level0"><span Class="bold">brew completions</span> [<span Class="bold">state</span>] &nbsp;   Display the current state of Homebrew&acute;s completions. </p>
+<p class="level0"><span Class="bold">brew completions</span> (<span Class="bold">link</span>|<span Class="bold">unlink</span>) &nbsp;   Link or unlink Homebrew&acute;s completions. </p><a name="fBconfigfR"></a><h2 class="nroffsh">\fbconfig\fr, \fb--config\fr</h2>
+<p class="level0">Show Homebrew and system configuration info useful for debugging. If you file a bug report, you will be required to provide this information. </p><a name="fBdepsfR"></a><h2 class="nroffsh">\fbdeps\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Show dependencies for <span Class="emphasis">formula</span>. Additional options specific to <span Class="emphasis">formula</span> may be appended to the command. When given multiple formula arguments, show the intersection of dependencies for each formula. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--topological</span> Sort dependencies in topological order. </p>
+<p class="level0"><span Class="bold">-1</span>, <span Class="bold">--direct</span> Show only the direct dependencies declared in the formula. </p>
+<p class="level0"><span Class="bold">--union</span> Show the union of dependencies for multiple <span Class="emphasis">formula</span>, instead of the intersection. </p>
+<p class="level0"><span Class="bold">--full-name</span> List dependencies by their full name. </p>
+<p class="level0"><span Class="bold">--include-build</span> Include <span Class="bold">:build</span> dependencies for <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--include-optional</span> Include <span Class="bold">:optional</span> dependencies for <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--include-test</span> Include <span Class="bold">:test</span> dependencies for <span Class="emphasis">formula</span> (non-recursive). </p>
+<p class="level0"><span Class="bold">--skip-recommended</span> Skip <span Class="bold">:recommended</span> dependencies for <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--include-requirements</span> Include requirements in addition to dependencies for <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--tree</span> Show dependencies as a tree. When given multiple formula arguments, show individual trees for each formula. </p>
+<p class="level0"><span Class="bold">--graph</span> Show dependencies as a directed graph. </p>
+<p class="level0"><span Class="bold">--dot</span> Show text-based graph description in DOT format. </p>
+<p class="level0"><span Class="bold">--annotate</span> Mark any build, test, optional, or recommended dependencies as such in the output. </p>
+<p class="level0"><span Class="bold">--installed</span> List dependencies for formulae that are currently installed. If <span Class="emphasis">formula</span> is specified, list only its dependencies that are currently installed. </p>
+<p class="level0"><span Class="bold">--missing</span> Show only missing dependencies. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to list their dependencies. </p>
+<p class="level0"><span Class="bold">--for-each</span> Switch into the mode used by the <span Class="bold">--all</span> option, but only list dependencies for each provided <span Class="emphasis">formula</span>, one formula per line. This is used for debugging the <span Class="bold">--installed</span>/<span Class="bold">--all</span> display mode. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBdescfR"></a><h2 class="nroffsh">\fbdesc\fr [\fioptions\fr] \fiformula\fr|\ficask\fr|\fitext\fr|\fb/\fr\firegex\fr\fb/\fr [\.\.\.]</h2>
+<p class="level0">Display <span Class="emphasis">formula</span>&acute;s name and one-line description. The cache is created on the first search, making that search slower than subsequent ones. </p>
+<p class="level0"><span Class="bold">-s</span>, <span Class="bold">--search</span> Search both names and descriptions for <span Class="emphasis">text</span>. If <span Class="emphasis">text</span> is flanked by slashes, it is interpreted as a regular expression. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--name</span> Search just names for <span Class="emphasis">text</span>. If <span Class="emphasis">text</span> is flanked by slashes, it is interpreted as a regular expression. </p>
+<p class="level0"><span Class="bold">-d</span>, <span Class="bold">--description</span> Search just descriptions for <span Class="emphasis">text</span>. If <span Class="emphasis">text</span> is flanked by slashes, it is interpreted as a regular expression. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to search their descriptions. Implied if <span Class="bold">HOMEBREW_EVAL_ALL</span> is set. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBdeveloperfR"></a><h2 class="nroffsh">\fbdeveloper\fr [\fisubcommand\fr]</h2>
+<p class="level0">Control Homebrew&acute;s developer mode. When developer mode is enabled, <span Class="bold">brew update</span> will update Homebrew to the latest commit on the <span Class="bold">master</span> branch instead of the latest stable version along with some other behaviour changes. </p>
+<p class="level0"><span Class="bold">brew developer</span> [<span Class="bold">state</span>] &nbsp;   Display the current state of Homebrew&acute;s developer mode. </p>
+<p class="level0"><span Class="bold">brew developer</span> (<span Class="bold">on</span>|<span Class="bold">off</span>) &nbsp;   Turn Homebrew&acute;s developer mode on or off respectively. </p><a name="fBdocsfR"></a><h2 class="nroffsh">\fbdocs\fr</h2>
+<p class="level0">Open Homebrew&acute;s online documentation (<a href="https://docs.brew.sh">https://docs.brew.sh</a>) in a browser. </p><a name="fBdoctorfR"></a><h2 class="nroffsh">\fbdoctor\fr, \fbdr\fr [\fb--list-checks\fr] [\fb--audit-debug\fr] [\fidiagnostic_check\fr \.\.\.]</h2>
+<p class="level0">Check your system for potential problems. Will exit with a non-zero status if any potential problems are found. Please note that these warnings are just used to help the Homebrew maintainers with debugging if you file an issue. If everything you use Homebrew for is working fine: please don&acute;t worry or file an issue; just ignore this. </p>
+<p class="level0"><span Class="bold">--list-checks</span> List all audit methods, which can be run individually if provided as arguments. </p>
+<p class="level0"><span Class="bold">-D</span>, <span Class="bold">--audit-debug</span> Enable debugging and profiling of audit methods. </p><a name="fBfetchfR"></a><h2 class="nroffsh">\fbfetch\fr [\fioptions\fr] \fiformula\fr|\ficask\fr [\.\.\.]</h2>
+<p class="level0">Download a bottle (if available) or source packages for <span Class="emphasis">formula</span>e and binaries for <span Class="emphasis">cask</span>s. For files, also print SHA-256 checksums. </p>
+<p class="level0"><span Class="bold">--os</span> Download for the given operating system.(Pass <span Class="bold">all</span> to download for all operating systems.) </p>
+<p class="level0"><span Class="bold">--arch</span> Download for the given CPU architecture.(Pass <span Class="bold">all</span> to download for all architectures.) </p>
+<p class="level0"><span Class="bold">--bottle-tag</span> Download a bottle for given tag. </p>
+<p class="level0"><span Class="bold">--HEAD</span> Fetch HEAD version instead of stable version. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Remove a previously cached version and re-fetch. </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Do a verbose VCS checkout, if the URL represents a VCS. This is useful for seeing if an existing VCS cache has been updated. </p>
+<p class="level0"><span Class="bold">--retry</span> Retry if downloading fails or re-download if the checksum of a previously cached version no longer matches. Tries at most 5 times with exponential backoff. </p>
+<p class="level0"><span Class="bold">--deps</span> Also download dependencies for any listed <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">-s</span>, <span Class="bold">--build-from-source</span> Download source packages rather than a bottle. </p>
+<p class="level0"><span Class="bold">--build-bottle</span> Download source packages (for eventual bottling) rather than a bottle. </p>
+<p class="level0"><span Class="bold">--force-bottle</span> Download a bottle if it exists for the current or newest version of macOS, even if it would not be used during installation. </p>
+<p class="level0"><span Class="bold">--[no-]quarantine</span> Disable/enable quarantining of downloads (default: enabled). </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBformulaefR"></a><h2 class="nroffsh">\fbformulae\fr</h2>
+<p class="level0">List all locally installable formulae including short names. </p><a name="fBgist-logsfR"></a><h2 class="nroffsh">\fbgist-logs\fr [\fioptions\fr] \fiformula\fr</h2>
+<p class="level0">Upload logs for a failed build of <span Class="emphasis">formula</span> to a new Gist. Presents an error message if no logs are found. </p>
+<p class="level0"><span Class="bold">--with-hostname</span> Include the hostname in the Gist. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--new-issue</span> Automatically create a new issue in the appropriate GitHub repository after creating the Gist. </p>
+<p class="level0"><span Class="bold">-p</span>, <span Class="bold">--private</span> The Gist will be marked private and will not appear in listings but will be accessible with its link. </p><a name="fBhomefR"></a><h2 class="nroffsh">\fbhome\fr, \fbhomepage\fr [\fb--formula\fr] [\fb--cask\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Open a <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span>&acute;s homepage in a browser, or open Homebrew&acute;s own homepage if no argument is provided. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBinfofR"></a><h2 class="nroffsh">\fbinfo\fr, \fbabv\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Display brief statistics for your Homebrew installation. </p>
+<p class="level0">If a <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span> is provided, show summary of information about it. </p>
+<p class="level0"><span Class="bold">--analytics</span> List global Homebrew analytics data or, if specified, installation and build error data for <span Class="emphasis">formula</span> (provided neither <span Class="bold">HOMEBREW_NO_ANALYTICS</span> nor <span Class="bold">HOMEBREW_NO_GITHUB_API</span> are set). </p>
+<p class="level0"><span Class="bold">--days</span> How many days of analytics data to retrieve. The value for <span Class="emphasis">days</span> must be <span Class="bold">30</span>, <span Class="bold">90</span> or <span Class="bold">365</span>. The default is <span Class="bold">30</span>. </p>
+<p class="level0"><span Class="bold">--category</span> Which type of analytics data to retrieve. The value for <span Class="emphasis">category</span> must be <span Class="bold">install</span>, <span Class="bold">install-on-request</span> or <span Class="bold">build-error</span>; <span Class="bold">cask-install</span> or <span Class="bold">os-version</span> may be specified if <span Class="emphasis">formula</span> is not. The default is <span Class="bold">install</span>. </p>
+<p class="level0"><span Class="bold">--github</span> Open the GitHub source page for <span Class="emphasis">formula</span> and <span Class="emphasis">cask</span> in a browser. To view the history locally: <span Class="bold">brew log -p</span> <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span> </p>
+<p class="level0"><span Class="bold">--json</span> Print a JSON representation. Currently the default value for <span Class="emphasis">version</span> is <span Class="bold">v1</span> for <span Class="emphasis">formula</span>. For <span Class="emphasis">formula</span> and <span Class="emphasis">cask</span> use <span Class="bold">v2</span>. See the docs for examples of using the JSON output: <span Class="emphasis"><a href="https://docs.brew.sh/Querying-Brew">https://docs.brew.sh/Querying-Brew</a></span> </p>
+<p class="level0"><span Class="bold">--installed</span> Print JSON of formulae that are currently installed. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to print their JSON. Implied if <span Class="bold">HOMEBREW_EVAL_ALL</span> is set. </p>
+<p class="level0"><span Class="bold">--variations</span> Include the variations hash in each formula&acute;s JSON output. </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Show more verbose analytics data for <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBinstallfR"></a><h2 class="nroffsh">\fbinstall\fr [\fioptions\fr] \fiformula\fr|\ficask\fr [\.\.\.]</h2>
+<p class="level0">Install a <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span>. Additional options specific to a <span Class="emphasis">formula</span> may be appended to the command. </p>
+<p class="level0">Unless <span Class="bold">HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK</span> is set, <span Class="bold">brew upgrade</span> or <span Class="bold">brew reinstall</span> will be run for outdated dependents and dependents with broken linkage, respectively. </p>
+<p class="level0">Unless <span Class="bold">HOMEBREW_NO_INSTALL_CLEANUP</span> is set, <span Class="bold">brew cleanup</span> will then be run for the installed formulae or, every 30 days, for all formulae. </p>
+<p class="level0">Unless <span Class="bold">HOMEBREW_NO_INSTALL_UPGRADE</span> is set, <span Class="bold">brew install</span> <span Class="emphasis">formula</span> will upgrade <span Class="emphasis">formula</span> if it is already installed but outdated. </p>
+<p class="level0"><span Class="bold">-d</span>, <span Class="bold">--debug</span> If brewing fails, open an interactive debugging session with access to IRB or a shell inside the temporary build directory. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks, overwrite existing files (binaries and symlinks are excluded, unless originally from the same cask). </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Print the verification and postinstall steps. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Show what would be installed, but do not actually install anything. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--ignore-dependencies</span> An unsupported Homebrew development flag to skip installing any dependencies of any kind. If the dependencies are not already present, the formula will have issues. If you&acute;re not developing Homebrew, consider adjusting your PATH rather than using this flag. </p>
+<p class="level0"><span Class="bold">--only-dependencies</span> Install the dependencies with specified options but do not install the formula itself. </p>
+<p class="level0"><span Class="bold">--cc</span> Attempt to compile using the specified <span Class="emphasis">compiler</span>, which should be the name of the compiler&acute;s executable, e.g. <span Class="bold">gcc-7</span> for GCC 7. In order to use LLVM&acute;s clang, specify <span Class="bold">llvm_clang</span>. To use the Apple-provided clang, specify <span Class="bold">clang</span>. This option will only accept compilers that are provided by Homebrew or bundled with macOS. Please do not file issues if you encounter errors while using this option. </p>
+<p class="level0"><span Class="bold">-s</span>, <span Class="bold">--build-from-source</span> Compile <span Class="emphasis">formula</span> from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available. </p>
+<p class="level0"><span Class="bold">--force-bottle</span> Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation. </p>
+<p class="level0"><span Class="bold">--include-test</span> Install testing dependencies required to run <span Class="bold">brew test</span> <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--HEAD</span> If <span Class="emphasis">formula</span> defines it, install the HEAD version, aka. main, trunk, unstable, master. </p>
+<p class="level0"><span Class="bold">--fetch-HEAD</span> Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository&acute;s HEAD will only be checked for updates when a new stable or development version has been released. </p>
+<p class="level0"><span Class="bold">--keep-tmp</span> Retain the temporary files created during installation. </p>
+<p class="level0"><span Class="bold">--debug-symbols</span> Generate debug symbols on build. Source will be retained in a cache directory. </p>
+<p class="level0"><span Class="bold">--build-bottle</span> Prepare the formula for eventual bottling during installation, skipping any post-install steps. </p>
+<p class="level0"><span Class="bold">--skip-post-install</span> Install but skip any post-install steps. </p>
+<p class="level0"><span Class="bold">--bottle-arch</span> Optimise bottles for the specified architecture rather than the oldest architecture supported by the version of macOS the bottles are built on. </p>
+<p class="level0"><span Class="bold">--display-times</span> Print install times for each package at the end of the run. </p>
+<p class="level0"><span Class="bold">-i</span>, <span Class="bold">--interactive</span> Download and patch <span Class="emphasis">formula</span>, then open a shell. This allows the user to run <span Class="bold">./configure --help</span> and otherwise determine how to turn the software package into a Homebrew package. </p>
+<p class="level0"><span Class="bold">-g</span>, <span Class="bold">--git</span> Create a Git repository, useful for creating patches to the software. </p>
+<p class="level0"><span Class="bold">--overwrite</span> Delete files that already exist in the prefix while linking. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p>
+<p class="level0"><span Class="bold">--[no-]binaries</span> Disable/enable linking of helper executables (default: enabled). </p>
+<p class="level0"><span Class="bold">--require-sha</span> Require all casks to have a checksum. </p>
+<p class="level0"><span Class="bold">--[no-]quarantine</span> Disable/enable quarantining of downloads (default: enabled). </p>
+<p class="level0"><span Class="bold">--adopt</span> Adopt existing artifacts in the destination that are identical to those being installed. Cannot be combined with --force. </p>
+<p class="level0"><span Class="bold">--skip-cask-deps</span> Skip installing cask dependencies. </p>
+<p class="level0"><span Class="bold">--zap</span> For use with <span Class="bold">brew reinstall --cask</span>. Remove all files associated with a cask. <span Class="emphasis">May remove files which are shared between applications.</span> </p><a name="fBleavesfR"></a><h2 class="nroffsh">\fbleaves\fr [\fb--installed-on-request\fr] [\fb--installed-as-dependency\fr]</h2>
+<p class="level0">List installed formulae that are not dependencies of another installed formula or cask. </p>
+<p class="level0"><span Class="bold">-r</span>, <span Class="bold">--installed-on-request</span> Only list leaves that were manually installed. </p>
+<p class="level0"><span Class="bold">-p</span>, <span Class="bold">--installed-as-dependency</span> Only list leaves that were installed as dependencies. </p><a name="fBlinkfR"></a><h2 class="nroffsh">\fblink\fr, \fbln\fr [\fioptions\fr] \fiinstalled_formula\fr [\.\.\.]</h2>
+<p class="level0">Symlink all of <span Class="emphasis">formula</span>&acute;s installed files into Homebrew&acute;s prefix. This is done automatically when you install formulae but can be useful for DIY installations. </p>
+<p class="level0"><span Class="bold">--overwrite</span> Delete files that already exist in the prefix while linking. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> List files which would be linked or deleted by <span Class="bold">brew link --overwrite</span> without actually linking or deleting any files. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Allow keg-only formulae to be linked. </p>
+<p class="level0"><span Class="bold">--HEAD</span> Link the HEAD version of the formula if it is installed. </p><a name="fBlistfR"></a><h2 class="nroffsh">\fblist\fr, \fbls\fr [\fioptions\fr] [\fiinstalled_formula\fr|\fiinstalled_cask\fr \.\.\.]</h2>
+<p class="level0">List all installed formulae and casks. </p>
+<p class="level0">If <span Class="emphasis">formula</span> is provided, summarise the paths within its current keg. If <span Class="emphasis">cask</span> is provided, list its artifacts. </p>
+<p class="level0"><span Class="bold">--formula</span> List only formulae, or treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> List only casks, or treat all named arguments as casks. </p>
+<p class="level0"><span Class="bold">--full-name</span> Print formulae with fully-qualified names. Unless <span Class="bold">--full-name</span>, <span Class="bold">--versions</span> or <span Class="bold">--pinned</span> are passed, other options (i.e. <span Class="bold">-1</span>, <span Class="bold">-l</span>, <span Class="bold">-r</span> and <span Class="bold">-t</span>) are passed to <span Class="bold">ls</span>(1) which produces the actual output. </p>
+<p class="level0"><span Class="bold">--versions</span> Show the version number for installed formulae, or only the specified formulae if <span Class="emphasis">formula</span> are provided. </p>
+<p class="level0"><span Class="bold">--multiple</span> Only show formulae with multiple versions installed. </p>
+<p class="level0"><span Class="bold">--pinned</span> List only pinned formulae, or only the specified (pinned) formulae if <span Class="emphasis">formula</span> are provided. See also <span Class="bold">pin</span>, <span Class="bold">unpin</span>. </p>
+<p class="level0"><span Class="bold">-1</span> Force output to be one entry per line. This is the default when output is not to a terminal. </p>
+<p class="level0"><span Class="bold">-l</span> List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument. </p>
+<p class="level0"><span Class="bold">-r</span> Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument. </p>
+<p class="level0"><span Class="bold">-t</span> Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument. </p><a name="fBlogfR"></a><h2 class="nroffsh">\fblog\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr]</h2>
+<p class="level0">Show the <span Class="bold">git log</span> for <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span>, or show the log for the Homebrew repository if no formula or cask is provided. </p>
+<p class="level0"><span Class="bold">-p</span>, <span Class="bold">--patch</span> Also print patch from commit. </p>
+<p class="level0"><span Class="bold">--stat</span> Also print diffstat from commit. </p>
+<p class="level0"><span Class="bold">--oneline</span> Print only one line per commit. </p>
+<p class="level0"><span Class="bold">-1</span> Print only one commit. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--max-count</span> Print only a specified number of commits. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBmigratefR"></a><h2 class="nroffsh">\fbmigrate\fr [\fioptions\fr] \fiinstalled_formula\fr|\fiinstalled_cask\fr [\.\.\.]</h2>
+<p class="level0">Migrate renamed packages to new names, where <span Class="emphasis">formula</span> are old names of packages. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Treat installed <span Class="emphasis">formula</span> and provided <span Class="emphasis">formula</span> as if they are from the same taps and migrate them anyway. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Show what would be migrated, but do not actually migrate anything. </p>
+<p class="level0"><span Class="bold">--formula</span> Only migrate formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Only migrate casks. </p><a name="fBmissingfR"></a><h2 class="nroffsh">\fbmissing\fr [\fb--hide=\fr] [\fiformula\fr \.\.\.]</h2>
+<p class="level0">Check the given <span Class="emphasis">formula</span> kegs for missing dependencies. If no <span Class="emphasis">formula</span> are provided, check all kegs. Will exit with a non-zero status if any kegs are found to be missing dependencies. </p>
+<p class="level0"><span Class="bold">--hide</span> Act as if none of the specified <span Class="emphasis">hidden</span> are installed. <span Class="emphasis">hidden</span> should be a comma-separated list of formulae. </p><a name="fBnodenv-syncfR"></a><h2 class="nroffsh">\fbnodenv-sync\fr</h2>
+<p class="level0">Create symlinks for Homebrew&acute;s installed NodeJS versions in ~/.nodenv/versions. </p>
+<p class="level0">Note that older version symlinks will also be created so e.g. NodeJS 19.1.0 will also be symlinked to 19.0.0. </p><a name="fBoptionsfR"></a><h2 class="nroffsh">\fboptions\fr [\fioptions\fr] [\fiformula\fr \.\.\.]</h2>
+<p class="level0">Show install options specific to <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--compact</span> Show all options on a single line separated by spaces. </p>
+<p class="level0"><span Class="bold">--installed</span> Show options for formulae that are currently installed. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to show their options. </p>
+<p class="level0"><span Class="bold">--command</span> Show options for the specified <span Class="emphasis">command</span>. </p><a name="fBoutdatedfR"></a><h2 class="nroffsh">\fboutdated\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">List installed casks and formulae that have an updated version available. By default, version information is displayed in interactive shells, and suppressed otherwise. </p>
+<p class="level0"><span Class="bold">-q</span>, <span Class="bold">--quiet</span> List only the names of outdated kegs (takes precedence over <span Class="bold">--verbose</span>). </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Include detailed version information. </p>
+<p class="level0"><span Class="bold">--formula</span> List only outdated formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> List only outdated casks. </p>
+<p class="level0"><span Class="bold">--json</span> Print output in JSON format. There are two versions: <span Class="bold">v1</span> and <span Class="bold">v2</span>. <span Class="bold">v1</span> is deprecated and is currently the default if no version is specified. <span Class="bold">v2</span> prints outdated formulae and casks. </p>
+<p class="level0"><span Class="bold">--fetch-HEAD</span> Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository&acute;s HEAD will only be checked for updates when a new stable or development version has been released. </p>
+<p class="level0"><span Class="bold">-g</span>, <span Class="bold">--greedy</span> Also include outdated casks with <span Class="bold">auto_updates true</span> or <span Class="bold">version :latest</span>. </p>
+<p class="level0"><span Class="bold">--greedy-latest</span> Also include outdated casks including those with <span Class="bold">version :latest</span>. </p>
+<p class="level0"><span Class="bold">--greedy-auto-updates</span> Also include outdated casks including those with <span Class="bold">auto_updates true</span>. </p><a name="fBpinfR"></a><h2 class="nroffsh">\fbpin\fr \fiinstalled_formula\fr [\.\.\.]</h2>
+<p class="level0">Pin the specified <span Class="emphasis">formula</span>, preventing them from being upgraded when issuing the <span Class="bold">brew upgrade</span> <span Class="emphasis">formula</span> command. See also <span Class="bold">unpin</span>. </p><a name="fBpostinstallfR"></a><h2 class="nroffsh">\fbpostinstall\fr, \fbpost_install\fr \fiinstalled_formula\fr [\.\.\.]</h2>
+<p class="level0">Rerun the post-install steps for <span Class="emphasis">formula</span>. </p><a name="fBpyenv-syncfR"></a><h2 class="nroffsh">\fbpyenv-sync\fr</h2>
+<p class="level0">Create symlinks for Homebrew&acute;s installed Python versions in ~/.pyenv/versions. </p>
+<p class="level0">Note that older patch version symlinks will be created and linked to the minor version so e.g. Python 3.11.0 will also be symlinked to 3.11.3. </p><a name="fBrbenv-syncfR"></a><h2 class="nroffsh">\fbrbenv-sync\fr</h2>
+<p class="level0">Create symlinks for Homebrew&acute;s installed Ruby versions in ~/.rbenv/versions. </p>
+<p class="level0">Note that older version symlinks will also be created so e.g. Ruby 3.2.1 will also be symlinked to 3.2.0. </p><a name="fBreadallfR"></a><h2 class="nroffsh">\fbreadall\fr [\fioptions\fr] [\fitap\fr \.\.\.]</h2>
+<p class="level0">Import all items from the specified <span Class="emphasis">tap</span>, or from all installed taps if none is provided. This can be useful for debugging issues across all items when making significant changes to <span Class="bold">formula.rb</span>, testing the performance of loading all items or checking if any current formulae/casks have Ruby issues. </p>
+<p class="level0"><span Class="bold">--os</span> Read using the given operating system. (Pass <span Class="bold">all</span> to simulate all operating systems.) </p>
+<p class="level0"><span Class="bold">--arch</span> Read using the given CPU architecture. (Pass <span Class="bold">all</span> to simulate all architectures.) </p>
+<p class="level0"><span Class="bold">--aliases</span> Verify any alias symlinks in each tap. </p>
+<p class="level0"><span Class="bold">--syntax</span> Syntax-check all of Homebrew&acute;s Ruby files (if no <span Class="bold">&lt;tap&gt;</span> is passed). </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not. Implied if <span Class="bold">HOMEBREW_EVAL_ALL</span> is set. </p>
+<p class="level0"><span Class="bold">--no-simulate</span> Don&acute;t simulate other system configurations when checking formulae and casks. </p><a name="fBreinstallfR"></a><h2 class="nroffsh">\fbreinstall\fr [\fioptions\fr] \fiformula\fr|\ficask\fr [\.\.\.]</h2>
+<p class="level0">Uninstall and then reinstall a <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span> using the same options it was originally installed with, plus any appended options specific to a <span Class="emphasis">formula</span>. </p>
+<p class="level0">Unless <span Class="bold">HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK</span> is set, <span Class="bold">brew upgrade</span> or <span Class="bold">brew reinstall</span> will be run for outdated dependents and dependents with broken linkage, respectively. </p>
+<p class="level0">Unless <span Class="bold">HOMEBREW_NO_INSTALL_CLEANUP</span> is set, <span Class="bold">brew cleanup</span> will then be run for the reinstalled formulae or, every 30 days, for all formulae. </p>
+<p class="level0"><span Class="bold">-d</span>, <span Class="bold">--debug</span> If brewing fails, open an interactive debugging session with access to IRB or a shell inside the temporary build directory. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Install without checking for previously installed keg-only or non-migrated versions. </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Print the verification and postinstall steps. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">-s</span>, <span Class="bold">--build-from-source</span> Compile <span Class="emphasis">formula</span> from source even if a bottle is available. </p>
+<p class="level0"><span Class="bold">-i</span>, <span Class="bold">--interactive</span> Download and patch <span Class="emphasis">formula</span>, then open a shell. This allows the user to run <span Class="bold">./configure --help</span> and otherwise determine how to turn the software package into a Homebrew package. </p>
+<p class="level0"><span Class="bold">--force-bottle</span> Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation. </p>
+<p class="level0"><span Class="bold">--keep-tmp</span> Retain the temporary files created during installation. </p>
+<p class="level0"><span Class="bold">--debug-symbols</span> Generate debug symbols on build. Source will be retained in a cache directory. </p>
+<p class="level0"><span Class="bold">--display-times</span> Print install times for each formula at the end of the run. </p>
+<p class="level0"><span Class="bold">-g</span>, <span Class="bold">--git</span> Create a Git repository, useful for creating patches to the software. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p>
+<p class="level0"><span Class="bold">--[no-]binaries</span> Disable/enable linking of helper executables (default: enabled). </p>
+<p class="level0"><span Class="bold">--require-sha</span> Require all casks to have a checksum. </p>
+<p class="level0"><span Class="bold">--[no-]quarantine</span> Disable/enable quarantining of downloads (default: enabled). </p>
+<p class="level0"><span Class="bold">--adopt</span> Adopt existing artifacts in the destination that are identical to those being installed. Cannot be combined with --force. </p>
+<p class="level0"><span Class="bold">--skip-cask-deps</span> Skip installing cask dependencies. </p>
+<p class="level0"><span Class="bold">--zap</span> For use with <span Class="bold">brew reinstall --cask</span>. Remove all files associated with a cask. <span Class="emphasis">May remove files which are shared between applications.</span> </p><a name="fBsearchfR"></a><h2 class="nroffsh">\fbsearch\fr, \fb-s\fr [\fioptions\fr] \fitext\fr|\fb/\fr\firegex\fr\fb/\fr [\.\.\.]</h2>
+<p class="level0">Perform a substring search of cask tokens and formula names for <span Class="emphasis">text</span>. If <span Class="emphasis">text</span> is flanked by slashes, it is interpreted as a regular expression. </p>
+<p class="level0"><span Class="bold">--formula</span> Search for formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Search for casks. </p>
+<p class="level0"><span Class="bold">--desc</span> Search for formulae with a description matching <span Class="emphasis">text</span> and casks with a name or description matching <span Class="emphasis">text</span>. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to search their descriptions. Implied if <span Class="bold">HOMEBREW_EVAL_ALL</span> is set. </p>
+<p class="level0"><span Class="bold">--pull-request</span> Search for GitHub pull requests containing <span Class="emphasis">text</span>. </p>
+<p class="level0"><span Class="bold">--open</span> Search for only open GitHub pull requests. </p>
+<p class="level0"><span Class="bold">--closed</span> Search for only closed GitHub pull requests. </p>
+<p class="level0"><span Class="bold">--repology</span> Search for <span Class="emphasis">text</span> in the given database. </p>
+<p class="level0"><span Class="bold">--macports</span> Search for <span Class="emphasis">text</span> in the given database. </p>
+<p class="level0"><span Class="bold">--fink</span> Search for <span Class="emphasis">text</span> in the given database. </p>
+<p class="level0"><span Class="bold">--opensuse</span> Search for <span Class="emphasis">text</span> in the given database. </p>
+<p class="level0"><span Class="bold">--fedora</span> Search for <span Class="emphasis">text</span> in the given database. </p>
+<p class="level0"><span Class="bold">--archlinux</span> Search for <span Class="emphasis">text</span> in the given database. </p>
+<p class="level0"><span Class="bold">--debian</span> Search for <span Class="emphasis">text</span> in the given database. </p>
+<p class="level0"><span Class="bold">--ubuntu</span> Search for <span Class="emphasis">text</span> in the given database. </p><a name="fBshellenv"></a><h2 class="nroffsh">\fbshellenv [bash|csh|fish|pwsh|sh|tcsh|zsh]\fr</h2>
+<p class="level0">Print export statements. When run in a shell, this installation of Homebrew will be added to your <span Class="bold">PATH</span>, <span Class="bold">MANPATH</span>, and <span Class="bold">INFOPATH</span>. </p>
+<p class="level0">The variables <span Class="bold">HOMEBREW_PREFIX</span>, <span Class="bold">HOMEBREW_CELLAR</span> and <span Class="bold">HOMEBREW_REPOSITORY</span> are also exported to avoid querying them multiple times. To help guarantee idempotence, this command produces no output when Homebrew&acute;s <span Class="bold">bin</span> and <span Class="bold">sbin</span> directories are first and second respectively in your <span Class="bold">PATH</span>. Consider adding evaluation of this command&acute;s output to your dotfiles (e.g. <span Class="bold">~/.profile</span>, <span Class="bold">~/.bash_profile</span>, or <span Class="bold">~/.zprofile</span>) with: <span Class="bold">eval &quot;$(brew shellenv)&quot;</span> </p>
+<p class="level0">The shell can be specified explicitly with a supported shell name parameter. Unknown shells will output POSIX exports. </p><a name="fBtapfR"></a><h2 class="nroffsh">\fbtap\fr [\fioptions\fr] [\fiuser\fr\fb/\fr\firepo\fr] [\fiurl\fr]</h2>
+<p class="level0">Tap a formula repository. </p>
+<p class="level0">If no arguments are provided, list all installed taps. </p>
+<p class="level0">With <span Class="emphasis">URL</span> unspecified, tap a formula repository from GitHub using HTTPS. Since so many taps are hosted on GitHub, this command is a shortcut for <span Class="bold">brew tap</span> <span Class="emphasis">user</span><a class="bold" href="#">/</a><span Class="emphasis">repo</span> <span Class="bold"><a href="https://github.com/">https://github.com/</a></span><span Class="emphasis">user</span><span Class="bold">/homebrew-</span><span Class="emphasis">repo</span>. </p>
+<p class="level0">With <span Class="emphasis">URL</span> specified, tap a formula repository from anywhere, using any transport protocol that <span Class="bold">git</span>(1) handles. The one-argument form of <span Class="bold">tap</span> simplifies but also limits. This two-argument command makes no assumptions, so taps can be cloned from places other than GitHub and using protocols other than HTTPS, e.g. SSH, git, HTTP, FTP(S), rsync. </p>
+<p class="level0"><span Class="bold">--[no-]force-auto-update</span> Auto-update tap even if it is not hosted on GitHub. By default, only taps hosted on GitHub are auto-updated (for performance reasons). </p>
+<p class="level0"><span Class="bold">--custom-remote</span> Install or change a tap with a custom remote. Useful for mirrors. </p>
+<p class="level0"><span Class="bold">--repair</span> Migrate tapped formulae from symlink-based to directory-based structure. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all the formulae, casks and aliases in the new tap to check validity. Implied if <span Class="bold">HOMEBREW_EVAL_ALL</span> is set. </p>
+<p class="level0"><span Class="bold">--force</span> Force install core taps even under API mode. </p><a name="fBtap-infofR"></a><h2 class="nroffsh">\fbtap-info\fr [\fb--installed\fr] [\fb--json\fr] [\fitap\fr \.\.\.]</h2>
+<p class="level0">Show detailed information about one or more <span Class="emphasis">tap</span>s. </p>
+<p class="level0">If no <span Class="emphasis">tap</span> names are provided, display brief statistics for all installed taps. </p>
+<p class="level0"><span Class="bold">--installed</span> Show information on each installed tap. </p>
+<p class="level0"><span Class="bold">--json</span> Print a JSON representation of <span Class="emphasis">tap</span>. Currently the default and only accepted value for <span Class="emphasis">version</span> is <span Class="bold">v1</span>. See the docs for examples of using the JSON output: <span Class="emphasis"><a href="https://docs.brew.sh/Querying-Brew">https://docs.brew.sh/Querying-Brew</a></span> </p><a name="fBuninstallfR"></a><h2 class="nroffsh">\fbuninstall\fr, \fbremove\fr, \fbrm\fr [\fioptions\fr] \fiinstalled_formula\fr|\fiinstalled_cask\fr [\.\.\.]</h2>
+<p class="level0">Uninstall a <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span>. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Delete all installed versions of <span Class="emphasis">formula</span>. Uninstall even if <span Class="emphasis">cask</span> is not installed, overwrite existing files and ignore errors when removing files. </p>
+<p class="level0"><span Class="bold">--zap</span> Remove all files associated with a <span Class="emphasis">cask</span>. <span Class="emphasis">May remove files which are shared between applications.</span> </p>
+<p class="level0"><span Class="bold">--ignore-dependencies</span> Don&acute;t fail uninstall, even if <span Class="emphasis">formula</span> is a dependency of any installed formulae. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBunlinkfR"></a><h2 class="nroffsh">\fbunlink\fr [\fb--dry-run\fr] \fiinstalled_formula\fr [\.\.\.]</h2>
+<p class="level0">Remove symlinks for <span Class="emphasis">formula</span> from Homebrew&acute;s prefix. This can be useful for temporarily disabling a formula: <span Class="bold">brew unlink</span> <span Class="emphasis">formula</span> <span Class="bold">&amp;&amp;</span> <span Class="emphasis">commands</span> <span Class="bold">&amp;&amp; brew link</span> <span Class="emphasis">formula</span> </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> List files which would be unlinked without actually unlinking or deleting any files. </p><a name="fBunpinfR"></a><h2 class="nroffsh">\fbunpin\fr \fiinstalled_formula\fr [\.\.\.]</h2>
+<p class="level0">Unpin <span Class="emphasis">formula</span>, allowing them to be upgraded by <span Class="bold">brew upgrade</span> <span Class="emphasis">formula</span>. See also <span Class="bold">pin</span>. </p><a name="fBuntapfR"></a><h2 class="nroffsh">\fbuntap\fr [\fb--force\fr] \fitap\fr [\.\.\.]</h2>
+<p class="level0">Remove a tapped formula repository. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Untap even if formulae or casks from this tap are currently installed. </p><a name="fBupdatefR"></a><h2 class="nroffsh">\fbupdate\fr [\fioptions\fr]</h2>
+<p class="level0">Fetch the newest version of Homebrew and all formulae from GitHub using <span Class="bold">git</span>(1) and perform any necessary migrations. </p>
+<p class="level0"><span Class="bold">--merge</span> Use <span Class="bold">git merge</span> to apply updates (rather than <span Class="bold">git rebase</span>). </p>
+<p class="level0"><span Class="bold">--auto-update</span> Run on auto-updates (e.g. before <span Class="bold">brew install</span>). Skips some slower steps. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Always do a slower, full update check (even if unnecessary). </p><a name="fBupdate-resetfR"></a><h2 class="nroffsh">\fbupdate-reset\fr [\fipath-to-tap-repository\fr \.\.\.]</h2>
+<p class="level0">Fetch and reset Homebrew and all tap repositories (or any specified <span Class="emphasis">repository</span>) using <span Class="bold">git</span>(1) to their latest <span Class="bold">origin/HEAD</span>. </p>
+<p class="level0"><span Class="emphasis">Note:</span> this will destroy all your uncommitted or committed changes. </p><a name="fBupgradefR"></a><h2 class="nroffsh">\fbupgrade\fr [\fioptions\fr] [\fioutdated_formula\fr|\fioutdated_cask\fr \.\.\.]</h2>
+<p class="level0">Upgrade outdated casks and outdated, unpinned formulae using the same options they were originally installed with, plus any appended brew formula options. If <span Class="emphasis">cask</span> or <span Class="emphasis">formula</span> are specified, upgrade only the given <span Class="emphasis">cask</span> or <span Class="emphasis">formula</span> kegs (unless they are pinned; see <span Class="bold">pin</span>, <span Class="bold">unpin</span>). </p>
+<p class="level0">Unless <span Class="bold">HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK</span> is set, <span Class="bold">brew upgrade</span> or <span Class="bold">brew reinstall</span> will be run for outdated dependents and dependents with broken linkage, respectively. </p>
+<p class="level0">Unless <span Class="bold">HOMEBREW_NO_INSTALL_CLEANUP</span> is set, <span Class="bold">brew cleanup</span> will then be run for the upgraded formulae or, every 30 days, for all formulae. </p>
+<p class="level0"><span Class="bold">-d</span>, <span Class="bold">--debug</span> If brewing fails, open an interactive debugging session with access to IRB or a shell inside the temporary build directory. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks, overwrite existing files (binaries and symlinks are excluded, unless originally from the same cask). </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Print the verification and postinstall steps. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Show what would be upgraded, but do not actually upgrade anything. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. If no named arguments are specified, upgrade only outdated formulae. </p>
+<p class="level0"><span Class="bold">-s</span>, <span Class="bold">--build-from-source</span> Compile <span Class="emphasis">formula</span> from source even if a bottle is available. </p>
+<p class="level0"><span Class="bold">-i</span>, <span Class="bold">--interactive</span> Download and patch <span Class="emphasis">formula</span>, then open a shell. This allows the user to run <span Class="bold">./configure --help</span> and otherwise determine how to turn the software package into a Homebrew package. </p>
+<p class="level0"><span Class="bold">--force-bottle</span> Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation. </p>
+<p class="level0"><span Class="bold">--fetch-HEAD</span> Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository&acute;s HEAD will only be checked for updates when a new stable or development version has been released. </p>
+<p class="level0"><span Class="bold">--ignore-pinned</span> Set a successful exit status even if pinned formulae are not upgraded. </p>
+<p class="level0"><span Class="bold">--keep-tmp</span> Retain the temporary files created during installation. </p>
+<p class="level0"><span Class="bold">--debug-symbols</span> Generate debug symbols on build. Source will be retained in a cache directory. </p>
+<p class="level0"><span Class="bold">--display-times</span> Print install times for each package at the end of the run. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. If no named arguments are specified, upgrade only outdated casks. </p>
+<p class="level0"><span Class="bold">--skip-cask-deps</span> Skip installing cask dependencies. </p>
+<p class="level0"><span Class="bold">-g</span>, <span Class="bold">--greedy</span> Also include casks with <span Class="bold">auto_updates true</span> or <span Class="bold">version :latest</span>. </p>
+<p class="level0"><span Class="bold">--greedy-latest</span> Also include casks with <span Class="bold">version :latest</span>. </p>
+<p class="level0"><span Class="bold">--greedy-auto-updates</span> Also include casks with <span Class="bold">auto_updates true</span>. </p>
+<p class="level0"><span Class="bold">--[no-]binaries</span> Disable/enable linking of helper executables (default: enabled). </p>
+<p class="level0"><span Class="bold">--require-sha</span> Require all casks to have a checksum. </p>
+<p class="level0"><span Class="bold">--[no-]quarantine</span> Disable/enable quarantining of downloads (default: enabled). </p><a name="fBusesfR"></a><h2 class="nroffsh">\fbuses\fr [\fioptions\fr] \fiformula\fr [\.\.\.]</h2>
+<p class="level0">Show formulae and casks that specify <span Class="emphasis">formula</span> as a dependency; that is, show dependents of <span Class="emphasis">formula</span>. When given multiple formula arguments, show the intersection of formulae that use <span Class="emphasis">formula</span>. By default, <span Class="bold">uses</span> shows all formulae and casks that specify <span Class="emphasis">formula</span> as a required or recommended dependency for their stable builds. </p>
+<p class="level0"><span Class="bold">--recursive</span> Resolve more than one level of dependencies. </p>
+<p class="level0"><span Class="bold">--installed</span> Only list formulae and casks that are currently installed. </p>
+<p class="level0"><span Class="bold">--missing</span> Only list formulae and casks that are not currently installed. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to show their dependents. </p>
+<p class="level0"><span Class="bold">--include-build</span> Include all formulae that specify <span Class="emphasis">formula</span> as <span Class="bold">:build</span> type dependency. </p>
+<p class="level0"><span Class="bold">--include-test</span> Include all formulae that specify <span Class="emphasis">formula</span> as <span Class="bold">:test</span> type dependency. </p>
+<p class="level0"><span Class="bold">--include-optional</span> Include all formulae that specify <span Class="emphasis">formula</span> as <span Class="bold">:optional</span> type dependency. </p>
+<p class="level0"><span Class="bold">--skip-recommended</span> Skip all formulae that specify <span Class="emphasis">formula</span> as <span Class="bold">:recommended</span> type dependency. </p>
+<p class="level0"><span Class="bold">--formula</span> Include only formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Include only casks. </p><a name="fB--cachefR"></a><h2 class="nroffsh">\fb--cache\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Display Homebrew&acute;s download cache. See also <span Class="bold">HOMEBREW_CACHE</span>. </p>
+<p class="level0">If <span Class="emphasis">formula</span> is provided, display the file or directory used to cache <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--os</span> Show cache file for the given operating system.(Pass <span Class="bold">all</span> to show cache files for all operating systems.) </p>
+<p class="level0"><span Class="bold">--arch</span> Show cache file for the given CPU architecture.(Pass <span Class="bold">all</span> to show cache files for all architectures.) </p>
+<p class="level0"><span Class="bold">-s</span>, <span Class="bold">--build-from-source</span> Show the cache file used when building from source. </p>
+<p class="level0"><span Class="bold">--force-bottle</span> Show the cache file used when pouring a bottle. </p>
+<p class="level0"><span Class="bold">--bottle-tag</span> Show the cache file used when pouring a bottle for the given tag. </p>
+<p class="level0"><span Class="bold">--HEAD</span> Show the cache file used when building from HEAD. </p>
+<p class="level0"><span Class="bold">--formula</span> Only show cache files for formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Only show cache files for casks. </p><a name="fB--caskroomfR"></a><h2 class="nroffsh">\fb--caskroom\fr [\ficask\fr \.\.\.]</h2>
+<p class="level0">Display Homebrew&acute;s Caskroom path. </p>
+<p class="level0">If <span Class="emphasis">cask</span> is provided, display the location in the Caskroom where <span Class="emphasis">cask</span> would be installed, without any sort of versioned directory as the last path. </p><a name="fB--cellarfR"></a><h2 class="nroffsh">\fb--cellar\fr [\fiformula\fr \.\.\.]</h2>
+<p class="level0">Display Homebrew&acute;s Cellar path. <span Class="emphasis">Default:</span> <span Class="bold">$(brew --prefix)/Cellar</span>, or if that directory doesn&acute;t exist, <span Class="bold">$(brew --repository)/Cellar</span>. </p>
+<p class="level0">If <span Class="emphasis">formula</span> is provided, display the location in the Cellar where <span Class="emphasis">formula</span> would be installed, without any sort of versioned directory as the last path. </p><a name="fB--envfR"></a><h2 class="nroffsh">\fb--env\fr, \fbenvironment\fr [\fb--shell=\fr] [\fb--plain\fr] [\fiformula\fr \.\.\.]</h2>
+<p class="level0">Summarise Homebrew&acute;s build environment as a plain list. </p>
+<p class="level0">If the command&acute;s output is sent through a pipe and no shell is specified, the list is formatted for export to <span Class="bold">bash</span>(1) unless <span Class="bold">--plain</span> is passed. </p>
+<p class="level0"><span Class="bold">--shell</span> Generate a list of environment variables for the specified shell, or <span Class="bold">--shell=auto</span> to detect the current shell. </p>
+<p class="level0"><span Class="bold">--plain</span> Generate plain output even when piped. </p><a name="fB--prefixfR"></a><h2 class="nroffsh">\fb--prefix\fr [\fb--unbrewed\fr] [\fb--installed\fr] [\fiformula\fr \.\.\.]</h2>
+<p class="level0">Display Homebrew&acute;s install path. <span Class="emphasis">Default:</span> </p>
+<p class="level0"><a name="bu"></a><span class="nroffip">\(bu 4</span> </p>
+<p class="level1">macOS Intel: <span Class="bold">/usr/local</span> </p>
+<p class="level0"><a name="bu"></a><span class="nroffip">\(bu 4</span> </p>
+<p class="level1">macOS ARM: <span Class="bold">/opt/homebrew</span> </p>
+<p class="level0"><a name="bu"></a><span class="nroffip">\(bu 4</span> </p>
+<p class="level1">Linux: <span Class="bold">/home/linuxbrew/.linuxbrew</span> </p>
+<p class="level0"><a name=""></a><span class="nroffip"> 0</span> </p>
+<p class="level1">If <span Class="emphasis">formula</span> is provided, display the location where <span Class="emphasis">formula</span> is or would be installed. </p>
+<p class="level1"><span Class="bold">--unbrewed</span> List files in Homebrew&acute;s prefix not installed by Homebrew. </p>
+<p class="level1"><span Class="bold">--installed</span> Outputs nothing and returns a failing status code if <span Class="emphasis">formula</span> is not installed. </p><a name="fB--repositoryfR"></a><h2 class="nroffsh">\fb--repository\fr, \fb--repo\fr [\fitap\fr \.\.\.]</h2>
+<p class="level0">Display where Homebrew&acute;s git repository is located. </p>
+<p class="level0">If <span Class="emphasis">user</span><a class="bold" href="#">/</a><span Class="emphasis">repo</span> are provided, display where tap <span Class="emphasis">user</span><a class="bold" href="#">/</a><span Class="emphasis">repo</span>&acute;s directory is located. </p><a name="fB--versionfR"></a><h2 class="nroffsh">\fb--version\fr, \fb-v\fr</h2>
+<p class="level0">Print the version numbers of Homebrew, Homebrew/homebrew-core and Homebrew/homebrew-cask (if tapped) to standard output. </p><a name="DEVELOPER"></a><h2 class="nroffsh">Developer commands</h2><a name="fBauditfR"></a><h2 class="nroffsh">\fbaudit\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Check <span Class="emphasis">formula</span> for Homebrew coding style violations. This should be run before submitting a new formula or cask. If no <span Class="emphasis">formula</span>|<span Class="emphasis">cask</span> are provided, check all locally available formulae and casks and skip style checks. Will exit with a non-zero status if any errors are found. </p>
+<p class="level0"><span Class="bold">--os</span> Audit the given operating system. (Pass <span Class="bold">all</span> to audit all operating systems.) </p>
+<p class="level0"><span Class="bold">--arch</span> Audit the given CPU architecture. (Pass <span Class="bold">all</span> to audit all architectures.) </p>
+<p class="level0"><span Class="bold">--strict</span> Run additional, stricter style checks. </p>
+<p class="level0"><span Class="bold">--git</span> Run additional, slower style checks that navigate the Git repository. </p>
+<p class="level0"><span Class="bold">--online</span> Run additional, slower style checks that require a network connection. </p>
+<p class="level0"><span Class="bold">--installed</span> Only check formulae and casks that are currently installed. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to audit them. Implied if <span Class="bold">HOMEBREW_EVAL_ALL</span> is set. </p>
+<p class="level0"><span Class="bold">--new</span> Run various additional style checks to determine if a new formula or cask is eligible for Homebrew. This should be used when creating new formula and implies <span Class="bold">--strict</span> and <span Class="bold">--online</span>. </p>
+<p class="level0"><span Class="bold">--[no-]signing</span> Audit for signed apps, which are required on ARM </p>
+<p class="level0"><span Class="bold">--token-conflicts</span> Audit for token conflicts. </p>
+<p class="level0"><span Class="bold">--tap</span> Check the formulae within the given tap, specified as <span Class="emphasis">user</span><a class="bold" href="#">/</a><span Class="emphasis">repo</span>. </p>
+<p class="level0"><span Class="bold">--fix</span> Fix style violations automatically using RuboCop&acute;s auto-correct feature. </p>
+<p class="level0"><span Class="bold">--display-filename</span> Prefix every line of output with the file or formula name being audited, to make output easy to grep. </p>
+<p class="level0"><span Class="bold">--skip-style</span> Skip running non-RuboCop style checks. Useful if you plan on running <span Class="bold">brew style</span> separately. Enabled by default unless a formula is specified by name. </p>
+<p class="level0"><span Class="bold">-D</span>, <span Class="bold">--audit-debug</span> Enable debugging and profiling of audit methods. </p>
+<p class="level0"><span Class="bold">--only</span> Specify a comma-separated <span Class="emphasis">method</span> list to only run the methods named <span Class="bold">audit_</span><span Class="emphasis">method</span>. </p>
+<p class="level0"><span Class="bold">--except</span> Specify a comma-separated <span Class="emphasis">method</span> list to skip running the methods named <span Class="bold">audit_</span><span Class="emphasis">method</span>. </p>
+<p class="level0"><span Class="bold">--only-cops</span> Specify a comma-separated <span Class="emphasis">cops</span> list to check for violations of only the listed RuboCop cops. </p>
+<p class="level0"><span Class="bold">--except-cops</span> Specify a comma-separated <span Class="emphasis">cops</span> list to skip checking for violations of the listed RuboCop cops. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBbottlefR"></a><h2 class="nroffsh">\fbbottle\fr [\fioptions\fr] \fiinstalled_formula\fr|\fifile\fr [\.\.\.]</h2>
+<p class="level0">Generate a bottle (binary package) from a formula that was installed with <span Class="bold">--build-bottle</span>. If the formula specifies a rebuild version, it will be incremented in the generated DSL. Passing <span Class="bold">--keep-old</span> will attempt to keep it at its original value, while <span Class="bold">--no-rebuild</span> will remove it. </p>
+<p class="level0"><span Class="bold">--skip-relocation</span> Do not check if the bottle can be marked as relocatable. </p>
+<p class="level0"><span Class="bold">--force-core-tap</span> Build a bottle even if <span Class="emphasis">formula</span> is not in <span Class="bold">homebrew/core</span> or any installed taps. </p>
+<p class="level0"><span Class="bold">--no-rebuild</span> If the formula specifies a rebuild version, remove it from the generated DSL. </p>
+<p class="level0"><span Class="bold">--keep-old</span> If the formula specifies a rebuild version, attempt to preserve its value in the generated DSL. </p>
+<p class="level0"><span Class="bold">--json</span> Write bottle information to a JSON file, which can be used as the value for <span Class="bold">--merge</span>. </p>
+<p class="level0"><span Class="bold">--merge</span> Generate an updated bottle block for a formula and optionally merge it into the formula file. Instead of a formula name, requires the path to a JSON file generated with <span Class="bold">brew bottle --json</span> <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--write</span> Write changes to the formula file. A new commit will be generated unless <span Class="bold">--no-commit</span> is passed. </p>
+<p class="level0"><span Class="bold">--no-commit</span> When passed with <span Class="bold">--write</span>, a new commit will not generated after writing changes to the formula file. </p>
+<p class="level0"><span Class="bold">--only-json-tab</span> When passed with <span Class="bold">--json</span>, the tab will be written to the JSON file but not the bottle. </p>
+<p class="level0"><span Class="bold">--no-all-checks</span> Don&acute;t try to create an <span Class="bold">all</span> bottle or stop a no-change upload. </p>
+<p class="level0"><span Class="bold">--committer</span> Specify a committer name and email in <span Class="bold">git</span>&acute;s standard author format. </p>
+<p class="level0"><span Class="bold">--root-url</span> Use the specified <span Class="emphasis">URL</span> as the root of the bottle&acute;s URL instead of Homebrew&acute;s default. </p>
+<p class="level0"><span Class="bold">--root-url-using</span> Use the specified download strategy class for downloading the bottle&acute;s URL instead of Homebrew&acute;s default. </p><a name="fBbumpfR"></a><h2 class="nroffsh">\fbbump\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Display out-of-date brew formulae and the latest version available. If the returned current and livecheck versions differ or when querying specific formulae, also displays whether a pull request has been opened with the URL. </p>
+<p class="level0"><span Class="bold">--full-name</span> Print formulae/casks with fully-qualified names. </p>
+<p class="level0"><span Class="bold">--no-pull-requests</span> Do not retrieve pull requests from GitHub. </p>
+<p class="level0"><span Class="bold">--formula</span> Check only formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Check only casks. </p>
+<p class="level0"><span Class="bold">--installed</span> Check formulae and casks that are currently installed. </p>
+<p class="level0"><span Class="bold">--open-pr</span> Open a pull request for the new version if none have been opened yet. </p>
+<p class="level0"><span Class="bold">--limit</span> Limit number of package results returned. </p>
+<p class="level0"><span Class="bold">--start-with</span> Letter or word that the list of package results should alphabetically follow. </p><a name="fBbump-cask-prfR"></a><h2 class="nroffsh">\fbbump-cask-pr\fr [\fioptions\fr] \ficask\fr</h2>
+<p class="level0">Create a pull request to update <span Class="emphasis">cask</span> with a new version. </p>
+<p class="level0">A best effort to determine the <span Class="emphasis">SHA-256</span> will be made if the value is not supplied by the user. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Print what would be done rather than doing it. </p>
+<p class="level0"><span Class="bold">--write-only</span> Make the expected file modifications without taking any Git actions. </p>
+<p class="level0"><span Class="bold">--commit</span> When passed with <span Class="bold">--write-only</span>, generate a new commit after writing changes to the cask file. </p>
+<p class="level0"><span Class="bold">--no-audit</span> Don&acute;t run <span Class="bold">brew audit</span> before opening the PR. </p>
+<p class="level0"><span Class="bold">--online</span> Run <span Class="bold">brew audit --online</span> before opening the PR. </p>
+<p class="level0"><span Class="bold">--no-style</span> Don&acute;t run <span Class="bold">brew style --fix</span> before opening the PR. </p>
+<p class="level0"><span Class="bold">--no-browse</span> Print the pull request URL instead of opening in a browser. </p>
+<p class="level0"><span Class="bold">--no-fork</span> Don&acute;t try to fork the repository. </p>
+<p class="level0"><span Class="bold">--version</span> Specify the new <span Class="emphasis">version</span> for the cask. </p>
+<p class="level0"><span Class="bold">--version-arm</span> Specify the new cask <span Class="emphasis">version</span> for the ARM architecture. </p>
+<p class="level0"><span Class="bold">--version-intel</span> Specify the new cask <span Class="emphasis">version</span> for the Intel architecture. </p>
+<p class="level0"><span Class="bold">--message</span> Prepend <span Class="emphasis">message</span> to the default pull request message. </p>
+<p class="level0"><span Class="bold">--url</span> Specify the <span Class="emphasis">URL</span> for the new download. </p>
+<p class="level0"><span Class="bold">--sha256</span> Specify the <span Class="emphasis">SHA-256</span> checksum of the new download. </p>
+<p class="level0"><span Class="bold">--fork-org</span> Use the specified GitHub organization for forking. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Ignore duplicate open PRs. </p><a name="fBbump-formula-prfR"></a><h2 class="nroffsh">\fbbump-formula-pr\fr [\fioptions\fr] [\fiformula\fr]</h2>
+<p class="level0">Create a pull request to update <span Class="emphasis">formula</span> with a new URL or a new tag. </p>
+<p class="level0">If a <span Class="emphasis">URL</span> is specified, the <span Class="emphasis">SHA-256</span> checksum of the new download should also be specified. A best effort to determine the <span Class="emphasis">SHA-256</span> will be made if not supplied by the user. </p>
+<p class="level0">If a <span Class="emphasis">tag</span> is specified, the Git commit <span Class="emphasis">revision</span> corresponding to that tag should also be specified. A best effort to determine the <span Class="emphasis">revision</span> will be made if the value is not supplied by the user. </p>
+<p class="level0">If a <span Class="emphasis">version</span> is specified, a best effort to determine the <span Class="emphasis">URL</span> and <span Class="emphasis">SHA-256</span> or the <span Class="emphasis">tag</span> and <span Class="emphasis">revision</span> will be made if both values are not supplied by the user. </p>
+<p class="level0"><span Class="emphasis">Note:</span> this command cannot be used to transition a formula from a URL-and-SHA-256 style specification into a tag-and-revision style specification, nor vice versa. It must use whichever style specification the formula already uses. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Print what would be done rather than doing it. </p>
+<p class="level0"><span Class="bold">--write-only</span> Make the expected file modifications without taking any Git actions. </p>
+<p class="level0"><span Class="bold">--commit</span> When passed with <span Class="bold">--write-only</span>, generate a new commit after writing changes to the formula file. </p>
+<p class="level0"><span Class="bold">--no-audit</span> Don&acute;t run <span Class="bold">brew audit</span> before opening the PR. </p>
+<p class="level0"><span Class="bold">--strict</span> Run <span Class="bold">brew audit --strict</span> before opening the PR. </p>
+<p class="level0"><span Class="bold">--online</span> Run <span Class="bold">brew audit --online</span> before opening the PR. </p>
+<p class="level0"><span Class="bold">--no-browse</span> Print the pull request URL instead of opening in a browser. </p>
+<p class="level0"><span Class="bold">--no-fork</span> Don&acute;t try to fork the repository. </p>
+<p class="level0"><span Class="bold">--mirror</span> Use the specified <span Class="emphasis">URL</span> as a mirror URL. If <span Class="emphasis">URL</span> is a comma-separated list of URLs, multiple mirrors will be added. </p>
+<p class="level0"><span Class="bold">--fork-org</span> Use the specified GitHub organization for forking. </p>
+<p class="level0"><span Class="bold">--version</span> Use the specified <span Class="emphasis">version</span> to override the value parsed from the URL or tag. Note that <span Class="bold">--version=0</span> can be used to delete an existing version override from a formula if it has become redundant. </p>
+<p class="level0"><span Class="bold">--message</span> Prepend <span Class="emphasis">message</span> to the default pull request message. </p>
+<p class="level0"><span Class="bold">--url</span> Specify the <span Class="emphasis">URL</span> for the new download. If a <span Class="emphasis">URL</span> is specified, the <span Class="emphasis">SHA-256</span> checksum of the new download should also be specified. </p>
+<p class="level0"><span Class="bold">--sha256</span> Specify the <span Class="emphasis">SHA-256</span> checksum of the new download. </p>
+<p class="level0"><span Class="bold">--tag</span> Specify the new git commit <span Class="emphasis">tag</span> for the formula. </p>
+<p class="level0"><span Class="bold">--revision</span> Specify the new commit <span Class="emphasis">revision</span> corresponding to the specified git <span Class="emphasis">tag</span> or specified <span Class="emphasis">version</span>. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Ignore duplicate open PRs. Remove all mirrors if <span Class="bold">--mirror</span> was not specified. </p>
+<p class="level0"><span Class="bold">--python-package-name</span> Use the specified <span Class="emphasis">package-name</span> when finding Python resources for <span Class="emphasis">formula</span>. If no package name is specified, it will be inferred from the formula&acute;s stable URL. </p>
+<p class="level0"><span Class="bold">--python-extra-packages</span> Include these additional Python packages when finding resources. </p>
+<p class="level0"><span Class="bold">--python-exclude-packages</span> Exclude these Python packages when finding resources. </p><a name="fBbump-revisionfR"></a><h2 class="nroffsh">\fbbump-revision\fr [\fioptions\fr] \fiformula\fr [\.\.\.]</h2>
+<p class="level0">Create a commit to increment the revision of <span Class="emphasis">formula</span>. If no revision is present, &quot;revision 1&quot; will be added. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Print what would be done rather than doing it. </p>
+<p class="level0"><span Class="bold">--remove-bottle-block</span> Remove the bottle block in addition to bumping the revision. </p>
+<p class="level0"><span Class="bold">--write-only</span> Make the expected file modifications without taking any Git actions. </p>
+<p class="level0"><span Class="bold">--message</span> Append <span Class="emphasis">message</span> to the default commit message. </p><a name="fBbump-unversioned-casksfR"></a><h2 class="nroffsh">\fbbump-unversioned-casks\fr [\fioptions\fr] \ficask\fr|\fitap\fr [\.\.\.]</h2>
+<p class="level0">Check all casks with unversioned URLs in a given <span Class="emphasis">tap</span> for updates. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Do everything except caching state and opening pull requests. </p>
+<p class="level0"><span Class="bold">--limit</span> Maximum runtime in minutes. </p>
+<p class="level0"><span Class="bold">--state-file</span> File for caching state. </p><a name="fBcatfR"></a><h2 class="nroffsh">\fbcat\fr [\fb--formula\fr] [\fb--cask\fr] \fiformula\fr|\ficask\fr [\.\.\.]</h2>
+<p class="level0">Display the source of a <span Class="emphasis">formula</span> or <span Class="emphasis">cask</span>. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p><a name="fBcommandfR"></a><h2 class="nroffsh">\fbcommand\fr \ficommand\fr [\.\.\.]</h2>
+<p class="level0">Display the path to the file being used when invoking <span Class="bold">brew</span> <span Class="emphasis">cmd</span>. </p><a name="fBcontributionsfR"></a><h2 class="nroffsh">\fbcontributions\fr [--user=\fiemail|username\fr] [\fi--repositories\fr\fb=\fr] [\fi--csv\fr]</h2>
+<p class="level0">Contributions to Homebrew repos. </p>
+<p class="level0"><span Class="bold">--repositories</span> Specify a comma-separated (no spaces) list of repositories to search. Supported repositories: <span Class="bold">brew</span>, <span Class="bold">core</span>, <span Class="bold">cask</span>, <span Class="bold">aliases</span>, <span Class="bold">autoupdate</span>, <span Class="bold">bundle</span>, <span Class="bold">command-not-found</span>, <span Class="bold">test-bot</span>, <span Class="bold">services</span>, <span Class="bold">cask-fonts</span> and <span Class="bold">cask-versions</span>. Omitting this flag, or specifying <span Class="bold">--repositories=all</span>, searches all repositories. Use <span Class="bold">--repositories=primary</span> to search only the main repositories: brew,core,cask. </p>
+<p class="level0"><span Class="bold">--from</span> Date (ISO-8601 format) to start searching contributions. </p>
+<p class="level0"><span Class="bold">--to</span> Date (ISO-8601 format) to stop searching contributions. </p>
+<p class="level0"><span Class="bold">--user</span> A GitHub username or email address of a specific person to find contribution data for. </p>
+<p class="level0"><span Class="bold">--csv</span> Print a CSV of contributions across repositories over the time period. </p><a name="fBcreatefR"></a><h2 class="nroffsh">\fbcreate\fr [\fioptions\fr] \fiurl\fr</h2>
+<p class="level0">Generate a formula or, with <span Class="bold">--cask</span>, a cask for the downloadable file at <span Class="emphasis">URL</span> and open it in the editor. Homebrew will attempt to automatically derive the formula name and version, but if it fails, you&acute;ll have to make your own template. The <span Class="bold">wget</span> formula serves as a simple example. For the complete API, see: <span Class="emphasis"><a href="https://rubydoc.brew.sh/Formula">https://rubydoc.brew.sh/Formula</a></span> </p>
+<p class="level0"><span Class="bold">--autotools</span> Create a basic template for an Autotools-style build. </p>
+<p class="level0"><span Class="bold">--cask</span> Create a basic template for a cask. </p>
+<p class="level0"><span Class="bold">--cmake</span> Create a basic template for a CMake-style build. </p>
+<p class="level0"><span Class="bold">--crystal</span> Create a basic template for a Crystal build. </p>
+<p class="level0"><span Class="bold">--go</span> Create a basic template for a Go build. </p>
+<p class="level0"><span Class="bold">--meson</span> Create a basic template for a Meson-style build. </p>
+<p class="level0"><span Class="bold">--node</span> Create a basic template for a Node build. </p>
+<p class="level0"><span Class="bold">--perl</span> Create a basic template for a Perl build. </p>
+<p class="level0"><span Class="bold">--python</span> Create a basic template for a Python build. </p>
+<p class="level0"><span Class="bold">--ruby</span> Create a basic template for a Ruby build. </p>
+<p class="level0"><span Class="bold">--rust</span> Create a basic template for a Rust build. </p>
+<p class="level0"><span Class="bold">--no-fetch</span> Homebrew will not download <span Class="emphasis">URL</span> to the cache and will thus not add its SHA-256 to the formula for you, nor will it check the GitHub API for GitHub projects (to fill out its description and homepage). </p>
+<p class="level0"><span Class="bold">--HEAD</span> Indicate that <span Class="emphasis">URL</span> points to the package&acute;s repository rather than a file. </p>
+<p class="level0"><span Class="bold">--set-name</span> Explicitly set the <span Class="emphasis">name</span> of the new formula or cask. </p>
+<p class="level0"><span Class="bold">--set-version</span> Explicitly set the <span Class="emphasis">version</span> of the new formula or cask. </p>
+<p class="level0"><span Class="bold">--set-license</span> Explicitly set the <span Class="emphasis">license</span> of the new formula. </p>
+<p class="level0"><span Class="bold">--tap</span> Generate the new formula within the given tap, specified as <span Class="emphasis">user</span><a class="bold" href="#">/</a><span Class="emphasis">repo</span>. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Ignore errors for disallowed formula names and names that shadow aliases. </p><a name="fBdispatch-build-bottlefR"></a><h2 class="nroffsh">\fbdispatch-build-bottle\fr [\fioptions\fr] \fiformula\fr [\.\.\.]</h2>
+<p class="level0">Build bottles for these formulae with GitHub Actions. </p>
+<p class="level0"><span Class="bold">--tap</span> Target tap repository (default: <span Class="bold">homebrew/core</span>). </p>
+<p class="level0"><span Class="bold">--timeout</span> Build timeout (in minutes, default: 60). </p>
+<p class="level0"><span Class="bold">--issue</span> If specified, post a comment to this issue number if the job fails. </p>
+<p class="level0"><span Class="bold">--macos</span> macOS version (or comma-separated list of versions) the bottle should be built for. </p>
+<p class="level0"><span Class="bold">--workflow</span> Dispatch specified workflow (default: <span Class="bold">dispatch-build-bottle.yml</span>). </p>
+<p class="level0"><span Class="bold">--upload</span> Upload built bottles. </p>
+<p class="level0"><span Class="bold">--linux</span> Dispatch bottle for Linux (using GitHub runners). </p>
+<p class="level0"><span Class="bold">--linux-self-hosted</span> Dispatch bottle for Linux (using self-hosted runner). </p>
+<p class="level0"><span Class="bold">--linux-wheezy</span> Use Debian Wheezy container for building the bottle on Linux. </p><a name="fBeditfR"></a><h2 class="nroffsh">\fbedit\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr|\fitap\fr \.\.\.]</h2>
+<p class="level0">Open a <span Class="emphasis">formula</span>, <span Class="emphasis">cask</span> or <span Class="emphasis">tap</span> in the editor set by <span Class="bold">EDITOR</span> or <span Class="bold">HOMEBREW_EDITOR</span>, or open the Homebrew repository for editing if no argument is provided. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p>
+<p class="level0"><span Class="bold">--print-path</span> Print the file path to be edited, without opening an editor. </p><a name="fBextractfR"></a><h2 class="nroffsh">\fbextract\fr [\fb--version=\fr] [\fb--force\fr] \fiformula\fr \fitap\fr</h2>
+<p class="level0">Look through repository history to find the most recent version of <span Class="emphasis">formula</span> and create a copy in <span Class="emphasis">tap</span>. Specifically, the command will create the new formula file at <span Class="emphasis">tap</span><span Class="bold">/Formula/</span><span Class="emphasis">formula</span><a class="bold" href="#">@</a><span Class="emphasis">version</span><span Class="bold">.rb</span>. If the tap is not installed yet, attempt to install/clone the tap before continuing. To extract a formula from a tap that is not <span Class="bold">homebrew/core</span> use its fully-qualified form of <span Class="emphasis">user</span><a class="bold" href="#">/</a><span Class="emphasis">repo</span><a class="bold" href="#">/</a><span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">--version</span> Extract the specified <span Class="emphasis">version</span> of <span Class="emphasis">formula</span> instead of the most recent. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Overwrite the destination formula if it already exists. </p><a name="fBformulafR"></a><h2 class="nroffsh">\fbformula\fr \fiformula\fr [\.\.\.]</h2>
+<p class="level0">Display the path where <span Class="emphasis">formula</span> is located. </p><a name="fBgenerate-cask-apifR"></a><h2 class="nroffsh">\fbgenerate-cask-api\fr [\fb--dry-run\fr]</h2>
+<p class="level0">Generates Cask API data files for formulae.brew.sh. </p>
+<p class="level0">The generated files are written to the current directory. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Generate API data without writing it to files. </p><a name="fBgenerate-formula-apifR"></a><h2 class="nroffsh">\fbgenerate-formula-api\fr [\fb--dry-run\fr]</h2>
+<p class="level0">Generates Formula API data files for formulae.brew.sh. </p>
+<p class="level0">The generated files are written to the current directory. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Generate API data without writing it to files. </p><a name="fBgenerate-man-completionsfR"></a><h2 class="nroffsh">\fbgenerate-man-completions\fr</h2>
+<p class="level0">Generate Homebrew&acute;s manpages and shell completions. </p><a name="fBinstall-bundler-gemsfR"></a><h2 class="nroffsh">\fbinstall-bundler-gems\fr [\fb--groups=\fr]</h2>
+<p class="level0">Install Homebrew&acute;s Bundler gems. </p>
+<p class="level0"><span Class="bold">--groups</span> Installs the specified comma-separated list of gem groups (default: last used). </p><a name="fBirbfR"></a><h2 class="nroffsh">\fbirb\fr [\fb--examples\fr] [\fb--pry\fr]</h2>
+<p class="level0">Enter the interactive Homebrew Ruby shell. </p>
+<p class="level0"><span Class="bold">--examples</span> Show several examples. </p>
+<p class="level0"><span Class="bold">--pry</span> Use Pry instead of IRB. Implied if <span Class="bold">HOMEBREW_PRY</span> is set. </p><a name="fBlinkagefR"></a><h2 class="nroffsh">\fblinkage\fr [\fioptions\fr] [\fiinstalled_formula\fr \.\.\.]</h2>
+<p class="level0">Check the library links from the given <span Class="emphasis">formula</span> kegs. If no <span Class="emphasis">formula</span> are provided, check all kegs. Raises an error if run on uninstalled formulae. </p>
+<p class="level0"><span Class="bold">--test</span> Show only missing libraries and exit with a non-zero status if any missing libraries are found. </p>
+<p class="level0"><span Class="bold">--strict</span> Exit with a non-zero status if any undeclared dependencies with linkage are found. </p>
+<p class="level0"><span Class="bold">--reverse</span> For every library that a keg references, print its dylib path followed by the binaries that link to it. </p>
+<p class="level0"><span Class="bold">--cached</span> Print the cached linkage values stored in <span Class="bold">HOMEBREW_CACHE</span>, set by a previous <span Class="bold">brew linkage</span> run. </p><a name="fBlivecheckfR"></a><h2 class="nroffsh">\fblivecheck\fr, \fblc\fr [\fioptions\fr] [\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Check for newer versions of formulae and/or casks from upstream. </p>
+<p class="level0">If no formula or cask argument is passed, the list of formulae and casks to check is taken from <span Class="bold">HOMEBREW_LIVECHECK_WATCHLIST</span> or <span Class="bold">~/.homebrew/livecheck_watchlist.txt</span>. </p>
+<p class="level0"><span Class="bold">--full-name</span> Print formulae and casks with fully-qualified names. </p>
+<p class="level0"><span Class="bold">--tap</span> Check formulae and casks within the given tap, specified as <span Class="emphasis">user</span><a class="bold" href="#">/</a><span Class="emphasis">repo</span>. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to check them. </p>
+<p class="level0"><span Class="bold">--installed</span> Check formulae and casks that are currently installed. </p>
+<p class="level0"><span Class="bold">--newer-only</span> Show the latest version only if it&acute;s newer than the formula/cask. </p>
+<p class="level0"><span Class="bold">--json</span> Output information in JSON format. </p>
+<p class="level0"><span Class="bold">-r</span>, <span Class="bold">--resources</span> Also check resources for formulae. </p>
+<p class="level0"><span Class="bold">-q</span>, <span Class="bold">--quiet</span> Suppress warnings, don&acute;t print a progress bar for JSON output. </p>
+<p class="level0"><span Class="bold">--formula</span> Only check formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Only check casks. </p><a name="fBpr-automergefR"></a><h2 class="nroffsh">\fbpr-automerge\fr [\fioptions\fr]</h2>
+<p class="level0">Find pull requests that can be automatically merged using <span Class="bold">brew pr-publish</span>. </p>
+<p class="level0"><span Class="bold">--tap</span> Target tap repository (default: <span Class="bold">homebrew/core</span>). </p>
+<p class="level0"><span Class="bold">--workflow</span> Workflow file to use with <span Class="bold">brew pr-publish</span>. </p>
+<p class="level0"><span Class="bold">--with-label</span> Pull requests must have this label. </p>
+<p class="level0"><span Class="bold">--without-labels</span> Pull requests must not have these labels (default: <span Class="bold">do not merge</span>, <span Class="bold">new formula</span>, <span Class="bold">automerge-skip</span>, <span Class="bold">pre-release</span>, <span Class="bold">CI-published-bottle-commits</span>). </p>
+<p class="level0"><span Class="bold">--without-approval</span> Pull requests do not require approval to be merged. </p>
+<p class="level0"><span Class="bold">--publish</span> Run <span Class="bold">brew pr-publish</span> on matching pull requests. </p>
+<p class="level0"><span Class="bold">--autosquash</span> Instruct <span Class="bold">brew pr-publish</span> to automatically reformat and reword commits in the pull request to the preferred format. </p>
+<p class="level0"><span Class="bold">--no-autosquash</span> Instruct <span Class="bold">brew pr-publish</span> to skip automatically reformatting and rewording commits in the pull request to the preferred format. </p>
+<p class="level0"><span Class="bold">--ignore-failures</span> Include pull requests that have failing status checks. </p><a name="fBpr-publishfR"></a><h2 class="nroffsh">\fbpr-publish\fr [\fioptions\fr] \fipull_request\fr [\.\.\.]</h2>
+<p class="level0">Publish bottles for a pull request with GitHub Actions. Requires write access to the repository. </p>
+<p class="level0"><span Class="bold">--autosquash</span> If supported on the target tap, automatically reformat and reword commits to our preferred format. </p>
+<p class="level0"><span Class="bold">--no-autosquash</span> Skip automatically reformatting and rewording commits in the pull request to the preferred format, even if supported on the target tap. </p>
+<p class="level0"><span Class="bold">--large-runner</span> Run the upload job on a large runner. </p>
+<p class="level0"><span Class="bold">--branch</span> Branch to use the workflow from (default: <span Class="bold">master</span>). </p>
+<p class="level0"><span Class="bold">--message</span> Message to include when autosquashing revision bumps, deletions, and rebuilds. </p>
+<p class="level0"><span Class="bold">--tap</span> Target tap repository (default: <span Class="bold">homebrew/core</span>). </p>
+<p class="level0"><span Class="bold">--workflow</span> Target workflow filename (default: <span Class="bold">publish-commit-bottles.yml</span>). </p><a name="fBpr-pullfR"></a><h2 class="nroffsh">\fbpr-pull\fr [\fioptions\fr] \fipull_request\fr [\.\.\.]</h2>
+<p class="level0">Download and publish bottles, and apply the bottle commit from a pull request with artifacts generated by GitHub Actions. Requires write access to the repository. </p>
+<p class="level0"><span Class="bold">--no-upload</span> Download the bottles but don&acute;t upload them. </p>
+<p class="level0"><span Class="bold">--no-commit</span> Do not generate a new commit before uploading. </p>
+<p class="level0"><span Class="bold">--no-cherry-pick</span> Do not cherry-pick commits from the pull request branch. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Print what would be done rather than doing it. </p>
+<p class="level0"><span Class="bold">--clean</span> Do not amend the commits from pull requests. </p>
+<p class="level0"><span Class="bold">--keep-old</span> If the formula specifies a rebuild version, attempt to preserve its value in the generated DSL. </p>
+<p class="level0"><span Class="bold">--autosquash</span> Automatically reformat and reword commits in the pull request to our preferred format. </p>
+<p class="level0"><span Class="bold">--no-autosquash</span> Skip automatically reformatting and rewording commits in the pull request to our preferred format. </p>
+<p class="level0"><span Class="bold">--branch-okay</span> Do not warn if pulling to a branch besides the repository default (useful for testing). </p>
+<p class="level0"><span Class="bold">--resolve</span> When a patch fails to apply, leave in progress and allow user to resolve, instead of aborting. </p>
+<p class="level0"><span Class="bold">--warn-on-upload-failure</span> Warn instead of raising an error if the bottle upload fails. Useful for repairing bottle uploads that previously failed. </p>
+<p class="level0"><span Class="bold">--committer</span> Specify a committer name and email in <span Class="bold">git</span>&acute;s standard author format. </p>
+<p class="level0"><span Class="bold">--message</span> Message to include when autosquashing revision bumps, deletions, and rebuilds. </p>
+<p class="level0"><span Class="bold">--artifact</span> Download artifacts with the specified name (default: <span Class="bold">bottles</span>). </p>
+<p class="level0"><span Class="bold">--tap</span> Target tap repository (default: <span Class="bold">homebrew/core</span>). </p>
+<p class="level0"><span Class="bold">--root-url</span> Use the specified <span Class="emphasis">URL</span> as the root of the bottle&acute;s URL instead of Homebrew&acute;s default. </p>
+<p class="level0"><span Class="bold">--root-url-using</span> Use the specified download strategy class for downloading the bottle&acute;s URL instead of Homebrew&acute;s default. </p>
+<p class="level0"><span Class="bold">--workflows</span> Retrieve artifacts from the specified workflow (default: <span Class="bold">tests.yml</span>). Can be a comma-separated list to include multiple workflows. </p>
+<p class="level0"><span Class="bold">--ignore-missing-artifacts</span> Comma-separated list of workflows which can be ignored if they have not been run. </p><a name="fBpr-uploadfR"></a><h2 class="nroffsh">\fbpr-upload\fr [\fioptions\fr]</h2>
+<p class="level0">Apply the bottle commit and publish bottles to a host. </p>
+<p class="level0"><span Class="bold">--keep-old</span> If the formula specifies a rebuild version, attempt to preserve its value in the generated DSL. </p>
+<p class="level0"><span Class="bold">-n</span>, <span Class="bold">--dry-run</span> Print what would be done rather than doing it. </p>
+<p class="level0"><span Class="bold">--no-commit</span> Do not generate a new commit before uploading. </p>
+<p class="level0"><span Class="bold">--warn-on-upload-failure</span> Warn instead of raising an error if the bottle upload fails. Useful for repairing bottle uploads that previously failed. </p>
+<p class="level0"><span Class="bold">--upload-only</span> Skip running <span Class="bold">brew bottle</span> before uploading. </p>
+<p class="level0"><span Class="bold">--committer</span> Specify a committer name and email in <span Class="bold">git</span>&acute;s standard author format. </p>
+<p class="level0"><span Class="bold">--root-url</span> Use the specified <span Class="emphasis">URL</span> as the root of the bottle&acute;s URL instead of Homebrew&acute;s default. </p>
+<p class="level0"><span Class="bold">--root-url-using</span> Use the specified download strategy class for downloading the bottle&acute;s URL instead of Homebrew&acute;s default. </p><a name="fBproffR"></a><h2 class="nroffsh">\fbprof\fr [\fb--stackprof\fr] \ficommand\fr [\.\.\.]</h2>
+<p class="level0">Run Homebrew with a Ruby profiler. For example, <span Class="bold">brew prof readall</span>. </p>
+<p class="level0"><span Class="bold">--stackprof</span> Use <span Class="bold">stackprof</span> instead of <span Class="bold">ruby-prof</span> (the default). </p><a name="fBreleasefR"></a><h2 class="nroffsh">\fbrelease\fr [\fb--major\fr] [\fb--minor\fr]</h2>
+<p class="level0">Create a new draft Homebrew/brew release with the appropriate version number and release notes. </p>
+<p class="level0">By default, <span Class="bold">brew release</span> will bump the patch version number. Pass <span Class="bold">--major</span> or <span Class="bold">--minor</span> to bump the major or minor version numbers, respectively. The command will fail if the previous major or minor release was made less than one month ago. </p>
+<p class="level0">Requires write access to the Homebrew/brew repository. </p>
+<p class="level0"><span Class="bold">--major</span> Create a major release. </p>
+<p class="level0"><span Class="bold">--minor</span> Create a minor release. </p><a name="fBrubocopfR"></a><h2 class="nroffsh">\fbrubocop\fr</h2>
+<p class="level0">Installs, configures and runs Homebrew&acute;s <span Class="bold">rubocop</span>. </p><a name="fBrubyfR"></a><h2 class="nroffsh">\fbruby\fr [\fioptions\fr] (\fb-e\fr \fitext\fr|\fifile\fr)</h2>
+<p class="level0">Run a Ruby instance with Homebrew&acute;s libraries loaded. For example, <span Class="bold">brew ruby -e &quot;puts :gcc.f.deps&quot;</span> or <span Class="bold">brew ruby script.rb</span>. </p>
+<p class="level0">Run e.g. <span Class="bold">brew ruby -- --version</span> to pass arbitrary arguments to <span Class="bold">ruby</span>. </p>
+<p class="level0"><span Class="bold">-r</span> Load a library using <span Class="bold">require</span>. </p>
+<p class="level0"><span Class="bold">-e</span> Execute the given text string as a script. </p><a name="fBshfR"></a><h2 class="nroffsh">\fbsh\fr [\fb--env=\fr] [\fb--cmd=\fr] [\fifile\fr]</h2>
+<p class="level0">Enter an interactive shell for Homebrew&acute;s build environment. Use years-battle-hardened build logic to help your <span Class="bold">./configure &amp;&amp; make &amp;&amp; make install</span> and even your <span Class="bold">gem install</span> succeed. Especially handy if you run Homebrew in an Xcode-only configuration since it adds tools like <span Class="bold">make</span> to your <span Class="bold">PATH</span> which build systems would not find otherwise. </p>
+<p class="level0"><span Class="bold">--env</span> Use the standard <span Class="bold">PATH</span> instead of superenv&acute;s when <span Class="bold">std</span> is passed. </p>
+<p class="level0"><span Class="bold">-c</span>, <span Class="bold">--cmd</span> Execute commands in a non-interactive shell. </p><a name="fBstylefR"></a><h2 class="nroffsh">\fbstyle\fr [\fioptions\fr] [\fifile\fr|\fitap\fr|\fiformula\fr|\ficask\fr \.\.\.]</h2>
+<p class="level0">Check formulae or files for conformance to Homebrew style guidelines. </p>
+<p class="level0">Lists of <span Class="emphasis">file</span>, <span Class="emphasis">tap</span> and <span Class="emphasis">formula</span> may not be combined. If none are provided, <span Class="bold">style</span> will run style checks on the whole Homebrew library, including core code and all formulae. </p>
+<p class="level0"><span Class="bold">--fix</span> Fix style violations automatically using RuboCop&acute;s auto-correct feature. </p>
+<p class="level0"><span Class="bold">--reset-cache</span> Reset the RuboCop cache. </p>
+<p class="level0"><span Class="bold">--formula</span> Treat all named arguments as formulae. </p>
+<p class="level0"><span Class="bold">--cask</span> Treat all named arguments as casks. </p>
+<p class="level0"><span Class="bold">--only-cops</span> Specify a comma-separated <span Class="emphasis">cops</span> list to check for violations of only the listed RuboCop cops. </p>
+<p class="level0"><span Class="bold">--except-cops</span> Specify a comma-separated <span Class="emphasis">cops</span> list to skip checking for violations of the listed RuboCop cops. </p><a name="fBtap-newfR"></a><h2 class="nroffsh">\fbtap-new\fr [\fioptions\fr] \fiuser\fr\fb/\fr\firepo\fr</h2>
+<p class="level0">Generate the template files for a new tap. </p>
+<p class="level0"><span Class="bold">--no-git</span> Don&acute;t initialize a Git repository for the tap. </p>
+<p class="level0"><span Class="bold">--pull-label</span> Label name for pull requests ready to be pulled (default: <span Class="bold">pr-pull</span>). </p>
+<p class="level0"><span Class="bold">--branch</span> Initialize Git repository and setup GitHub Actions workflows with the specified branch name (default: <span Class="bold">main</span>). </p>
+<p class="level0"><span Class="bold">--github-packages</span> Upload bottles to GitHub Packages. </p><a name="fBtestfR"></a><h2 class="nroffsh">\fbtest\fr [\fioptions\fr] \fiinstalled_formula\fr [\.\.\.]</h2>
+<p class="level0">Run the test method provided by an installed formula. There is no standard output or return code, but generally it should notify the user if something is wrong with the installed formula. </p>
+<p class="level0"><span Class="emphasis">Example:</span> <span Class="bold">brew install jruby &amp;&amp; brew test jruby</span> </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Test formulae even if they are unlinked. </p>
+<p class="level0"><span Class="bold">--HEAD</span> Test the head version of a formula. </p>
+<p class="level0"><span Class="bold">--keep-tmp</span> Retain the temporary files created for the test. </p>
+<p class="level0"><span Class="bold">--retry</span> Retry if a testing fails. </p><a name="fBtestsfR"></a><h2 class="nroffsh">\fbtests\fr [\fioptions\fr]</h2>
+<p class="level0">Run Homebrew&acute;s unit and integration tests. </p>
+<p class="level0"><span Class="bold">--coverage</span> Generate code coverage reports. </p>
+<p class="level0"><span Class="bold">--generic</span> Run only OS-agnostic tests. </p>
+<p class="level0"><span Class="bold">--online</span> Include tests that use the GitHub API and tests that use any of the taps for official external commands. </p>
+<p class="level0"><span Class="bold">--byebug</span> Enable debugging using byebug. </p>
+<p class="level0"><span Class="bold">--changed</span> Only runs tests on files that were changed from the master branch. </p>
+<p class="level0"><span Class="bold">--only</span> Run only <span Class="emphasis">test_script</span><span Class="bold">_spec.rb</span>. Appending <a class="bold" href="#">:</a><span Class="emphasis">line_number</span> will start at a specific line. </p>
+<p class="level0"><span Class="bold">--seed</span> Randomise tests with the specified <span Class="emphasis">value</span> instead of a random seed. </p><a name="fBtypecheckfR"></a><h2 class="nroffsh">\fbtypecheck\fr, \fbtc\fr [\fioptions\fr]</h2>
+<p class="level0">Check for typechecking errors using Sorbet. </p>
+<p class="level0"><span Class="bold">--fix</span> Automatically fix type errors. </p>
+<p class="level0"><span Class="bold">-q</span>, <span Class="bold">--quiet</span> Silence all non-critical errors. </p>
+<p class="level0"><span Class="bold">--update</span> Update RBI files. </p>
+<p class="level0"><span Class="bold">--update-all</span> Update all RBI files rather than just updated gems. </p>
+<p class="level0"><span Class="bold">--suggest-typed</span> Try upgrading <span Class="bold">typed</span> sigils. </p>
+<p class="level0"><span Class="bold">--dir</span> Typecheck all files in a specific directory. </p>
+<p class="level0"><span Class="bold">--file</span> Typecheck a single file. </p>
+<p class="level0"><span Class="bold">--ignore</span> Ignores input files that contain the given string in their paths (relative to the input path passed to Sorbet). </p><a name="fBunbottledfR"></a><h2 class="nroffsh">\fbunbottled\fr [\fioptions\fr] [\fiformula\fr \.\.\.]</h2>
+<p class="level0">Show the unbottled dependents of formulae. </p>
+<p class="level0"><span Class="bold">--tag</span> Use the specified bottle tag (e.g. <span Class="bold">big_sur</span>) instead of the current OS. </p>
+<p class="level0"><span Class="bold">--dependents</span> Skip getting analytics data and sort by number of dependents instead. </p>
+<p class="level0"><span Class="bold">--total</span> Print the number of unbottled and total formulae. </p>
+<p class="level0"><span Class="bold">--eval-all</span> Evaluate all available formulae and casks, whether installed or not, to check them. Implied if <span Class="bold">HOMEBREW_EVAL_ALL</span> is set. </p><a name="fBunpackfR"></a><h2 class="nroffsh">\fbunpack\fr [\fioptions\fr] \fiformula\fr [\.\.\.]</h2>
+<p class="level0">Unpack the source files for <span Class="emphasis">formula</span> into subdirectories of the current working directory. </p>
+<p class="level0"><span Class="bold">--destdir</span> Create subdirectories in the directory named by <span Class="emphasis">path</span> instead. </p>
+<p class="level0"><span Class="bold">--patch</span> Patches for <span Class="emphasis">formula</span> will be applied to the unpacked source. </p>
+<p class="level0"><span Class="bold">-g</span>, <span Class="bold">--git</span> Initialise a Git repository in the unpacked source. This is useful for creating patches for the software. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> Overwrite the destination directory if it already exists. </p><a name="fBupdate-license-datafR"></a><h2 class="nroffsh">\fbupdate-license-data\fr</h2>
+<p class="level0">Update SPDX license data in the Homebrew repository. </p><a name="fBupdate-maintainersfR"></a><h2 class="nroffsh">\fbupdate-maintainers\fr</h2>
+<p class="level0">Update the list of maintainers in the <span Class="bold">Homebrew/brew</span> README. </p><a name="fBupdate-python-resourcesfR"></a><h2 class="nroffsh">\fbupdate-python-resources\fr [\fioptions\fr] \fiformula\fr [\.\.\.]</h2>
+<p class="level0">Update versions for PyPI resource blocks in <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">-p</span>, <span Class="bold">--print-only</span> Print the updated resource blocks instead of changing <span Class="emphasis">formula</span>. </p>
+<p class="level0"><span Class="bold">-s</span>, <span Class="bold">--silent</span> Suppress any output. </p>
+<p class="level0"><span Class="bold">--ignore-non-pypi-packages</span> Don&acute;t fail if <span Class="emphasis">formula</span> is not a PyPI package. </p>
+<p class="level0"><span Class="bold">--version</span> Use the specified <span Class="emphasis">version</span> when finding resources for <span Class="emphasis">formula</span>. If no version is specified, the current version for <span Class="emphasis">formula</span> will be used. </p>
+<p class="level0"><span Class="bold">--package-name</span> Use the specified <span Class="emphasis">package-name</span> when finding resources for <span Class="emphasis">formula</span>. If no package name is specified, it will be inferred from the formula&acute;s stable URL. </p>
+<p class="level0"><span Class="bold">--extra-packages</span> Include these additional packages when finding resources. </p>
+<p class="level0"><span Class="bold">--exclude-packages</span> Exclude these packages when finding resources. </p><a name="fBupdate-sponsorsfR"></a><h2 class="nroffsh">\fbupdate-sponsors\fr</h2>
+<p class="level0">Update the list of GitHub Sponsors in the <span Class="bold">Homebrew/brew</span> README. </p><a name="fBupdate-testfR"></a><h2 class="nroffsh">\fbupdate-test\fr [\fioptions\fr]</h2>
+<p class="level0">Run a test of <span Class="bold">brew update</span> with a new repository clone. If no options are passed, use <span Class="bold">origin/master</span> as the start commit. </p>
+<p class="level0"><span Class="bold">--to-tag</span> Set <span Class="bold">HOMEBREW_UPDATE_TO_TAG</span> to test updating between tags. </p>
+<p class="level0"><span Class="bold">--keep-tmp</span> Retain the temporary directory containing the new repository clone. </p>
+<p class="level0"><span Class="bold">--commit</span> Use the specified <span Class="emphasis">commit</span> as the start commit. </p>
+<p class="level0"><span Class="bold">--before</span> Use the commit at the specified <span Class="emphasis">date</span> as the start commit. </p><a name="fBvendor-gemsfR"></a><h2 class="nroffsh">\fbvendor-gems\fr [\fb--update=\fr] [\fb--no-commit\fr]</h2>
+<p class="level0">Install and commit Homebrew&acute;s vendored gems. </p>
+<p class="level0"><span Class="bold">--update</span> Update the specified list of vendored gems to the latest version. </p>
+<p class="level0"><span Class="bold">--no-commit</span> Do not generate a new commit upon completion. </p><a name="GLOBAL"></a><h2 class="nroffsh">Global cask options</h2>
+<p class="level0">These options are applicable to the <span Class="bold">install</span>, <span Class="bold">reinstall</span>, and <span Class="bold">upgrade</span> subcommands with the <span Class="bold">--cask</span> flag. </p>
+<p class="level0"><span Class="bold">--appdir</span> Target location for Applications (default: <span Class="bold">/Applications</span>). </p>
+<p class="level0"><span Class="bold">--keyboard-layoutdir</span> Target location for Keyboard Layouts (default: <span Class="bold">/Library/Keyboard Layouts</span>). </p>
+<p class="level0"><span Class="bold">--colorpickerdir</span> Target location for Color Pickers (default: <span Class="bold">~/Library/ColorPickers</span>). </p>
+<p class="level0"><span Class="bold">--prefpanedir</span> Target location for Preference Panes (default: <span Class="bold">~/Library/PreferencePanes</span>). </p>
+<p class="level0"><span Class="bold">--qlplugindir</span> Target location for QuickLook Plugins (default: <span Class="bold">~/Library/QuickLook</span>). </p>
+<p class="level0"><span Class="bold">--mdimporterdir</span> Target location for Spotlight Plugins (default: <span Class="bold">~/Library/Spotlight</span>). </p>
+<p class="level0"><span Class="bold">--dictionarydir</span> Target location for Dictionaries (default: <span Class="bold">~/Library/Dictionaries</span>). </p>
+<p class="level0"><span Class="bold">--fontdir</span> Target location for Fonts (default: <span Class="bold">~/Library/Fonts</span>). </p>
+<p class="level0"><span Class="bold">--servicedir</span> Target location for Services (default: <span Class="bold">~/Library/Services</span>). </p>
+<p class="level0"><span Class="bold">--input-methoddir</span> Target location for Input Methods (default: <span Class="bold">~/Library/Input Methods</span>). </p>
+<p class="level0"><span Class="bold">--internet-plugindir</span> Target location for Internet Plugins (default: <span Class="bold">~/Library/Internet Plug-Ins</span>). </p>
+<p class="level0"><span Class="bold">--audio-unit-plugindir</span> Target location for Audio Unit Plugins (default: <span Class="bold">~/Library/Audio/Plug-Ins/Components</span>). </p>
+<p class="level0"><span Class="bold">--vst-plugindir</span> Target location for VST Plugins (default: <span Class="bold">~/Library/Audio/Plug-Ins/VST</span>). </p>
+<p class="level0"><span Class="bold">--vst3-plugindir</span> Target location for VST3 Plugins (default: <span Class="bold">~/Library/Audio/Plug-Ins/VST3</span>). </p>
+<p class="level0"><span Class="bold">--screen-saverdir</span> Target location for Screen Savers (default: <span Class="bold">~/Library/Screen Savers</span>). </p>
+<p class="level0"><span Class="bold">--language</span> Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask&acute;s default language. The default value is the language of your system. </p><a name="GLOBAL"></a><h2 class="nroffsh">Global options</h2>
+<p class="level0">These options are applicable across multiple subcommands. </p>
+<p class="level0"><span Class="bold">-d</span>, <span Class="bold">--debug</span> Display any debugging information. </p>
+<p class="level0"><span Class="bold">-q</span>, <span Class="bold">--quiet</span> Make some output more quiet. </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Make some output more verbose. </p>
+<p class="level0"><span Class="bold">-h</span>, <span Class="bold">--help</span> Show this message. </p><a name="OFFICIAL"></a><h2 class="nroffsh">Official external commands</h2><a name="fBaliasfR"></a><h2 class="nroffsh">\fbalias\fr [\fialias\fr \.\.\. | \fialias\fr=\ficommand\fr]</h2>
+<p class="level0">Show existing aliases. If no aliases are given, print the whole list. </p>
+<p class="level0"><span Class="bold">--edit</span> Edit aliases in a text editor. Either one or all aliases may be opened at once. If the given alias doesn&acute;t exist it&acute;ll be pre-populated with a template. </p><a name="fBautoupdatefR"></a><h2 class="nroffsh">\fbautoupdate\fr \fisubcommand\fr [\fiinterval\fr] [\fioptions\fr]</h2>
+<p class="level0">An easy, convenient way to automatically update Homebrew. </p>
+<p class="level0">This script will run <span Class="bold">brew update</span> in the background once every 24 hours (by default) until explicitly told to stop, utilising <span Class="bold">launchd</span>. </p>
+<p class="level0"><span Class="bold">brew autoupdate start</span> [<span class="emphasis"><span Class="bold">interval</span></span>] [<span class="emphasis"><span Class="bold">options</span></span>] &nbsp;   Start autoupdating either once every <span Class="bold">interval</span> hours or once every 24 hours. Please note the interval has to be passed in seconds, so 12 hours would be <span Class="bold">brew autoupdate start 43200</span>. Pass <span Class="bold">--upgrade</span> or <span Class="bold">--cleanup</span> to automatically run <span Class="bold">brew upgrade</span> and/or <span Class="bold">brew cleanup</span> respectively. Pass <span Class="bold">--enable-notification</span> to send a notification when the autoupdate process has finished successfully. </p>
+<p class="level0"><span Class="bold">brew autoupdate stop</span> &nbsp;   Stop autoupdating, but retain plist and logs. </p>
+<p class="level0"><span Class="bold">brew autoupdate delete</span> &nbsp;   Cancel the autoupdate, delete the plist and logs. </p>
+<p class="level0"><span Class="bold">brew autoupdate status</span> &nbsp;   Prints the current status of this tool. </p>
+<p class="level0"><span Class="bold">brew autoupdate version</span> &nbsp;   Output this tool&acute;s current version, and a short changelog. </p>
+<p class="level0"><span Class="bold">--upgrade</span> Automatically upgrade your installed formulae. If the Caskroom exists locally Casks will be upgraded as well. Must be passed with <span Class="bold">start</span>. </p>
+<p class="level0"><span Class="bold">--greedy</span> Upgrade casks with --greedy (include auto-updating casks). Must be passed with <span Class="bold">start</span>. </p>
+<p class="level0"><span Class="bold">--cleanup</span> Automatically clean brew&acute;s cache and logs. Must be passed with <span Class="bold">start</span>. </p>
+<p class="level0"><span Class="bold">--enable-notification</span> Send a notification when the autoupdate process has finished successfully, if <span Class="bold">terminal-notifier</span> is installed and found. Must be passed with <span Class="bold">start</span>. Note: notifications are enabled by default on macOS Catalina and newer. </p>
+<p class="level0"><span Class="bold">--immediate</span> Starts the autoupdate command immediately, instead of waiting for one interval (24 hours by default) to pass first. Must be passed with <span Class="bold">start</span>. </p><a name="fBbundlefR"></a><h2 class="nroffsh">\fbbundle\fr [\fisubcommand\fr]</h2>
+<p class="level0">Bundler for non-Ruby dependencies from Homebrew, Homebrew Cask, Mac App Store and Whalebrew. </p>
+<p class="level0"><span Class="bold">brew bundle</span> [<span Class="bold">install</span>] &nbsp;   Install and upgrade (by default) all dependencies from the <span Class="bold">Brewfile</span>. </p>
+<p class="level0">You can specify the <span Class="bold">Brewfile</span> location using <span Class="bold">--file</span> or by setting the <span Class="bold">HOMEBREW_BUNDLE_FILE</span> environment variable. </p>
+<p class="level0">You can skip the installation of dependencies by adding space-separated values to one or more of the following environment variables: <span Class="bold">HOMEBREW_BUNDLE_BREW_SKIP</span>, <span Class="bold">HOMEBREW_BUNDLE_CASK_SKIP</span>, <span Class="bold">HOMEBREW_BUNDLE_MAS_SKIP</span>, <span Class="bold">HOMEBREW_BUNDLE_WHALEBREW_SKIP</span>, <span Class="bold">HOMEBREW_BUNDLE_TAP_SKIP</span>. </p>
+<p class="level0"><span Class="bold">brew bundle</span> will output a <span Class="bold">Brewfile.lock.json</span> in the same directory as the <span Class="bold">Brewfile</span> if all dependencies are installed successfully. This contains dependency and system status information which can be useful in debugging <span Class="bold">brew bundle</span> failures and replicating a &quot;last known good build&quot; state. You can opt-out of this behaviour by setting the <span Class="bold">HOMEBREW_BUNDLE_NO_LOCK</span> environment variable or passing the <span Class="bold">--no-lock</span> option. You may wish to check this file into the same version control system as your <span Class="bold">Brewfile</span> (or ensure your version control system ignores it if you&acute;d prefer to rely on debugging information from a local machine). </p>
+<p class="level0"><span Class="bold">brew bundle dump</span> &nbsp;   Write all installed casks/formulae/images/taps into a <span Class="bold">Brewfile</span> in the current directory. </p>
+<p class="level0"><span Class="bold">brew bundle cleanup</span> &nbsp;   Uninstall all dependencies not listed from the <span Class="bold">Brewfile</span>. </p>
+<p class="level0">This workflow is useful for maintainers or testers who regularly install lots of formulae. </p>
+<p class="level0"><span Class="bold">brew bundle check</span> &nbsp;   Check if all dependencies are installed from the <span Class="bold">Brewfile</span>. </p>
+<p class="level0">This provides a successful exit code if everything is up-to-date, making it useful for scripting. </p>
+<p class="level0"><span Class="bold">brew bundle list</span> &nbsp;   List all dependencies present in the <span Class="bold">Brewfile</span>. </p>
+<p class="level0">By default, only Homebrew dependencies are listed. </p>
+<p class="level0"><span Class="bold">brew bundle exec</span> <span Class="emphasis">command</span> &nbsp;   Run an external command in an isolated build environment based on the <span Class="bold">Brewfile</span> dependencies. </p>
+<p class="level0">This sanitized build environment ignores unrequested dependencies, which makes sure that things you didn&acute;t specify in your <span Class="bold">Brewfile</span> won&acute;t get picked up by commands like <span Class="bold">bundle install</span>, <span Class="bold">npm install</span>, etc. It will also add compiler flags which will help find keg-only dependencies like <span Class="bold">openssl</span>, <span Class="bold">icu4c</span>, etc. </p>
+<p class="level0"><span Class="bold">--file</span> Read the <span Class="bold">Brewfile</span> from this location. Use <span Class="bold">--file=-</span> to pipe to stdin/stdout. </p>
+<p class="level0"><span Class="bold">--global</span> Read the <span Class="bold">Brewfile</span> from <span Class="bold">~/.Brewfile</span>. </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> <span Class="bold">install</span> prints output from commands as they are run. <span Class="bold">check</span> lists all missing dependencies. </p>
+<p class="level0"><span Class="bold">--no-upgrade</span> <span Class="bold">install</span> won&acute;t run <span Class="bold">brew upgrade</span> on outdated dependencies. Note they may still be upgraded by <span Class="bold">brew install</span> if needed. </p>
+<p class="level0"><span Class="bold">-f</span>, <span Class="bold">--force</span> <span Class="bold">dump</span> overwrites an existing <span Class="bold">Brewfile</span>. <span Class="bold">cleanup</span> actually performs its cleanup operations. </p>
+<p class="level0"><span Class="bold">--cleanup</span> <span Class="bold">install</span> performs cleanup operation, same as running <span Class="bold">cleanup --force</span>. </p>
+<p class="level0"><span Class="bold">--no-lock</span> <span Class="bold">install</span> won&acute;t output a <span Class="bold">Brewfile.lock.json</span>. </p>
+<p class="level0"><span Class="bold">--all</span> <span Class="bold">list</span> all dependencies. </p>
+<p class="level0"><span Class="bold">--formula</span> <span Class="bold">list</span> Homebrew dependencies. </p>
+<p class="level0"><span Class="bold">--cask</span> <span Class="bold">list</span> Homebrew Cask dependencies. </p>
+<p class="level0"><span Class="bold">--tap</span> <span Class="bold">list</span> tap dependencies. </p>
+<p class="level0"><span Class="bold">--mas</span> <span Class="bold">list</span> Mac App Store dependencies. </p>
+<p class="level0"><span Class="bold">--whalebrew</span> <span Class="bold">list</span> Whalebrew dependencies. </p>
+<p class="level0"><span Class="bold">--vscode</span> <span Class="bold">list</span> VSCode extensions. </p>
+<p class="level0"><span Class="bold">--describe</span> <span Class="bold">dump</span> adds a description comment above each line, unless the dependency does not have a description. </p>
+<p class="level0"><span Class="bold">--no-restart</span> <span Class="bold">dump</span> does not add <span Class="bold">restart_service</span> to formula lines. </p>
+<p class="level0"><span Class="bold">--zap</span> <span Class="bold">cleanup</span> casks using the <span Class="bold">zap</span> command instead of <span Class="bold">uninstall</span>. </p><a name="fBcommand-not-found-initfR"></a><h2 class="nroffsh">\fbcommand-not-found-init\fr</h2>
+<p class="level0">Print instructions for setting up the command-not-found hook for your shell. If the output is not to a tty, print the appropriate handler script for your shell. </p><a name="fBservicesfR"></a><h2 class="nroffsh">\fbservices\fr [\fisubcommand\fr]</h2>
+<p class="level0">Manage background services with macOS&acute; <span Class="bold">launchctl</span>(1) daemon manager. </p>
+<p class="level0">If <span Class="bold">sudo</span> is passed, operate on <span Class="bold">/Library/LaunchDaemons</span> (started at boot). Otherwise, operate on <span Class="bold">~/Library/LaunchAgents</span> (started at login). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services</span> [<span Class="bold">list</span>] (<span Class="bold">--json</span>) &nbsp;   List information about all managed services for the current user (or root). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services info</span> (<span Class="emphasis">formula</span>|<span Class="bold">--all</span>|<span Class="bold">--json</span>) &nbsp;   List all managed services for the current user (or root). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services run</span> (<span Class="emphasis">formula</span>|<span Class="bold">--all</span>) &nbsp;   Run the service <span Class="emphasis">formula</span> without registering to launch at login (or boot). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services start</span> (<span Class="emphasis">formula</span>|<span Class="bold">--all</span>|<span Class="bold">--file=</span>) &nbsp;   Start the service <span Class="emphasis">formula</span> immediately and register it to launch at login (or boot). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services stop</span> (<span Class="emphasis">formula</span>|<span Class="bold">--all</span>) &nbsp;   Stop the service <span Class="emphasis">formula</span> immediately and unregister it from launching at login (or boot). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services kill</span> (<span Class="emphasis">formula</span>|<span Class="bold">--all</span>) &nbsp;   Stop the service <span Class="emphasis">formula</span> immediately but keep it registered to launch at login (or boot). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services restart</span> (<span Class="emphasis">formula</span>|<span Class="bold">--all</span>) &nbsp;   Stop (if necessary) and start the service <span Class="emphasis">formula</span> immediately and register it to launch at login (or boot). </p>
+<p class="level0">[<span Class="bold">sudo</span>] <span Class="bold">brew services cleanup</span> &nbsp;   Remove all unused services. </p>
+<p class="level0"><span Class="bold">--file</span> Use the service file from this location to <span Class="bold">start</span> the service. </p>
+<p class="level0"><span Class="bold">--all</span> Run <span Class="emphasis">subcommand</span> on all services. </p>
+<p class="level0"><span Class="bold">--json</span> Output as JSON. </p><a name="fBtest-botfR"></a><h2 class="nroffsh">\fbtest-bot\fr [\fioptions\fr] [\fiformula\fr]</h2>
+<p class="level0">Tests the full lifecycle of a Homebrew change to a tap (Git repository). For example, for a GitHub Actions pull request that changes a formula <span Class="bold">brew test-bot</span> will ensure the system is cleaned and set up to test the formula, install the formula, run various tests and checks on it, bottle (package) the binaries and test formulae that depend on it to ensure they aren&acute;t broken by these changes. </p>
+<p class="level0">Only supports GitHub Actions as a CI provider. This is because Homebrew uses GitHub Actions and it&acute;s freely available for public and private use with macOS and Linux workers. </p>
+<p class="level0"><span Class="bold">--dry-run</span> Print what would be done rather than doing it. </p>
+<p class="level0"><span Class="bold">--cleanup</span> Clean all state from the Homebrew directory. Use with care! </p>
+<p class="level0"><span Class="bold">--skip-setup</span> Don&acute;t check if the local system is set up correctly. </p>
+<p class="level0"><span Class="bold">--build-from-source</span> Build from source rather than building bottles. </p>
+<p class="level0"><span Class="bold">--build-dependents-from-source</span> Build dependents from source rather than testing bottles. </p>
+<p class="level0"><span Class="bold">--junit</span> generate a JUnit XML test results file. </p>
+<p class="level0"><span Class="bold">--keep-old</span> Run <span Class="bold">brew bottle --keep-old</span> to build new bottles for a single platform. </p>
+<p class="level0"><span Class="bold">--skip-relocation</span> Run <span Class="bold">brew bottle --skip-relocation</span> to build new bottles that don&acute;t require relocation. </p>
+<p class="level0"><span Class="bold">--only-json-tab</span> Run <span Class="bold">brew bottle --only-json-tab</span> to build new bottles that do not contain a tab. </p>
+<p class="level0"><span Class="bold">--local</span> Ask Homebrew to write verbose logs under <span Class="bold">./logs/</span> and set <span Class="bold">$HOME</span> to <span Class="bold">./home/</span> </p>
+<p class="level0"><span Class="bold">--tap</span> Use the Git repository of the given tap. Defaults to the core tap for syntax checking. </p>
+<p class="level0"><span Class="bold">--fail-fast</span> Immediately exit on a failing step. </p>
+<p class="level0"><span Class="bold">-v</span>, <span Class="bold">--verbose</span> Print test step output in real time. Has the side effect of passing output as raw bytes instead of re-encoding in UTF-8. </p>
+<p class="level0"><span Class="bold">--test-default-formula</span> Use a default testing formula when not building a tap and no other formulae are specified. </p>
+<p class="level0"><span Class="bold">--root-url</span> Use the specified <span Class="emphasis">URL</span> as the root of the bottle&acute;s URL instead of Homebrew&acute;s default. </p>
+<p class="level0"><span Class="bold">--git-name</span> Set the Git author/committer names to the given name. </p>
+<p class="level0"><span Class="bold">--git-email</span> Set the Git author/committer email to the given email. </p>
+<p class="level0"><span Class="bold">--publish</span> Publish the uploaded bottles. </p>
+<p class="level0"><span Class="bold">--skip-online-checks</span> Don&acute;t pass <span Class="bold">--online</span> to <span Class="bold">brew audit</span> and skip <span Class="bold">brew livecheck</span>. </p>
+<p class="level0"><span Class="bold">--skip-dependents</span> Don&acute;t test any dependents. </p>
+<p class="level0"><span Class="bold">--skip-livecheck</span> Don&acute;t test livecheck. </p>
+<p class="level0"><span Class="bold">--skip-recursive-dependents</span> Only test the direct dependents. </p>
+<p class="level0"><span Class="bold">--only-cleanup-before</span> Only run the pre-cleanup step. Needs <span Class="bold">--cleanup</span>. </p>
+<p class="level0"><span Class="bold">--only-setup</span> Only run the local system setup check step. </p>
+<p class="level0"><span Class="bold">--only-tap-syntax</span> Only run the tap syntax check step. </p>
+<p class="level0"><span Class="bold">--only-formulae</span> Only run the formulae steps. </p>
+<p class="level0"><span Class="bold">--only-formulae-detect</span> Only run the formulae detection steps. </p>
+<p class="level0"><span Class="bold">--only-formulae-dependents</span> Only run the formulae dependents steps. </p>
+<p class="level0"><span Class="bold">--only-bottles-fetch</span> Only run the bottles fetch steps. This optional post-upload test checks that all the bottles were uploaded correctly. It is not run unless requested and only needs to be run on a single machine. The bottle commit to be tested must be on the tested branch. </p>
+<p class="level0"><span Class="bold">--only-cleanup-after</span> Only run the post-cleanup step. Needs <span Class="bold">--cleanup</span>. </p>
+<p class="level0"><span Class="bold">--testing-formulae</span> Use these testing formulae rather than running the formulae detection steps. </p>
+<p class="level0"><span Class="bold">--added-formulae</span> Use these added formulae rather than running the formulae detection steps. </p>
+<p class="level0"><span Class="bold">--deleted-formulae</span> Use these deleted formulae rather than running the formulae detection steps. </p>
+<p class="level0"><span Class="bold">--skipped-or-failed-formulae</span> Use these skipped or failed formulae from formulae steps for a formulae dependents step. </p><a name="fBunaliasfR"></a><h2 class="nroffsh">\fbunalias\fr \fialias\fr [\.\.\.]</h2>
+<p class="level0">Remove aliases. </p><a name="fBwhich-formulafR"></a><h2 class="nroffsh">\fbwhich-formula\fr [\fb--explain\fr] \ficommand\fr [\.\.\.]</h2>
+<p class="level0">Prints the formula(e) which provides the given command. </p>
+<p class="level0"><span Class="bold">--explain</span> Output explanation of how to get &acute;cmd&acute; by installing one of the providing formulae. </p><a name="fBwhich-updatefR"></a><h2 class="nroffsh">\fbwhich-update\fr [\fioptions\fr] [\fidatabase\fr]</h2>
+<p class="level0">Database update for <span Class="bold">brew which-formula</span> </p>
+<p class="level0"><span Class="bold">--stats</span> Print statistics about the database contents (number of commands and formulae, list of missing formulae). </p>
+<p class="level0"><span Class="bold">--commit</span> Commit the changes using <span Class="bold">git</span>. </p>
+<p class="level0"><span Class="bold">--update-existing</span> Update database entries with outdated formula versions. </p>
+<p class="level0"><span Class="bold">--install-missing</span> Install and update formulae that are missing from the database and don&acute;t have bottles. </p>
+<p class="level0"><span Class="bold">--max-downloads</span> Specify a maximum number of formulae to download and update. </p><a name="CUSTOM"></a><h2 class="nroffsh">Custom external commands</h2>
+<p class="level0">Homebrew, like <span Class="bold">git</span>(1), supports external commands. These are executable scripts that reside somewhere in the <span Class="bold">PATH</span>, named <span Class="bold">brew-</span><span Class="emphasis">cmdname</span> or <span Class="bold">brew-</span><span Class="emphasis">cmdname</span><span Class="bold">.rb</span>, which can be invoked like <span Class="bold">brew</span> <span Class="emphasis">cmdname</span>. This allows you to create your own commands without modifying Homebrew&acute;s internals. </p>
+<p class="level0">Instructions for creating your own commands can be found in the docs: <span Class="emphasis"><a href="https://docs.brew.sh/External-Commands">https://docs.brew.sh/External-Commands</a></span> </p><a name="SPECIFYING"></a><h2 class="nroffsh">Specifying formulae</h2>
+<p class="level0">Many Homebrew commands accept one or more <span Class="emphasis">formula</span> arguments. These arguments can take several different forms: </p>
+<p class="level0">The name of a formula e.g. <span Class="bold">git</span>, <span Class="bold">node</span>, <span Class="bold">wget</span>. </p>
+<p class="level0">The fully-qualified name of a tapped formula Sometimes a formula from a tapped repository may conflict with one in <span Class="bold">homebrew/core</span>. You can still access these formulae by using a special syntax, e.g. <span Class="bold">homebrew/dupes/vim</span> or <span Class="bold">homebrew/versions/node4</span>. </p>
+<p class="level0">An arbitrary file Homebrew can install formulae from a local path. It can point to either a formula file or a bottle. Prefix relative paths with <a class="bold" href="#">./</a> to prevent them from being interpreted as a formula or tap name. </p><a name="SPECIFYING"></a><h2 class="nroffsh">Specifying casks</h2>
+<p class="level0">Many Homebrew Cask commands accept one or more <span Class="emphasis">cask</span> arguments. These can be specified the same way as the <span Class="emphasis">formula</span> arguments described in <a class="bold" href="#SPECIFYING">SPECIFYING FORMULAE</a> above. </p><a name="ENVIRONMENT"></a><h2 class="nroffsh">Environment</h2>
+<p class="level0">Note that environment variables must have a value set to be detected. For example, run <span Class="bold">export HOMEBREW_NO_INSECURE_REDIRECT=1</span> rather than just <span Class="bold">export HOMEBREW_NO_INSECURE_REDIRECT</span>. </p>
+<p class="level0"><span Class="bold">HOMEBREW_*</span> environment variables can also be set in Homebrew&acute;s environment files: </p>
+<p class="level0"><a name="bu"></a><span class="nroffip">\(bu 4</span> </p>
+<p class="level1"><span Class="bold">/etc/homebrew/brew.env</span> (system-wide) </p>
+<p class="level0"><a name="bu"></a><span class="nroffip">\(bu 4</span> </p>
+<p class="level1"><span Class="bold">$HOMEBREW_PREFIX/etc/homebrew/brew.env</span> (prefix-specific) </p>
+<p class="level0"><a name="bu"></a><span class="nroffip">\(bu 4</span> </p>
+<p class="level1"><span Class="bold">$XDG_CONFIG_HOME/homebrew/brew.env</span> if <span Class="bold">$XDG_CONFIG_HOME</span> is set or <span Class="bold">$HOME/.homebrew/brew.env</span> otherwise (user-specific) </p>
+<p class="level0"><a name=""></a><span class="nroffip"> 0</span> </p>
+<p class="level1">User-specific environment files take precedence over prefix-specific files and prefix-specific files take precedence over system-wide files (unless <span Class="bold">HOMEBREW_SYSTEM_ENV_TAKES_PRIORITY</span> is set, see below). </p>
+<p class="level1"><span Class="bold">HOMEBREW_API_DOMAIN</span> </p>
+<p class="level1"><br>Use this URL as the download mirror for Homebrew JSON API. If metadata files at that URL are temporarily unavailable, the default API domain will be used as a fallback mirror. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold"><a href="https://formulae.brew.sh/api">https://formulae.brew.sh/api</a></span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_ARCH</span> </p>
+<p class="level1"><br>Linux only: Pass this value to a type name representing the compiler&acute;s <span Class="bold">-march</span> option. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">native</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_ARTIFACT_DOMAIN</span> </p>
+<p class="level1"><br>Prefix all download URLs, including those for bottles, with this value. For example, <span Class="bold">HOMEBREW_ARTIFACT_DOMAIN=<a href="http://localhost:8080">http://localhost:8080</a></span> will cause a formula with the URL <span Class="bold"><a href="https://example.com/foo.tar.gz">https://example.com/foo.tar.gz</a></span> to instead download from <span Class="bold"><a href="http://localhost:8080/https://example.com/foo.tar.gz">http://localhost:8080/https://example.com/foo.tar.gz</a></span>. Bottle URLs however, have their domain replaced with this prefix. This results in e.g. <span Class="bold"><a href="https://ghcr.io/v2/homebrew/core/gettext/manifests/0.21">https://ghcr.io/v2/homebrew/core/gettext/manifests/0.21</a></span> to instead be downloaded from <span Class="bold"><a href="http://localhost:8080/v2/homebrew/core/gettext/manifests/0.21">http://localhost:8080/v2/homebrew/core/gettext/manifests/0.21</a></span> </p>
+<p class="level1"><span Class="bold">HOMEBREW_API_AUTO_UPDATE_SECS</span> </p>
+<p class="level1"><br>Check Homebrew&acute;s API for new formulae or cask data every <span Class="bold">HOMEBREW_API_AUTO_UPDATE_SECS</span> seconds. Alternatively, disable API auto-update checks entirely with HOMEBREW_NO_AUTO_UPDATE. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">450</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_AUTO_UPDATE_SECS</span> </p>
+<p class="level1"><br>Run <span Class="bold">brew update</span> once every <span Class="bold">HOMEBREW_AUTO_UPDATE_SECS</span> seconds before some commands, e.g. <span Class="bold">brew install</span>, <span Class="bold">brew upgrade</span> and <span Class="bold">brew tap</span>. Alternatively, disable auto-update entirely with <span Class="bold">HOMEBREW_NO_AUTO_UPDATE</span>. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> 86400 (24 hours), 3600 (1 hour) if a developer command has been run or 300 (5 minutes) if <span Class="bold">HOMEBREW_NO_INSTALL_FROM_API</span> is set. </p>
+<p class="level1"><span Class="bold">HOMEBREW_AUTOREMOVE</span> </p>
+<p class="level1"><br>If set, calls to <span Class="bold">brew cleanup</span> and <span Class="bold">brew uninstall</span> will automatically remove unused formula dependents and if <span Class="bold">HOMEBREW_NO_INSTALL_CLEANUP</span> is not set, <span Class="bold">brew cleanup</span> will start running <span Class="bold">brew autoremove</span> periodically. </p>
+<p class="level1"><span Class="bold">HOMEBREW_BAT</span> </p>
+<p class="level1"><br>If set, use <span Class="bold">bat</span> for the <span Class="bold">brew cat</span> command. </p>
+<p class="level1"><span Class="bold">HOMEBREW_BAT_CONFIG_PATH</span> </p>
+<p class="level1"><br>Use this as the <span Class="bold">bat</span> configuration file. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$BAT_CONFIG_PATH</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_BAT_THEME</span> </p>
+<p class="level1"><br>Use this as the <span Class="bold">bat</span> theme for syntax highlighting. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$BAT_THEME</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_BOOTSNAP</span> </p>
+<p class="level1"><br>If set, use Bootsnap to speed up repeated <span Class="bold">brew</span> calls. A no-op when using Homebrew&acute;s vendored, relocatable Ruby on macOS (as it doesn&acute;t work). </p>
+<p class="level1"><span Class="bold">HOMEBREW_BOTTLE_DOMAIN</span> </p>
+<p class="level1"><br>Use this URL as the download mirror for bottles. If bottles at that URL are temporarily unavailable, the default bottle domain will be used as a fallback mirror. For example, <span Class="bold">HOMEBREW_BOTTLE_DOMAIN=<a href="http://localhost:8080">http://localhost:8080</a></span> will cause all bottles to download from the prefix <span Class="bold"><a href="http://localhost:8080/">http://localhost:8080/</a></span>. If bottles are not available at <span Class="bold">HOMEBREW_BOTTLE_DOMAIN</span> they will be downloaded from the default bottle domain. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold"><a href="https://ghcr.io/v2/homebrew/core">https://ghcr.io/v2/homebrew/core</a></span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_BREW_GIT_REMOTE</span> </p>
+<p class="level1"><br>Use this URL as the Homebrew/brew <span Class="bold">git</span>(1) remote. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold"><a href="https://github.com/Homebrew/brew">https://github.com/Homebrew/brew</a></span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_BROWSER</span> </p>
+<p class="level1"><br>Use this as the browser when opening project homepages. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$BROWSER</span> or the OS&acute;s default browser. </p>
+<p class="level1"><span Class="bold">HOMEBREW_CACHE</span> </p>
+<p class="level1"><br>Use this directory as the download cache. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> macOS: <span Class="bold">$HOME/Library/Caches/Homebrew</span>, Linux: <span Class="bold">$XDG_CACHE_HOME/Homebrew</span> or <span Class="bold">$HOME/.cache/Homebrew</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_CASK_OPTS</span> </p>
+<p class="level1"><br>Append these options to all <span Class="bold">cask</span> commands. All <span Class="bold">--*dir</span> options, <span Class="bold">--language</span>, <span Class="bold">--require-sha</span>, <span Class="bold">--no-quarantine</span> and <span Class="bold">--no-binaries</span> are supported. For example, you might add something like the following to your <span Class="bold">~/.profile</span>, <span Class="bold">~/.bash_profile</span>, or <span Class="bold">~/.zshenv</span>: </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="bold">export HOMEBREW_CASK_OPTS=&quot;--appdir=~/Applications --fontdir=/Library/Fonts&quot;</span> </p>
+<p class="level1"><span Class="bold">HOMEBREW_CLEANUP_MAX_AGE_DAYS</span> </p>
+<p class="level1"><br>Cleanup all cached files older than this many days. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">120</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS</span> </p>
+<p class="level1"><br>If set, <span Class="bold">brew install</span>, <span Class="bold">brew upgrade</span> and <span Class="bold">brew reinstall</span> will cleanup all formulae when this number of days has passed. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">30</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_COLOR</span> </p>
+<p class="level1"><br>If set, force colour output on non-TTY outputs. </p>
+<p class="level1"><span Class="bold">HOMEBREW_CORE_GIT_REMOTE</span> </p>
+<p class="level1"><br>Use this URL as the Homebrew/homebrew-core <span Class="bold">git</span>(1) remote. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold"><a href="https://github.com/Homebrew/homebrew-core">https://github.com/Homebrew/homebrew-core</a></span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_CURL_PATH</span> </p>
+<p class="level1"><br>Linux only: Set this value to a new enough <span Class="bold">curl</span> executable for Homebrew to use. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">curl</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_CURL_RETRIES</span> </p>
+<p class="level1"><br>Pass the given retry count to <span Class="bold">--retry</span> when invoking <span Class="bold">curl</span>(1). </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">3</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_CURL_VERBOSE</span> </p>
+<p class="level1"><br>If set, pass <span Class="bold">--verbose</span> when invoking <span Class="bold">curl</span>(1). </p>
+<p class="level1"><span Class="bold">HOMEBREW_CURLRC</span> </p>
+<p class="level1"><br>If set, do not pass <span Class="bold">--disable</span> when invoking <span Class="bold">curl</span>(1), which disables the use of <span Class="bold">curlrc</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_DEBUG</span> </p>
+<p class="level1"><br>If set, always assume <span Class="bold">--debug</span> when running commands. </p>
+<p class="level1"><span Class="bold">HOMEBREW_DEVELOPER</span> </p>
+<p class="level1"><br>If set, tweak behaviour to be more relevant for Homebrew developers (active or budding) by e.g. turning warnings into errors. </p>
+<p class="level1"><span Class="bold">HOMEBREW_DISABLE_LOAD_FORMULA</span> </p>
+<p class="level1"><br>If set, refuse to load formulae. This is useful when formulae are not trusted (such as in pull requests). </p>
+<p class="level1"><span Class="bold">HOMEBREW_DISPLAY</span> </p>
+<p class="level1"><br>Use this X11 display when opening a page in a browser, for example with <span Class="bold">brew home</span>. Primarily useful on Linux. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$DISPLAY</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_DISPLAY_INSTALL_TIMES</span> </p>
+<p class="level1"><br>If set, print install times for each formula at the end of the run. </p>
+<p class="level1"><span Class="bold">HOMEBREW_DOCKER_REGISTRY_BASIC_AUTH_TOKEN</span> </p>
+<p class="level1"><br>Use this base64 encoded username and password for authenticating with a Docker registry proxying GitHub Packages. If <span Class="bold">HOMEBREW_DOCKER_REGISTRY_TOKEN</span> is set, it will be used instead. </p>
+<p class="level1"><span Class="bold">HOMEBREW_DOCKER_REGISTRY_TOKEN</span> </p>
+<p class="level1"><br>Use this bearer token for authenticating with a Docker registry proxying GitHub Packages. Preferred over <span Class="bold">HOMEBREW_DOCKER_REGISTRY_BASIC_AUTH_TOKEN</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_EDITOR</span> </p>
+<p class="level1"><br>Use this editor when editing a single formula, or several formulae in the same directory. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Note:</span> <span Class="bold">brew edit</span> will open all of Homebrew as discontinuous files and directories. Visual Studio Code can handle this correctly in project mode, but many editors will do strange things in this case. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$EDITOR</span> or <span Class="bold">$VISUAL</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_EVAL_ALL</span> </p>
+<p class="level1"><br>If set, <span Class="bold">brew</span> commands evaluate all formulae and casks, executing their arbitrary code, by default without requiring --eval-all. Required to cache formula and cask descriptions. </p>
+<p class="level1"><span Class="bold">HOMEBREW_FAIL_LOG_LINES</span> </p>
+<p class="level1"><br>Output this many lines of output on formula <span Class="bold">system</span> failures. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">15</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_FORBIDDEN_LICENSES</span> </p>
+<p class="level1"><br>A space-separated list of licenses. Homebrew will refuse to install a formula if it or any of its dependencies has a license on this list. </p>
+<p class="level1"><span Class="bold">HOMEBREW_FORCE_BREWED_CA_CERTIFICATES</span> </p>
+<p class="level1"><br>If set, always use a Homebrew-installed <span Class="bold">ca-certificates</span> rather than the system version. Automatically set if the system version is too old. </p>
+<p class="level1"><span Class="bold">HOMEBREW_FORCE_BREWED_CURL</span> </p>
+<p class="level1"><br>If set, always use a Homebrew-installed <span Class="bold">curl</span>(1) rather than the system version. Automatically set if the system version of <span Class="bold">curl</span> is too old. </p>
+<p class="level1"><span Class="bold">HOMEBREW_FORCE_BREWED_GIT</span> </p>
+<p class="level1"><br>If set, always use a Homebrew-installed <span Class="bold">git</span>(1) rather than the system version. Automatically set if the system version of <span Class="bold">git</span> is too old. </p>
+<p class="level1"><span Class="bold">HOMEBREW_FORCE_VENDOR_RUBY</span> </p>
+<p class="level1"><br>If set, always use Homebrew&acute;s vendored, relocatable Ruby version even if the system version of Ruby is new enough. </p>
+<p class="level1"><span Class="bold">HOMEBREW_GIT_EMAIL</span> </p>
+<p class="level1"><br>Set the Git author and committer email to this value. </p>
+<p class="level1"><span Class="bold">HOMEBREW_GIT_NAME</span> </p>
+<p class="level1"><br>Set the Git author and committer name to this value. </p>
+<p class="level1"><span Class="bold">HOMEBREW_GIT_PATH</span> </p>
+<p class="level1"><br>Linux only: Set this value to a new enough <span Class="bold">git</span> executable for Homebrew to use. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">git</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_GITHUB_API_TOKEN</span> </p>
+<p class="level1"><br>Use this personal access token for the GitHub API, for features such as <span Class="bold">brew search</span>. You can create one at <span Class="emphasis"><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></span>. If set, GitHub will allow you a greater number of API requests. For more information, see: <span Class="emphasis"><a href="https://docs.github.com/en/rest/overview/resources-in-the-rest-api&#35;rate-limiting">https://docs.github.com/en/rest/overview/resources-in-the-rest-api&#35;rate-limiting</a></span> </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Note:</span> Homebrew doesn&acute;t require permissions for any of the scopes, but some developer commands may require additional permissions. </p>
+<p class="level1"><span Class="bold">HOMEBREW_GITHUB_PACKAGES_TOKEN</span> </p>
+<p class="level1"><br>Use this GitHub personal access token when accessing the GitHub Packages Registry (where bottles may be stored). </p>
+<p class="level1"><span Class="bold">HOMEBREW_GITHUB_PACKAGES_USER</span> </p>
+<p class="level1"><br>Use this username when accessing the GitHub Packages Registry (where bottles may be stored). </p>
+<p class="level1"><span Class="bold">HOMEBREW_INSTALL_BADGE</span> </p>
+<p class="level1"><br>Print this text before the installation summary of each successful build. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> The &quot;Beer Mug&quot; emoji. </p>
+<p class="level1"><span Class="bold">HOMEBREW_LIVECHECK_WATCHLIST</span> </p>
+<p class="level1"><br>Consult this file for the list of formulae to check by default when no formula argument is passed to <span Class="bold">brew livecheck</span>. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$XDG_CONFIG_HOME/homebrew/livecheck_watchlist.txt</span> if <span Class="bold">$XDG_CONFIG_HOME</span> is set or <span Class="bold">$HOME/.homebrew/livecheck_watchlist.txt</span> otherwise. </p>
+<p class="level1"><span Class="bold">HOMEBREW_LOGS</span> </p>
+<p class="level1"><br>Use this directory to store log files. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> macOS: <span Class="bold">$HOME/Library/Logs/Homebrew</span>, Linux: <span Class="bold">$XDG_CACHE_HOME/Homebrew/Logs</span> or <span Class="bold">$HOME/.cache/Homebrew/Logs</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_MAKE_JOBS</span> </p>
+<p class="level1"><br>Use this value as the number of parallel jobs to run when building with <span Class="bold">make</span>(1). </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> The number of available CPU cores. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_ANALYTICS</span> </p>
+<p class="level1"><br>If set, do not send analytics. Google Analytics were destroyed. For more information, see: <span Class="emphasis"><a href="https://docs.brew.sh/Analytics">https://docs.brew.sh/Analytics</a></span> </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_AUTO_UPDATE</span> </p>
+<p class="level1"><br>If set, do not automatically update before running some commands, e.g. <span Class="bold">brew install</span>, <span Class="bold">brew upgrade</span> and <span Class="bold">brew tap</span>. Alternatively, run this less often by setting <span Class="bold">HOMEBREW_AUTO_UPDATE_SECS</span> to a value higher than the default. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_BOOTSNAP</span> </p>
+<p class="level1"><br>If set, do not use Bootsnap to speed up repeated <span Class="bold">brew</span> calls. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_CLEANUP_FORMULAE</span> </p>
+<p class="level1"><br>A comma-separated list of formulae. Homebrew will refuse to clean up or autoremove a formula if it appears on this list. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_COLOR</span> </p>
+<p class="level1"><br>If set, do not print text with colour added. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$NO_COLOR</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_EMOJI</span> </p>
+<p class="level1"><br>If set, do not print <span Class="bold">HOMEBREW_INSTALL_BADGE</span> on a successful build. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_ENV_HINTS</span> </p>
+<p class="level1"><br>If set, do not print any hints about changing Homebrew&acute;s behaviour with environment variables. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_GITHUB_API</span> </p>
+<p class="level1"><br>If set, do not use the GitHub API, e.g. for searches or fetching relevant issues after a failed install. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_INSECURE_REDIRECT</span> </p>
+<p class="level1"><br>If set, forbid redirects from secure HTTPS to insecure HTTP. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Note:</span> While ensuring your downloads are fully secure, this is likely to cause from-source SourceForge, some GNU &amp; GNOME-hosted formulae to fail to download. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_INSTALL_CLEANUP</span> </p>
+<p class="level1"><br>If set, <span Class="bold">brew install</span>, <span Class="bold">brew upgrade</span> and <span Class="bold">brew reinstall</span> will never automatically cleanup installed/upgraded/reinstalled formulae or all formulae every <span Class="bold">HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS</span> days. Alternatively, <span Class="bold">HOMEBREW_NO_CLEANUP_FORMULAE</span> allows specifying specific formulae to not clean up. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_INSTALL_FROM_API</span> </p>
+<p class="level1"><br>If set, do not install formulae and casks in homebrew/core and homebrew/cask taps using Homebrew&acute;s API and instead use (large, slow) local checkouts of these repositories. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_INSTALL_UPGRADE</span> </p>
+<p class="level1"><br>If set, <span Class="bold">brew install</span> &lt;formula/cask&gt; will not upgrade &lt;formula/cask&gt; if it is installed but outdated. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK</span> </p>
+<p class="level1"><br>If set, do not check for broken linkage of dependents or outdated dependents after installing, upgrading or reinstalling formulae. This will result in fewer dependents (and their dependencies) being upgraded or reinstalled but may result in more breakage from running <span Class="bold">brew install</span> <span Class="emphasis">formula</span> or <span Class="bold">brew upgrade</span> <span Class="emphasis">formula</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_NO_UPDATE_REPORT_NEW</span> </p>
+<p class="level1"><br>If set, <span Class="bold">brew update</span> will not show the list of newly added formulae/casks. </p>
+<p class="level1"><span Class="bold">HOMEBREW_PIP_INDEX_URL</span> </p>
+<p class="level1"><br>If set, <span Class="bold">brew install &lt;formula&gt;</span> will use this URL to download PyPI package resources. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold"><a href="https://pypi.org/simple">https://pypi.org/simple</a></span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_PRY</span> </p>
+<p class="level1"><br>If set, use Pry for the <span Class="bold">brew irb</span> command. </p>
+<p class="level1"><span Class="bold">HOMEBREW_UPGRADE_GREEDY</span> </p>
+<p class="level1"><br>If set, pass <span Class="bold">--greedy</span> to all cask upgrade commands. </p>
+<p class="level1"><span Class="bold">HOMEBREW_SIMULATE_MACOS_ON_LINUX</span> </p>
+<p class="level1"><br>If set, running Homebrew on Linux will simulate certain macOS code paths. This is useful when auditing macOS formulae while on Linux. </p>
+<p class="level1"><span Class="bold">HOMEBREW_SKIP_OR_LATER_BOTTLES</span> </p>
+<p class="level1"><br>If set along with <span Class="bold">HOMEBREW_DEVELOPER</span>, do not use bottles from older versions of macOS. This is useful in development on new macOS versions. </p>
+<p class="level1"><span Class="bold">HOMEBREW_SORBET_RUNTIME</span> </p>
+<p class="level1"><br>If set, enable runtime typechecking using Sorbet. Set by default for HOMEBREW_DEVELOPER or when running some developer commands. </p>
+<p class="level1"><span Class="bold">HOMEBREW_SSH_CONFIG_PATH</span> </p>
+<p class="level1"><br>If set, Homebrew will use the given config file instead of <span Class="bold">~/.ssh/config</span> when fetching <span Class="bold">git</span> repos over <span Class="bold">ssh</span>. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> <span Class="bold">$HOME/.ssh/config</span> </p>
+<p class="level1"><span Class="bold">HOMEBREW_SVN</span> </p>
+<p class="level1"><br>Use this as the <span Class="bold">svn</span>(1) binary. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> A Homebrew-built Subversion (if installed), or the system-provided binary. </p>
+<p class="level1"><span Class="bold">HOMEBREW_SYSTEM_ENV_TAKES_PRIORITY</span> </p>
+<p class="level1"><br>If set in Homebrew&acute;s system-wide environment file (<span Class="bold">/etc/homebrew/brew.env</span>), the system-wide environment file will be loaded last to override any prefix or user settings. </p>
+<p class="level1"><span Class="bold">HOMEBREW_TEMP</span> </p>
+<p class="level1"><br>Use this path as the temporary directory for building packages. Changing this may be needed if your system temporary directory and Homebrew prefix are on different volumes, as macOS has trouble moving symlinks across volumes when the target does not yet exist. This issue typically occurs when using FileVault or custom SSD configurations. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1"><span Class="emphasis">Default:</span> macOS: <span Class="bold">/private/tmp</span>, Linux: <span Class="bold">/tmp</span>. </p>
+<p class="level1"><span Class="bold">HOMEBREW_UPDATE_TO_TAG</span> </p>
+<p class="level1"><br>If set, always use the latest stable tag (even if developer commands have been run). </p>
+<p class="level1"><span Class="bold">HOMEBREW_VERBOSE</span> </p>
+<p class="level1"><br>If set, always assume <span Class="bold">--verbose</span> when running commands. </p>
+<p class="level1"><span Class="bold">HOMEBREW_VERBOSE_USING_DOTS</span> </p>
+<p class="level1"><br>If set, verbose output will print a <a class="bold" href="#">.</a> no more than once a minute. This can be useful to avoid long-running Homebrew commands being killed due to no output. </p>
+<p class="level1"><span Class="bold">SUDO_ASKPASS</span> </p>
+<p class="level1"><br>If set, pass the <span Class="bold">-A</span> option when calling <span Class="bold">sudo</span>(8). </p>
+<p class="level1"><span Class="bold">all_proxy</span> </p>
+<p class="level1"><br>Use this SOCKS5 proxy for <span Class="bold">curl</span>(1), <span Class="bold">git</span>(1) and <span Class="bold">svn</span>(1) when downloading through Homebrew. </p>
+<p class="level1"><span Class="bold">ftp_proxy</span> </p>
+<p class="level1"><br>Use this FTP proxy for <span Class="bold">curl</span>(1), <span Class="bold">git</span>(1) and <span Class="bold">svn</span>(1) when downloading through Homebrew. </p>
+<p class="level1"><span Class="bold">http_proxy</span> </p>
+<p class="level1"><br>Use this HTTP proxy for <span Class="bold">curl</span>(1), <span Class="bold">git</span>(1) and <span Class="bold">svn</span>(1) when downloading through Homebrew. </p>
+<p class="level1"><span Class="bold">https_proxy</span> </p>
+<p class="level1"><br>Use this HTTPS proxy for <span Class="bold">curl</span>(1), <span Class="bold">git</span>(1) and <span Class="bold">svn</span>(1) when downloading through Homebrew. </p>
+<p class="level1"><span Class="bold">no_proxy</span> </p>
+<p class="level1"><br>A comma-separated list of hostnames and domain names excluded from proxying by <span Class="bold">curl</span>(1), <span Class="bold">git</span>(1) and <span Class="bold">svn</span>(1) when downloading through Homebrew. </p><a name="USING"></a><h2 class="nroffsh">Using homebrew behind a proxy</h2>
+<p class="level0">Set the <span Class="bold">http_proxy</span>, <span Class="bold">https_proxy</span>, <span Class="bold">all_proxy</span>, <span Class="bold">ftp_proxy</span> and/or <span Class="bold">no_proxy</span> environment variables documented above. </p>
+<p class="level0">For example, to use an unauthenticated HTTP or SOCKS5 proxy: </p>
+<p class="level0"><a name=""></a><span class="nroffip"> 4</span> </p><pre class="level1">
+&nbsp;
+export http_proxy=http://$HOST:$PORT
+&nbsp;
+export all_proxy=socks5://$HOST:$PORT
+</pre>
+
+<p class="level0"><a name=""></a><span class="nroffip"> 0</span> </p>
+<p class="level1">And for an authenticated HTTP proxy: </p>
+<p class="level0"><a name=""></a><span class="nroffip"> 4</span> </p><pre class="level1">
+&nbsp;
+export http_proxy=http://$USER:$PASSWORD@$HOST:$PORT
+</pre>
+
+<p class="level0"><a name=""></a><span class="nroffip"> 0</span> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<p class="level0">Homebrew Documentation: <span Class="emphasis"><a href="https://docs.brew.sh">https://docs.brew.sh</a></span> </p>
+<p class="level0">Homebrew API: <span Class="emphasis"><a href="https://rubydoc.brew.sh">https://rubydoc.brew.sh</a></span> </p>
+<p class="level0"><span Class="bold">git</span>(1), <span Class="bold">git-log</span>(1) </p><a name="AUTHORS"></a><h2 class="nroffsh">Authors</h2>
+<p class="level0">Homebrew&acute;s Project Leader is Mike McQuaid. </p>
+<p class="level0">Homebrew&acute;s Project Leadership Committee is Colin Dean, Issy Long, Mike McQuaid, Misty De Méo and Sean Molenaar. </p>
+<p class="level0">Homebrew&acute;s Technical Steering Committee is Bo Anderson, FX Coudert, Michka Popoff, Mike McQuaid and Rylan Polster. </p>
+<p class="level0">Homebrew&acute;s maintainers are Alexander Bayandin, Bevan Kay, Bo Anderson, Branch Vincent, Caleb Xu, Carlo Cabrera, Daniel Nachun, David Baumgold, Dawid Dziurla, Dustin Rodrigues, Eric Knibbe, FX Coudert, George Adams, Issy Long, Justin Krehel, Markus Reiter, Miccal Matthews, Michael Cho, Michka Popoff, Mike McQuaid, Nanda H Krishna, Patrick Linnane, Razvan Azamfirei, Rui Chen, Ruoyu Zhong, Rylan Polster, Sam Ford, Sean Molenaar and Thierry Moisan. </p>
+<p class="level0">Former maintainers with significant contributions include Misty De Méo, Shaun Jackman, Vítor Galvão, Claudia Pellegrino, Seeker, William Woodruff, Jan Viljanen, JCount, commitay, Dominyk Tiller, Tim Smith, Baptiste Fontaine, Xu Cheng, Martin Afanasjew, Brett Koonce, Charlie Sharpsteen, Jack Nagel, Adam Vandenberg, Andrew Janke, Alex Dunn, neutric, Tomasz Pajor, Uladzislau Shablinski, Alyssa Ross, ilovezfs, Chongyu Zhu and Homebrew&acute;s creator: Max Howell. </p><a name="BUGS"></a><h2 class="nroffsh">Bugs</h2>
+<p class="level0">See our issues on GitHub: </p>
+<p class="level0"><span Class="bold">Homebrew/brew</span> </p>
+<p class="level0"><br><span Class="emphasis"><a href="https://github.com/Homebrew/brew/issues">https://github.com/Homebrew/brew/issues</a></span> </p>
+<p class="level0"><span Class="bold">Homebrew/homebrew-core</span> </p>
+<p class="level0"><br><span Class="emphasis"><a href="https://github.com/Homebrew/homebrew-core/issues">https://github.com/Homebrew/homebrew-core/issues</a></span> </p>
+<p class="level0"><span Class="bold">Homebrew/homebrew-cask</span> </p>
+<p class="level0"><br><span Class="emphasis"><a href="https://github.com/Homebrew/homebrew-cask/issues">https://github.com/Homebrew/homebrew-cask/issues</a></span> </p><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.

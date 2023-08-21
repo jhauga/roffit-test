@@ -1,0 +1,260 @@
+<h3>CURLOPT_PROXY.3--bare.txt</h3>
+28c28
+< <p class="level0">A proxy host string can also include protocol scheme (<a href="http://)">http://)</a> and embedded user + password. </p>
+---
+> <p class="level0">A proxy host string can also include protocol scheme (<a>http://</a>) and embedded user + password. </p>
+32c32
+< <p class="level0">libcurl respects the proxy environment variables named <span Class="bold">http_proxy</span>, <span Class="bold">ftp_proxy</span>, <span Class="bold">sftp_proxy</span> etc. If set, libcurl will use the specified proxy for that URL scheme. So for a &quot;<a href="FTP://&quot;">FTP://&quot;</a> URL, the <span Class="bold">ftp_proxy</span> is considered. <span Class="bold">all_proxy</span> is used if no protocol specific proxy was set. </p>
+---
+> <p class="level0">libcurl respects the proxy environment variables named <span Class="bold">http_proxy</span>, <span Class="bold">ftp_proxy</span>, <span Class="bold">sftp_proxy</span> etc. If set, libcurl will use the specified proxy for that URL scheme. So for a &quot;FTP://&quot; URL, the <span Class="bold">ftp_proxy</span> is considered. <span Class="bold">all_proxy</span> is used if no protocol specific proxy was set. </p>
+<br><hr><br>
+<h3>CURLOPT_PROXY.3-default.txt</h3>
+78c78
+< <p class="level0">A proxy host string can also include protocol scheme (<a href="http://)">http://)</a> and embedded user + password. </p>
+---
+> <p class="level0">A proxy host string can also include protocol scheme (<a>http://</a>) and embedded user + password. </p>
+82c82
+< <p class="level0">libcurl respects the proxy environment variables named <span Class="bold">http_proxy</span>, <span Class="bold">ftp_proxy</span>, <span Class="bold">sftp_proxy</span> etc. If set, libcurl will use the specified proxy for that URL scheme. So for a &quot;<a href="FTP://&quot;">FTP://&quot;</a> URL, the <span Class="bold">ftp_proxy</span> is considered. <span Class="bold">all_proxy</span> is used if no protocol specific proxy was set. </p>
+---
+> <p class="level0">libcurl respects the proxy environment variables named <span Class="bold">http_proxy</span>, <span Class="bold">ftp_proxy</span>, <span Class="bold">sftp_proxy</span> etc. If set, libcurl will use the specified proxy for that URL scheme. So for a &quot;FTP://&quot; URL, the <span Class="bold">ftp_proxy</span> is considered. <span Class="bold">all_proxy</span> is used if no protocol specific proxy was set. </p>
+<br><hr><br>
+<h3>brew.1--bare.txt</h3>
+74c74
+< <p class="level0">Open Homebrew&acute;s online documentation (<a href="https://docs.brew.sh)">https://docs.brew.sh)</a> in a browser. </p><a name="fBdoctorfR"></a><h2 class="nroffsh">\fbdoctor\fr, \fbdr\fr [\fb--list-checks\fr] [\fb--audit-debug\fr] [\fidiagnostic_check\fr \.\.\.]</h2>
+---
+> <p class="level0">Open Homebrew&acute;s online documentation (<a href="https://docs.brew.sh">https://docs.brew.sh</a>) in a browser. </p><a name="fBdoctorfR"></a><h2 class="nroffsh">\fbdoctor\fr, \fbdr\fr [\fb--list-checks\fr] [\fb--audit-debug\fr] [\fidiagnostic_check\fr \.\.\.]</h2>
+<br><hr><br>
+<h3>brew.1-default.txt</h3>
+124c124
+< <p class="level0">Open Homebrew&acute;s online documentation (<a href="https://docs.brew.sh)">https://docs.brew.sh)</a> in a browser. </p><a name="fBdoctorfR"></a><h2 class="nroffsh">\fbdoctor\fr, \fbdr\fr [\fb--list-checks\fr] [\fb--audit-debug\fr] [\fidiagnostic_check\fr \.\.\.]</h2>
+---
+> <p class="level0">Open Homebrew&acute;s online documentation (<a href="https://docs.brew.sh">https://docs.brew.sh</a>) in a browser. </p><a name="fBdoctorfR"></a><h2 class="nroffsh">\fbdoctor\fr, \fbdr\fr [\fb--list-checks\fr] [\fb--audit-debug\fr] [\fidiagnostic_check\fr \.\.\.]</h2>
+<br><hr><br>
+<h3>curl.1--bare.txt</h3>
+83c83
+< <p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <span Class="emphasis">-&#35;, --progress-bar</span> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
+---
+> <p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
+93,94c93,94
+< <p class="level0">When <a class="emphasis" href="#-">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-">-:, --next</a>. </p>
+< <p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <span Class="emphasis">-&#35;, --progress-bar</span>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
+---
+> <p class="level0">When <a class="emphasis" href="#-:">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-:">-:, --next</a>. </p>
+> <p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
+250c250
+< <p class="level1">url = &quot;<a href="https://curl.se/docs/&quot;">https://curl.se/docs/&quot;</a> </p><pre class="level1">
+---
+> <p class="level1">url = &quot;<a href="https://curl.se/docs/">https://curl.se/docs/</a>&quot; </p><pre class="level1">
+569c569
+< <p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
+---
+> <p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-:">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
+625c625
+< <p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1366c1366
+< <p class="level0"><a name="-"></a><span class="nroffip">-:, --next</span> </p>
+---
+> <p class="level0"><a name="-:"></a><span class="nroffip">-:, --next</span> </p>
+1368c1368
+< <p class="level1"><a class="emphasis" href="#-">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
+---
+> <p class="level1"><a class="emphasis" href="#-:">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-:">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
+1373c1373
+< <p class="level1"><a class="emphasis" href="#-">-:, --next</a> can be used several times in a command line </p>
+---
+> <p class="level1"><a class="emphasis" href="#-:">-:, --next</a> can be used several times in a command line </p>
+1395c1395
+< <p class="level1">See also <span Class="emphasis">-&#35;, --progress-bar</span>. </p>
+---
+> <p class="level1">See also <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a>. </p>
+1480c1480
+< <p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1534c1534
+< <p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1550c1550
+< <p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
+---
+> <p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
+1620c1620
+< <p class="level0"><a name="-"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
+---
+> <p class="level0"><a name="-&#35;"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
+1624c1624
+< <p class="level1">Providing <span Class="emphasis">-&#35;, --progress-bar</span> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
+---
+> <p class="level1">Providing <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
+1923c1923
+< <p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a href="http://)">http://)</a> and the embedded user + password. </p>
+---
+> <p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a>http://</a>) and the embedded user + password. </p>
+2665c2665
+< <p class="level1">If the given URL is missing a scheme name (such as &quot;<a href="http://&quot;">http://&quot;</a> or &quot;<a href="ftp://&quot;">ftp://&quot;</a> etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
+---
+> <p class="level1">If the given URL is missing a scheme name (such as &quot;<a>http://</a>&quot; or &quot;<a>ftp://</a>&quot; etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
+2673c2673
+< <p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>
+---
+> <p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>
+<br><hr><br>
+<h3>curl.1-default.txt</h3>
+133c133
+< <p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <span Class="emphasis">-&#35;, --progress-bar</span> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
+---
+> <p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
+143,144c143,144
+< <p class="level0">When <a class="emphasis" href="#-">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-">-:, --next</a>. </p>
+< <p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <span Class="emphasis">-&#35;, --progress-bar</span>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
+---
+> <p class="level0">When <a class="emphasis" href="#-:">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-:">-:, --next</a>. </p>
+> <p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
+300c300
+< <p class="level1">url = &quot;<a href="https://curl.se/docs/&quot;">https://curl.se/docs/&quot;</a> </p><pre class="level1">
+---
+> <p class="level1">url = &quot;<a href="https://curl.se/docs/">https://curl.se/docs/</a>&quot; </p><pre class="level1">
+619c619
+< <p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
+---
+> <p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-:">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
+675c675
+< <p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1416c1416
+< <p class="level0"><a name="-"></a><span class="nroffip">-:, --next</span> </p>
+---
+> <p class="level0"><a name="-:"></a><span class="nroffip">-:, --next</span> </p>
+1418c1418
+< <p class="level1"><a class="emphasis" href="#-">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
+---
+> <p class="level1"><a class="emphasis" href="#-:">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-:">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
+1423c1423
+< <p class="level1"><a class="emphasis" href="#-">-:, --next</a> can be used several times in a command line </p>
+---
+> <p class="level1"><a class="emphasis" href="#-:">-:, --next</a> can be used several times in a command line </p>
+1445c1445
+< <p class="level1">See also <span Class="emphasis">-&#35;, --progress-bar</span>. </p>
+---
+> <p class="level1">See also <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a>. </p>
+1530c1530
+< <p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1584c1584
+< <p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-">-:, --next</a>. </p>
+---
+> <p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-:">-:, --next</a>. </p>
+1600c1600
+< <p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
+---
+> <p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
+1670c1670
+< <p class="level0"><a name="-"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
+---
+> <p class="level0"><a name="-&#35;"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
+1674c1674
+< <p class="level1">Providing <span Class="emphasis">-&#35;, --progress-bar</span> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
+---
+> <p class="level1">Providing <a Class="emphasis" href="#-&#35;">-&#35;, --progress-bar</a> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
+1973c1973
+< <p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a href="http://)">http://)</a> and the embedded user + password. </p>
+---
+> <p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a>http://</a>) and the embedded user + password. </p>
+2715c2715
+< <p class="level1">If the given URL is missing a scheme name (such as &quot;<a href="http://&quot;">http://&quot;</a> or &quot;<a href="ftp://&quot;">ftp://&quot;</a> etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
+---
+> <p class="level1">If the given URL is missing a scheme name (such as &quot;<a>http://</a>&quot; or &quot;<a>ftp://</a>&quot; etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
+2723c2723
+< <p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>
+---
+> <p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>
+<br><hr><br>
+<h3>mc.1.in--bare.txt</h3>
+1267c1267
+< <p class="level0">The latest version of this program can be found at <a href="http://ftp.midnight-commander.org/.">http://ftp.midnight-commander.org/.</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+---
+> <p class="level0">The latest version of this program can be found at <a href="http://ftp.midnight-commander.org/">http://ftp.midnight-commander.org/</a>. </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+1275c1275
+< <p class="level0">If you want to report a problem with the program, please create bugreport at <a href="https://www.midnight-commander.org/.">https://www.midnight-commander.org/.</a> </p>
+---
+> <p class="level0">If you want to report a problem with the program, please create bugreport at <a href="https://www.midnight-commander.org/">https://www.midnight-commander.org/</a>. </p>
+<br><hr><br>
+<h3>mc.1.in-default.txt</h3>
+1317c1317
+< <p class="level0">The latest version of this program can be found at <a href="http://ftp.midnight-commander.org/.">http://ftp.midnight-commander.org/.</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+---
+> <p class="level0">The latest version of this program can be found at <a href="http://ftp.midnight-commander.org/">http://ftp.midnight-commander.org/</a>. </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+1325c1325
+< <p class="level0">If you want to report a problem with the program, please create bugreport at <a href="https://www.midnight-commander.org/.">https://www.midnight-commander.org/.</a> </p>
+---
+> <p class="level0">If you want to report a problem with the program, please create bugreport at <a href="https://www.midnight-commander.org/">https://www.midnight-commander.org/</a>. </p>
+<br><hr><br>
+<h3>mmcli.8--bare.txt</h3>
+188,195c188,195
+< <p class="level0">AT (<a href="http://en.wikipedia.org/wiki/AT_commands).">http://en.wikipedia.org/wiki/AT_commands).</a> </p>
+< <p class="level0">3GPP (<a href="http://en.wikipedia.org/wiki/3GPP).">http://en.wikipedia.org/wiki/3GPP).</a> </p>
+< <p class="level0">MCCMNC (<a href="http://en.wikipedia.org/wiki/Mobile_Network_Code).">http://en.wikipedia.org/wiki/Mobile_Network_Code).</a> </p>
+< <p class="level0">USSD (<a href="http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).">http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).</a> </p>
+< <p class="level0">CDMA (<a href="http://en.wikipedia.org/wiki/Code_division_multiple_access).">http://en.wikipedia.org/wiki/Code_division_multiple_access).</a> </p>
+< <p class="level0">OTA (<a href="http://en.wikipedia.org/wiki/Over-the-air_programming).">http://en.wikipedia.org/wiki/Over-the-air_programming).</a> </p>
+< <p class="level0">GPS (<a href="http://en.wikipedia.org/wiki/Global_Positioning_System)">http://en.wikipedia.org/wiki/Global_Positioning_System)</a> </p>
+< <p class="level0">NMEA (<a href="http://en.wikipedia.org/wiki/NMEA_0183)">http://en.wikipedia.org/wiki/NMEA_0183)</a> </p><p class="roffit">
+---
+> <p class="level0">AT (<a href="http://en.wikipedia.org/wiki/AT_commands">http://en.wikipedia.org/wiki/AT_commands</a>). </p>
+> <p class="level0">3GPP (<a href="http://en.wikipedia.org/wiki/3GPP">http://en.wikipedia.org/wiki/3GPP</a>). </p>
+> <p class="level0">MCCMNC (<a href="http://en.wikipedia.org/wiki/Mobile_Network_Code">http://en.wikipedia.org/wiki/Mobile_Network_Code</a>). </p>
+> <p class="level0">USSD (<a href="http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data">http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data</a>). </p>
+> <p class="level0">CDMA (<a href="http://en.wikipedia.org/wiki/Code_division_multiple_access">http://en.wikipedia.org/wiki/Code_division_multiple_access</a>). </p>
+> <p class="level0">OTA (<a href="http://en.wikipedia.org/wiki/Over-the-air_programming">http://en.wikipedia.org/wiki/Over-the-air_programming</a>). </p>
+> <p class="level0">GPS (<a href="http://en.wikipedia.org/wiki/Global_Positioning_System">http://en.wikipedia.org/wiki/Global_Positioning_System</a>) </p>
+> <p class="level0">NMEA (<a href="http://en.wikipedia.org/wiki/NMEA_0183">http://en.wikipedia.org/wiki/NMEA_0183</a>) </p><p class="roffit">
+<br><hr><br>
+<h3>mmcli.8-default.txt</h3>
+238,245c238,245
+< <p class="level0">AT (<a href="http://en.wikipedia.org/wiki/AT_commands).">http://en.wikipedia.org/wiki/AT_commands).</a> </p>
+< <p class="level0">3GPP (<a href="http://en.wikipedia.org/wiki/3GPP).">http://en.wikipedia.org/wiki/3GPP).</a> </p>
+< <p class="level0">MCCMNC (<a href="http://en.wikipedia.org/wiki/Mobile_Network_Code).">http://en.wikipedia.org/wiki/Mobile_Network_Code).</a> </p>
+< <p class="level0">USSD (<a href="http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).">http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data).</a> </p>
+< <p class="level0">CDMA (<a href="http://en.wikipedia.org/wiki/Code_division_multiple_access).">http://en.wikipedia.org/wiki/Code_division_multiple_access).</a> </p>
+< <p class="level0">OTA (<a href="http://en.wikipedia.org/wiki/Over-the-air_programming).">http://en.wikipedia.org/wiki/Over-the-air_programming).</a> </p>
+< <p class="level0">GPS (<a href="http://en.wikipedia.org/wiki/Global_Positioning_System)">http://en.wikipedia.org/wiki/Global_Positioning_System)</a> </p>
+< <p class="level0">NMEA (<a href="http://en.wikipedia.org/wiki/NMEA_0183)">http://en.wikipedia.org/wiki/NMEA_0183)</a> </p><p class="roffit">
+---
+> <p class="level0">AT (<a href="http://en.wikipedia.org/wiki/AT_commands">http://en.wikipedia.org/wiki/AT_commands</a>). </p>
+> <p class="level0">3GPP (<a href="http://en.wikipedia.org/wiki/3GPP">http://en.wikipedia.org/wiki/3GPP</a>). </p>
+> <p class="level0">MCCMNC (<a href="http://en.wikipedia.org/wiki/Mobile_Network_Code">http://en.wikipedia.org/wiki/Mobile_Network_Code</a>). </p>
+> <p class="level0">USSD (<a href="http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data">http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data</a>). </p>
+> <p class="level0">CDMA (<a href="http://en.wikipedia.org/wiki/Code_division_multiple_access">http://en.wikipedia.org/wiki/Code_division_multiple_access</a>). </p>
+> <p class="level0">OTA (<a href="http://en.wikipedia.org/wiki/Over-the-air_programming">http://en.wikipedia.org/wiki/Over-the-air_programming</a>). </p>
+> <p class="level0">GPS (<a href="http://en.wikipedia.org/wiki/Global_Positioning_System">http://en.wikipedia.org/wiki/Global_Positioning_System</a>) </p>
+> <p class="level0">NMEA (<a href="http://en.wikipedia.org/wiki/NMEA_0183">http://en.wikipedia.org/wiki/NMEA_0183</a>) </p><p class="roffit">
+<br><hr><br>
+<h3>svnfiltereddump.1--bare.txt</h3>
+47c47
+< <p class="level0">If you do anything funny run the automatic tests. To do this easily you need the nose package. One way to get nose is using <span Class="bold">pip</span> (<a href="http://pypi.python.org/pypi/pip).">http://pypi.python.org/pypi/pip).</a> To run the tests just say <span Class="bold">nosetests</span> in the folder containing the various test folders (tests, functional_tests, integration_tests). You may pass folder or test case names to <span Class="bold">nosetests</span> to run just some of the tests. </p>
+---
+> <p class="level0">If you do anything funny run the automatic tests. To do this easily you need the nose package. One way to get nose is using <span Class="bold">pip</span> (<a href="http://pypi.python.org/pypi/pip">http://pypi.python.org/pypi/pip</a>). To run the tests just say <span Class="bold">nosetests</span> in the folder containing the various test folders (tests, functional_tests, integration_tests). You may pass folder or test case names to <span Class="bold">nosetests</span> to run just some of the tests. </p>
+64,65c64,65
+< <p class="level0">Copyright &copy; 2011 Harald Wilhelmi <br>License GPLv3+: GNU GPL version 3 or later &lt;<a href="http://gnu.org/licenses/gpl.html&gt;.">http://gnu.org/licenses/gpl.html&gt;.</a> <br>This is free software: you are free to change and redistribute it. <br>There is NO WARRANTY, to the extent permitted by law. </p><a name="SOURCE"></a><h2 class="nroffsh">Source</h2>
+< <p class="level0">The official address to get this tool is <a href="https://github.com/TNG/svnfiltereddump.">https://github.com/TNG/svnfiltereddump.</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+---
+> <p class="level0">Copyright &copy; 2011 Harald Wilhelmi <br>License GPLv3+: GNU GPL version 3 or later &lt;<a href="http://gnu.org/licenses/gpl.html&gt">http://gnu.org/licenses/gpl.html&gt</a>;. <br>This is free software: you are free to change and redistribute it. <br>There is NO WARRANTY, to the extent permitted by law. </p><a name="SOURCE"></a><h2 class="nroffsh">Source</h2>
+> <p class="level0">The official address to get this tool is <a href="https://github.com/TNG/svnfiltereddump">https://github.com/TNG/svnfiltereddump</a>. </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<br><hr><br>
+<h3>svnfiltereddump.1-default.txt</h3>
+97c97
+< <p class="level0">If you do anything funny run the automatic tests. To do this easily you need the nose package. One way to get nose is using <span Class="bold">pip</span> (<a href="http://pypi.python.org/pypi/pip).">http://pypi.python.org/pypi/pip).</a> To run the tests just say <span Class="bold">nosetests</span> in the folder containing the various test folders (tests, functional_tests, integration_tests). You may pass folder or test case names to <span Class="bold">nosetests</span> to run just some of the tests. </p>
+---
+> <p class="level0">If you do anything funny run the automatic tests. To do this easily you need the nose package. One way to get nose is using <span Class="bold">pip</span> (<a href="http://pypi.python.org/pypi/pip">http://pypi.python.org/pypi/pip</a>). To run the tests just say <span Class="bold">nosetests</span> in the folder containing the various test folders (tests, functional_tests, integration_tests). You may pass folder or test case names to <span Class="bold">nosetests</span> to run just some of the tests. </p>
+114,115c114,115
+< <p class="level0">Copyright &copy; 2011 Harald Wilhelmi <br>License GPLv3+: GNU GPL version 3 or later &lt;<a href="http://gnu.org/licenses/gpl.html&gt;.">http://gnu.org/licenses/gpl.html&gt;.</a> <br>This is free software: you are free to change and redistribute it. <br>There is NO WARRANTY, to the extent permitted by law. </p><a name="SOURCE"></a><h2 class="nroffsh">Source</h2>
+< <p class="level0">The official address to get this tool is <a href="https://github.com/TNG/svnfiltereddump.">https://github.com/TNG/svnfiltereddump.</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+---
+> <p class="level0">Copyright &copy; 2011 Harald Wilhelmi <br>License GPLv3+: GNU GPL version 3 or later &lt;<a href="http://gnu.org/licenses/gpl.html&gt">http://gnu.org/licenses/gpl.html&gt</a>;. <br>This is free software: you are free to change and redistribute it. <br>There is NO WARRANTY, to the extent permitted by law. </p><a name="SOURCE"></a><h2 class="nroffsh">Source</h2>
+> <p class="level0">The official address to get this tool is <a href="https://github.com/TNG/svnfiltereddump">https://github.com/TNG/svnfiltereddump</a>. </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<br><hr><br>

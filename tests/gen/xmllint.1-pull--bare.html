@@ -1,0 +1,193 @@
+<!-- generated with roffit -->
+<a name="NAME"></a><h2 class="nroffsh">Name</h2>
+<p class="level0">xmllint - command line XML tool </p><a name="SYNOPSIS"></a><h2 class="nroffsh">Synopsis</h2>
+<p class="level0"><span Class="bold">xmllint</span> [<span Class="bold">--version</span> | <span Class="bold">--debug</span> | <span Class="bold">--quiet</span> | <span Class="bold">--shell</span> | <span Class="bold">--xpath&nbsp;&quot;</span><span class="bold"><span Class="emphasis">XPath_expression</span></span><span Class="bold">&quot;</span> | <span Class="bold">--debugent</span> | <span Class="bold">--copy</span> | <span Class="bold">--recover</span> | <span Class="bold">--nodict</span> | <span Class="bold">--noent</span> | <span Class="bold">--noout</span> | <span Class="bold">--nonet</span> | <span Class="bold">--path&nbsp;&quot;</span><span class="bold"><span Class="emphasis">PATH(S)</span></span><span Class="bold">&quot;</span> | <span Class="bold">--load-trace</span> | <span Class="bold">--htmlout</span> | <span Class="bold">--nowrap</span> | <span Class="bold">--valid</span> | <span Class="bold">--postvalid</span> | <span Class="bold">--dtdvalid&nbsp;</span><span class="bold"><span Class="emphasis">URL</span></span> | <span Class="bold">--dtdvalidfpi&nbsp;</span><span class="bold"><span Class="emphasis">FPI</span></span> | <span Class="bold">--timing</span> | <span Class="bold">--output&nbsp;</span><span class="bold"><span Class="emphasis">FILE</span></span> | <span Class="bold">--repeat</span> | <span Class="bold">--insert</span> | <span Class="bold">--compress</span> | <span Class="bold">--html</span> | <span Class="bold">--xmlout</span> | <span Class="bold">--push</span> | <span Class="bold">--memory</span> | <span Class="bold">--maxmem&nbsp;</span><span class="bold"><span Class="emphasis">NBBYTES</span></span> | <span Class="bold">--nowarning</span> | <span Class="bold">--noblanks</span> | <span Class="bold">--nocdata</span> | <span Class="bold">--format</span> | <span Class="bold">--encode&nbsp;</span><span class="bold"><span Class="emphasis">ENCODING</span></span> | <span Class="bold">--dropdtd</span> | <span Class="bold">--nsclean</span> | <span Class="bold">--testIO</span> | <span Class="bold">--catalogs</span> | <span Class="bold">--nocatalogs</span> | <span Class="bold">--auto</span> | <span Class="bold">--xinclude</span> | <span Class="bold">--noxincludenode</span> | <span Class="bold">--loaddtd</span> | <span Class="bold">--dtdattr</span> | <span Class="bold">--stream</span> | <span Class="bold">--walker</span> | <span Class="bold">--pattern&nbsp;</span><span class="bold"><span Class="emphasis">PATTERNVALUE</span></span> | <span Class="bold">--chkregister</span> | <span Class="bold">--relaxng&nbsp;</span><span class="bold"><span Class="emphasis">SCHEMA</span></span> | <span Class="bold">--schema&nbsp;</span><span class="bold"><span Class="emphasis">SCHEMA</span></span> | <span Class="bold">--c14n</span> | <span Class="bold">--pedantic</span>] {<span Class="emphasis">XML-FILE(S)</span>... | -} </p>
+<p class="level0"><span Class="bold">xmllint</span> <span Class="bold">--help</span> </p><a name="DESCRIPTION"></a><h2 class="nroffsh">Description</h2>
+<p class="level0">The <span Class="bold">xmllint</span> program parses one or more XML files, specified on the command line as <span Class="emphasis">XML-FILE</span> (or the standard input if the filename provided is <span Class="bold">-</span> ). It prints various types of output, depending upon the options selected. It is useful for detecting errors both in XML code and in the XML parser itself. </p>
+<p class="level0"><span Class="bold">xmllint</span> is included in <span Class="bold">libxml</span>(3). </p><a name="OPTIONS"></a><h2 class="nroffsh">Options</h2>
+<p class="level0"><span Class="bold">xmllint</span> accepts the following options (in alphabetical order): </p>
+<p class="level0"><span Class="bold">--auto</span> </p>
+<p class="level1">Generate a small document for testing purposes. </p>
+<p class="level0"><span Class="bold">--catalogs</span> </p>
+<p class="level1">Use the SGML catalog(s) from <span Class="bold">SGML_CATALOG_FILES</span>. Otherwise XML catalogs starting from /etc/xml/catalog or, more specifically, ${sysconfdir}/xml/catalog are used by default. </p>
+<p class="level0"><span Class="bold">--chkregister</span> </p>
+<p class="level1">Turn on node registration. Useful for developers testing <span Class="bold">libxml</span>(3) node tracking code. </p>
+<p class="level0"><span Class="bold">--compress</span> </p>
+<p class="level1">Turn on <span Class="bold">gzip</span>(1) compression of output. </p>
+<p class="level0"><span Class="bold">--copy</span> </p>
+<p class="level1">Test the internal copy implementation. </p>
+<p class="level0"><span Class="bold">--c14n</span> </p>
+<p class="level1">Use the W3C XML Canonicalisation (C14N) to serialize the result of parsing to stdout. It keeps comments in the result. </p>
+<p class="level0"><span Class="bold">--dtdvalid </span><span class="bold"><span Class="emphasis">URL</span></span> </p>
+<p class="level1">Use the DTD specified by an <span Class="emphasis">URL</span> for validation. </p>
+<p class="level0"><span Class="bold">--dtdvalidfpi </span><span class="bold"><span Class="emphasis">FPI</span></span> </p>
+<p class="level1">Use the DTD specified by a Formal Public Identifier <span Class="emphasis">FPI</span> for validation, note that this will require a catalog exporting that Formal Public Identifier to work. </p>
+<p class="level0"><span Class="bold">--debug</span> </p>
+<p class="level1">Parse a file and output an annotated tree of the in-memory version of the document. </p>
+<p class="level0"><span Class="bold">--debugent</span> </p>
+<p class="level1">Debug the entities defined in the document. </p>
+<p class="level0"><span Class="bold">--dropdtd</span> </p>
+<p class="level1">Remove DTD from output. </p>
+<p class="level0"><span Class="bold">--dtdattr</span> </p>
+<p class="level1">Fetch external DTD and populate the tree with inherited attributes. </p>
+<p class="level0"><span Class="bold">--encode </span><span class="bold"><span Class="emphasis">ENCODING</span></span> </p>
+<p class="level1">Output in the given encoding. Note that this works for full document not fragments or result from XPath queries. </p>
+<p class="level0"><span Class="bold">--format</span> </p>
+<p class="level1">Reformat and reindent the output. The <span Class="bold">XMLLINT_INDENT</span> environment variable controls the indentation. The default value is two spaces &quot; &quot;). </p>
+<p class="level0"><span Class="bold">--help</span> </p>
+<p class="level1">Print out a short usage summary for <span Class="bold">xmllint</span>. </p>
+<p class="level0"><span Class="bold">--html</span> </p>
+<p class="level1">Use the HTML parser. </p>
+<p class="level0"><span Class="bold">--htmlout</span> </p>
+<p class="level1">Output results as an HTML file. This causes <span Class="bold">xmllint</span> to output the necessary HTML tags surrounding the result tree output so the results can be displayed/viewed in a browser. </p>
+<p class="level0"><span Class="bold">--insert</span> </p>
+<p class="level1">Test for valid insertions. </p>
+<p class="level0"><span Class="bold">--loaddtd</span> </p>
+<p class="level1">Fetch an external DTD. </p>
+<p class="level0"><span Class="bold">--load-trace</span> </p>
+<p class="level1">Display all the documents loaded during the processing to stderr. </p>
+<p class="level0"><span Class="bold">--maxmem </span><span class="bold"><span Class="emphasis">NNBYTES</span></span> </p>
+<p class="level1">Test the parser memory support. <span Class="emphasis">NNBYTES</span> is the maximum number of bytes the library is allowed to allocate. This can also be used to make sure batch processing of XML files will not exhaust the virtual memory of the server running them. </p>
+<p class="level0"><span Class="bold">--memory</span> </p>
+<p class="level1">Parse from memory. </p>
+<p class="level0"><span Class="bold">--noblanks</span> </p>
+<p class="level1">Drop ignorable blank spaces. </p>
+<p class="level0"><span Class="bold">--nocatalogs</span> </p>
+<p class="level1">Do not use any catalogs. </p>
+<p class="level0"><span Class="bold">--nocdata</span> </p>
+<p class="level1">Substitute CDATA section by equivalent text nodes. </p>
+<p class="level0"><span Class="bold">--nodict</span> </p>
+<p class="level1">Don*(Aqt use dictionaries (parser option XML_PARSE_NODICT). Only for debugging. </p>
+<p class="level0"><span Class="bold">--noent</span> </p>
+<p class="level1">Substitute entity values for entity references. By default, <span Class="bold">xmllint</span> leaves entity references in place. </p>
+<p class="level0"><span Class="bold">--nonet</span> </p>
+<p class="level1">Do not use the Internet to fetch DTDs or entities. </p>
+<p class="level0"><span Class="bold">--noout</span> </p>
+<p class="level1">Suppress output. By default, <span Class="bold">xmllint</span> outputs the result tree. </p>
+<p class="level0"><span Class="bold">--nowarning</span> </p>
+<p class="level1">Do not emit warnings from the parser and/or validator. </p>
+<p class="level0"><span Class="bold">--nowrap</span> </p>
+<p class="level1">Do not output HTML doc wrapper. </p>
+<p class="level0"><span Class="bold">--noxincludenode</span> </p>
+<p class="level1">Do XInclude processing but do not generate XInclude start and end nodes. </p>
+<p class="level0"><span Class="bold">--nsclean</span> </p>
+<p class="level1">Remove redundant namespace declarations. </p>
+<p class="level0"><span Class="bold">--output </span><span class="bold"><span Class="emphasis">FILE</span></span> </p>
+<p class="level1">Define a file path where <span Class="bold">xmllint</span> will save the result of parsing. Usually the programs build a tree and save it on stdout, with this option the result XML instance will be saved onto a file. </p>
+<p class="level0"><span Class="bold">--path &quot;</span><span class="bold"><span Class="emphasis">PATH(S)</span></span><span Class="bold">&quot;</span> </p>
+<p class="level1">Use the (space- or colon-separated) list of filesystem paths specified by <span Class="emphasis">PATHS</span> to load DTDs or entities. Enclose space-separated lists by quotation marks. </p>
+<p class="level0"><span Class="bold">--pattern </span><span class="bold"><span Class="emphasis">PATTERNVALUE</span></span> </p>
+<p class="level1">Used to exercise the pattern recognition engine, which can be used with the reader interface to the parser. It allows to select some nodes in the document based on an XPath (subset) expression. Used for debugging. </p>
+<p class="level0"><span Class="bold">--pedantic</span> </p>
+<p class="level1">Enable additional warnings. </p>
+<p class="level0"><span Class="bold">--postvalid</span> </p>
+<p class="level1">Validate after parsing has completed. </p>
+<p class="level0"><span Class="bold">--push</span> </p>
+<p class="level1">Use the push mode of the parser. </p>
+<p class="level0"><span Class="bold">--quiet</span> </p>
+<p class="level1">Don*(Aqt print informational messages to stderr. </p>
+<p class="level0"><span Class="bold">--recover</span> </p>
+<p class="level1">Output any parsable portions of an invalid document. </p>
+<p class="level0"><span Class="bold">--relaxng </span><span class="bold"><span Class="emphasis">SCHEMA</span></span> </p>
+<p class="level1">Use RelaxNG file named <span Class="emphasis">SCHEMA</span> for validation. </p>
+<p class="level0"><span Class="bold">--repeat</span> </p>
+<p class="level1">Repeat 100 times, for timing or profiling. </p>
+<p class="level0"><span Class="bold">--schema </span><span class="bold"><span Class="emphasis">SCHEMA</span></span> </p>
+<p class="level1">Use a W3C XML Schema file named <span Class="emphasis">SCHEMA</span> for validation. </p>
+<p class="level0"><span Class="bold">--shell</span> </p>
+<p class="level1">Run a navigating shell. Details on available commands in shell mode are below (see the section called (lqSHELL COMMANDS(rq). </p>
+<p class="level0"><span Class="bold">--xpath &quot;</span><span class="bold"><span Class="emphasis">XPath_expression</span></span><span Class="bold">&quot;</span> </p>
+<p class="level1">Run an XPath expression given as argument and print the result. In case of a nodeset result, each node in the node set is serialized in full in the output. In case of an empty node set the &quot;XPath set is empty&quot; result will be shown and an error exit code will be returned. </p>
+<p class="level0"><span Class="bold">--stream</span> </p>
+<p class="level1">Use streaming API - useful when used in combination with <span Class="bold">--relaxng</span> or <span Class="bold">--valid</span> options for validation of files that are too large to be held in memory. </p>
+<p class="level0"><span Class="bold">--testIO</span> </p>
+<p class="level1">Test user input/output support. </p>
+<p class="level0"><span Class="bold">--timing</span> </p>
+<p class="level1">Output information about the time it takes <span Class="bold">xmllint</span> to perform the various steps. </p>
+<p class="level0"><span Class="bold">--valid</span> </p>
+<p class="level1">Determine if the document is a valid instance of the included Document Type Definition (DTD). A DTD to be validated against also can be specified at the command line using the <span Class="bold">--dtdvalid</span> option. By default, <span Class="bold">xmllint</span> also checks to determine if the document is well-formed. </p>
+<p class="level0"><span Class="bold">--version</span> </p>
+<p class="level1">Display the version of <span Class="bold">libxml</span>(3) used. </p>
+<p class="level0"><span Class="bold">--walker</span> </p>
+<p class="level1">Test the walker module, which is a reader interface but for a document tree, instead of using the reader API on an unparsed document it works on an existing in-memory tree. Used for debugging. </p>
+<p class="level0"><span Class="bold">--xinclude</span> </p>
+<p class="level1">Do XInclude processing. </p>
+<p class="level0"><span Class="bold">--xmlout</span> </p>
+<p class="level1">Used in conjunction with <span Class="bold">--html</span>. Usually when HTML is parsed the document is saved with the HTML serializer. But with this option the resulting document is saved with the XML serializer. This is primarily used to generate XHTML from HTML input. </p><a name="SHELL"></a><h2 class="nroffsh">Shell commands</h2>
+<p class="level0"><span Class="bold">xmllint</span> offers an interactive shell mode invoked with the <span Class="bold">--shell</span> command. Available commands in shell mode include (in alphabetical order): </p>
+<p class="level0"><span Class="bold">base</span> </p>
+<p class="level1">Display XML base of the node. </p>
+<p class="level0"><span Class="bold">bye</span> </p>
+<p class="level1">Leave the shell. </p>
+<p class="level0"><span Class="bold">cat </span><span class="bold"><span Class="emphasis">NODE</span></span> </p>
+<p class="level1">Display the given node or the current one. </p>
+<p class="level0"><span Class="bold">cd </span><span class="bold"><span Class="emphasis">PATH</span></span> </p>
+<p class="level1">Change the current node to the given path (if unique) or root if no argument is given. </p>
+<p class="level0"><span Class="bold">dir </span><span class="bold"><span Class="emphasis">PATH</span></span> </p>
+<p class="level1">Dumps information about the node (namespace, attributes, content). </p>
+<p class="level0"><span Class="bold">du </span><span class="bold"><span Class="emphasis">PATH</span></span> </p>
+<p class="level1">Show the structure of the subtree under the given path or the current node. </p>
+<p class="level0"><span Class="bold">exit</span> </p>
+<p class="level1">Leave the shell. </p>
+<p class="level0"><span Class="bold">help</span> </p>
+<p class="level1">Show this help. </p>
+<p class="level0"><span Class="bold">free</span> </p>
+<p class="level1">Display memory usage. </p>
+<p class="level0"><span Class="bold">load </span><span class="bold"><span Class="emphasis">FILENAME</span></span> </p>
+<p class="level1">Load a new document with the given filename. </p>
+<p class="level0"><span Class="bold">ls </span><span class="bold"><span Class="emphasis">PATH</span></span> </p>
+<p class="level1">List contents of the given path or the current directory. </p>
+<p class="level0"><span Class="bold">pwd</span> </p>
+<p class="level1">Display the path to the current node. </p>
+<p class="level0"><span Class="bold">quit</span> </p>
+<p class="level1">Leave the shell. </p>
+<p class="level0"><span Class="bold">save </span><span class="bold"><span Class="emphasis">FILENAME</span></span> </p>
+<p class="level1">Save the current document to the given filename or to the original name. </p>
+<p class="level0"><span Class="bold">validate</span> </p>
+<p class="level1">Check the document for errors. </p>
+<p class="level0"><span Class="bold">write </span><span class="bold"><span Class="emphasis">FILENAME</span></span> </p>
+<p class="level1">Write the current node to the given filename. </p><a name="ENVIRONMENT"></a><h2 class="nroffsh">Environment</h2>
+<p class="level0"><span Class="bold">SGML_CATALOG_FILES</span> </p>
+<p class="level1">SGML catalog behavior can be changed by redirecting queries to the user*(Aqs own set of catalogs. This can be done by setting the <span Class="bold">SGML_CATALOG_FILES</span> environment variable to a list of catalogs. An empty one should deactivate loading the default catalog. </p>
+<p class="level0"><span Class="bold">XML_CATALOG_FILES</span> </p>
+<p class="level1">XML catalog behavior can be changed by redirecting queries to the user*(Aqs own set of catalogs. This can be done by setting the <span Class="bold">XML_CATALOG_FILES</span> environment variable to a space-separated list of catalogs. Use percent-encoding to escape spaces or other characters. An empty variable should deactivate loading the default catalog. </p>
+<p class="level0"><span Class="bold">XML_DEBUG_CATALOG</span> </p>
+<p class="level1">Setting the environment variable <span Class="bold">XML_DEBUG_CATALOG</span> to <span Class="emphasis">non-zero</span> using the <span Class="bold">export</span> command outputs debugging information related to catalog operations. </p>
+<p class="level0"><span Class="bold">XMLLINT_INDENT</span> </p>
+<p class="level1">Setting the environment variable <span Class="bold">XMLLINT_INDENT</span> controls the indentation. The default value is two spaces &quot; &quot;. </p><a name="DIAGNOSTICS"></a><h2 class="nroffsh">Diagnostics</h2>
+<p class="level0"><span Class="bold">xmllint</span> return codes provide information that can be used when calling it from scripts. </p>
+<p class="level0"><span Class="bold">0</span> </p>
+<p class="level1">No error </p>
+<p class="level0"><span Class="bold">1</span> </p>
+<p class="level1">Unclassified </p>
+<p class="level0"><span Class="bold">2</span> </p>
+<p class="level1">Error in DTD </p>
+<p class="level0"><span Class="bold">3</span> </p>
+<p class="level1">Validation error </p>
+<p class="level0"><span Class="bold">4</span> </p>
+<p class="level1">Validation error </p>
+<p class="level0"><span Class="bold">5</span> </p>
+<p class="level1">Error in schema compilation </p>
+<p class="level0"><span Class="bold">6</span> </p>
+<p class="level1">Error writing output </p>
+<p class="level0"><span Class="bold">7</span> </p>
+<p class="level1">Error in pattern (generated when <span Class="bold">--pattern</span> option is used) </p>
+<p class="level0"><span Class="bold">8</span> </p>
+<p class="level1">Error in Reader registration (generated when <span Class="bold">--chkregister</span> option is used) </p>
+<p class="level0"><span Class="bold">9</span> </p>
+<p class="level1">Out of memory error </p>
+<p class="level0"><span Class="bold">10</span> </p>
+<p class="level1">XPath evaluation error </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<p class="level0"><span Class="bold">libxml</span>(3) </p>
+<p class="level0">More information can be found at </p>
+<p class="level1">h&#39;-04&#39;(buh&#39;+03&#39;c </p>
+<p class="level0"><a name="bu"></a><span class="nroffip">\(bu 2.3</span> </p>
+<p class="level1"><span Class="bold">libxml</span>(3) web page m[blue]<span Class="bold">%<a href="https://gitlab.gnome.org/GNOME/libxml2">https://gitlab.gnome.org/GNOME/libxml2</a></span>m[] </p><a name="AUTHORS"></a><h2 class="nroffsh">Authors</h2>
+<p class="level0"><span Class="bold">John Fleck</span> &lt;jfleck@inkstain.net&gt; </p>
+<p class="level1">Author. </p>
+<p class="level0"><span Class="bold">Ziying Sherwin</span> &lt;sherwin@nlm.nih.gov&gt; </p>
+<p class="level1">Author. </p>
+<p class="level0"><span Class="bold">Heiko Rupp</span> &lt;hwr@pilhuhn.de&gt; </p>
+<p class="level1">Author. </p><a name="COPYRIGHT"></a><h2 class="nroffsh">Copyright</h2>
+<p class="level0"><br>Copyright &copy; 2001, 2004 <br></p><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.

@@ -1,0 +1,8 @@
+1317c1317
+< <p class="level0">The latest version of this program can be found at <a href="http://ftp.midnight-commander.org/.">http://ftp.midnight-commander.org/.</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+---
+> <p class="level0">The latest version of this program can be found at <a href="http://ftp.midnight-commander.org/">http://ftp.midnight-commander.org/</a>. </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+1325c1325
+< <p class="level0">If you want to report a problem with the program, please create bugreport at <a href="https://www.midnight-commander.org/.">https://www.midnight-commander.org/.</a> </p>
+---
+> <p class="level0">If you want to report a problem with the program, please create bugreport at <a href="https://www.midnight-commander.org/">https://www.midnight-commander.org/</a>. </p>

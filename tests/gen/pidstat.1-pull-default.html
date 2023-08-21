@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<title>PIDSTAT man page</title>
+<meta name="generator" content="roffit">
+<STYLE type="text/css">
+pre {
+  overflow: auto;
+  margin: 0;
+}
+
+P.level0, pre.level0 {
+ padding-left: 2em;
+}
+
+P.level1, pre.level1 {
+ padding-left: 4em;
+}
+
+P.level2, pre.level2 {
+ padding-left: 6em;
+}
+
+span.emphasis {
+ font-style: italic;
+}
+
+span.bold {
+ font-weight: bold;
+}
+
+span.manpage {
+ font-weight: bold;
+}
+
+h2.nroffsh {
+ background-color: #e0e0e0;
+}
+
+span.nroffip {
+ font-weight: bold;
+ font-size: 120%;
+ font-family: monospace;
+}
+
+p.roffit {
+ text-align: center;
+ font-size: 80%;
+}
+</STYLE>
+</head><body>
+<a name="NAME"></a><h2 class="nroffsh">Name</h2>
+<p class="level0">pidstat - Report statistics for Linux tasks. </p><a name="SYNOPSIS"></a><h2 class="nroffsh">Synopsis</h2>
+<p class="level0"><span Class="bold">pidstat [ -d ] [ -H ] [ -h ] [ -I ] [ -l ] [ -R ] [ -r ] [ -s ] [ -t ] [ -U [</span> <span Class="emphasis">username </span><a class="bold" href="#">] ] [ -u ] [ -V ] [ -v ] [ -w ] [ -C </a><span Class="emphasis">comm </span><a class="bold" href="#">] [ -G </a><span Class="emphasis">process_name</span> <a class="bold" href="#">] [ --dec={ 0 | 1 | 2 } ] [ --human ] [ -p { </a><span Class="emphasis">pid</span><a class="bold" href="#">[,...]</a> <a class="bold" href="#">| SELF | ALL } ] [ -T { TASK | CHILD | ALL } ] [</a> <span Class="emphasis">interval </span><a class="bold" href="#">[ </a><span Class="emphasis">count </span><a class="bold" href="#">] ] [ -e </a><span Class="emphasis">program</span> <span Class="emphasis">args </span><a class="bold" href="#">]</a> </p><a name="DESCRIPTION"></a><h2 class="nroffsh">Description</h2>
+<p class="level0">The <span Class="bold">pidstat</span> command is used for monitoring individual tasks currently being managed by the Linux kernel. It writes to standard output activities for every task selected with option <span Class="bold">-p</span> or for every task managed by the Linux kernel if option <span Class="bold">-p ALL</span> has been used. Not selecting any tasks is equivalent to specifying <span Class="bold">-p ALL</span> but only active tasks (tasks with non-zero statistics values) will appear in the report. </p>
+<p class="level0">The <span Class="bold">pidstat</span> command can also be used for monitoring the child processes of selected tasks. Read about option <span Class="bold">-T </span>below. </p>
+<p class="level0">The <span Class="emphasis">interval</span> parameter specifies the amount of time in seconds between each report. A value of 0 (or no parameters at all) indicates that tasks statistics are to be reported for the time since system startup (boot). The <span Class="emphasis">count </span>parameter can be specified in conjunction with the <span Class="emphasis">interval </span>parameter if this one is not set to zero. The value of <span Class="emphasis">count </span>determines the number of reports generated at <span Class="emphasis">interval </span>seconds apart. If the <span Class="emphasis">interval </span>parameter is specified without the <span Class="emphasis">count</span> parameter, the <span Class="bold">pidstat</span> command generates reports continuously. </p>
+<p class="level0">You can select information about specific task activities using flags. Not specifying any flags selects only CPU activity. </p><a name="OPTIONS"></a><h2 class="nroffsh">Options</h2>
+<p class="level0"><span Class="bold">-C </span><span Class="emphasis">comm</span> Display only tasks whose command name includes the string <span Class="emphasis">comm</span>. This string can be a regular expression. </p>
+<p class="level0"><span Class="bold">-d</span> Report I/O statistics (kernels 2.6.20 and later only). The following values may be displayed: </p>
+<p class="level0"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level1">The real user identification number of the task being monitored. </p>
+<p class="level0"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level1">The name of the real user owning the task being monitored. </p>
+<p class="level0"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level1">The identification number of the task being monitored. </p>
+<p class="level0"><a name="kBrds"></a><span class="nroffip">kB_rd/s</span> </p>
+<p class="level1">Number of kilobytes the task has caused to be read from disk per second. </p>
+<p class="level0"><a name="kBwrs"></a><span class="nroffip">kB_wr/s</span> </p>
+<p class="level1">Number of kilobytes the task has caused, or shall cause to be written to disk per second. </p>
+<p class="level0"><a name="kBccwrs"></a><span class="nroffip">kB_ccwr/s</span> </p>
+<p class="level1">Number of kilobytes whose writing to disk has been cancelled by the task. This may occur when the task truncates some dirty pagecache. In this case, some IO which another task has been accounted for will not be happening. </p>
+<p class="level0"><a name="iodelay"></a><span class="nroffip">iodelay</span> </p>
+<p class="level1">Block I/O delay of the task being monitored, measured in clock ticks. This metric includes the delays spent waiting for sync block I/O completion and for swapin block I/O completion. </p>
+<p class="level0"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level1">The command name of the task. </p>
+<p class="level0"><span Class="bold">--dec={ 0 | 1 | 2 }</span> Specify the number of decimal places to use (0 to 2, default value is 2). </p>
+<p class="level0"><span Class="bold">-e </span><span Class="emphasis">program args</span> Execute <span Class="emphasis">program</span> with given arguments <span Class="emphasis">args</span> and monitor it with <span Class="bold">pidstat</span>. <span Class="bold">pidstat </span>stops when <span Class="emphasis">program </span>terminates. </p>
+<p class="level0"><span Class="bold">-G </span><span Class="emphasis">process_name</span> Display only processes whose command name includes the string <span Class="emphasis">process_name</span>. This string can be a regular expression. If option <span Class="bold">-t </span>is used together with option <span Class="bold">-G</span> then the threads belonging to that process are also displayed (even if their command name doesn&#39;t include the string <span Class="emphasis">process_name</span>). </p>
+<p class="level0"><span Class="bold">-H</span> Display timestamp in seconds since the epoch. </p>
+<p class="level0"><span Class="bold">-h</span> Display all activities horizontally on a single line, with no average statistics at the end of the report. This is intended to make it easier to be parsed by other programs. </p>
+<p class="level0"><span Class="bold">--human</span> Print sizes in human readable format (e.g. 1.0k, 1.2M, etc.) The units displayed with this option supersede any other default units (e.g. kilobytes, sectors...) associated with the metrics. </p>
+<p class="level0"><span Class="bold">-I</span> In an SMP environment, indicate that tasks CPU usage (as displayed by option <span Class="bold">-u</span>) should be divided by the total number of processors. </p>
+<p class="level0"><span Class="bold">-l</span> Display the process command name and all its arguments. </p>
+<p class="level0"><span Class="bold">-p { </span><span Class="emphasis">pid</span><a class="bold" href="#">[,...] | SELF | ALL }</a> Select tasks (processes) for which statistics are to be reported. <span Class="emphasis">pid</span> is the process identification number. The <span Class="bold">SELF</span> keyword indicates that statistics are to be reported for the <span Class="bold">pidstat </span>process itself, whereas the <span Class="bold">ALL</span> keyword indicates that statistics are to be reported for all the tasks managed by the system. </p>
+<p class="level0"><span Class="bold">-R</span> Report realtime priority and scheduling policy information. The following values may be displayed: </p>
+<p class="level0"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level1">The real user identification number of the task being monitored. </p>
+<p class="level0"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level1">The name of the real user owning the task being monitored. </p>
+<p class="level0"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level1">The identification number of the task being monitored. </p>
+<p class="level0"><a name="prio"></a><span class="nroffip">prio</span> </p>
+<p class="level1">The realtime priority of the task being monitored. </p>
+<p class="level0"><a name="policy"></a><span class="nroffip">policy</span> </p>
+<p class="level1">The scheduling policy of the task being monitored. </p>
+<p class="level0"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level1">The command name of the task. </p>
+<p class="level0"><span Class="bold">-r</span> Report page faults and memory utilization. </p>
+<p class="level0">When reporting statistics for individual tasks, the following values may be displayed: </p>
+<p class="level0"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level1">The real user identification number of the task being monitored. </p>
+<p class="level0"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level1">The name of the real user owning the task being monitored. </p>
+<p class="level0"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level1">The identification number of the task being monitored. </p>
+<p class="level0"><a name="minflts"></a><span class="nroffip">minflt/s</span> </p>
+<p class="level1">Total number of minor faults the task has made per second, those which have not required loading a memory page from disk. </p>
+<p class="level0"><a name="majflts"></a><span class="nroffip">majflt/s</span> </p>
+<p class="level1">Total number of major faults the task has made per second, those which have required loading a memory page from disk. </p>
+<p class="level0"><a name="VSZ"></a><span class="nroffip">VSZ</span> </p>
+<p class="level1">Virtual Size: The virtual memory usage of entire task in kilobytes. </p>
+<p class="level0"><a name="RSS"></a><span class="nroffip">RSS</span> </p>
+<p class="level1">Resident Set Size: The non-swapped physical memory used by the task in kilobytes. </p>
+<p class="level0"><a name="MEM"></a><span class="nroffip">%MEM</span> </p>
+<p class="level1">The tasks&#39;s currently used share of available physical memory. </p>
+<p class="level0"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level1">The command name of the task. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1">When reporting global statistics for tasks and all their children, the following values may be displayed: </p>
+<p class="level1"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level2">The real user identification number of the task which is being monitored together with its children. </p>
+<p class="level1"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level2">The name of the real user owning the task which is being monitored together with its children. </p>
+<p class="level1"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level2">The identification number of the task which is being monitored together with its children. </p>
+<p class="level1"><a name="minflt-nr"></a><span class="nroffip">minflt-nr</span> </p>
+<p class="level2">Total number of minor faults made by the task and all its children, and collected during the interval of time. </p>
+<p class="level1"><a name="majflt-nr"></a><span class="nroffip">majflt-nr</span> </p>
+<p class="level2">Total number of major faults made by the task and all its children, and collected during the interval of time. </p>
+<p class="level1"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level2">The command name of the task which is being monitored together with its children. </p>
+<p class="level1"><span Class="bold">-s</span> Report stack utilization. The following values may be displayed: </p>
+<p class="level1"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level2">The real user identification number of the task being monitored. </p>
+<p class="level1"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level2">The name of the real user owning the task being monitored. </p>
+<p class="level1"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level2">The identification number of the task being monitored. </p>
+<p class="level1"><a name="StkSize"></a><span class="nroffip">StkSize</span> </p>
+<p class="level2">The amount of memory in kilobytes reserved for the task as stack, but not necessarily used. </p>
+<p class="level1"><a name="StkRef"></a><span class="nroffip">StkRef</span> </p>
+<p class="level2">The amount of memory in kilobytes used as stack, referenced by the task. </p>
+<p class="level1"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level2">The command name of the task. </p>
+<p class="level1"><span Class="bold">-T { TASK | CHILD | ALL }</span> This option specifies what has to be monitored by the <span Class="bold">pidstat </span>command. The <span Class="bold">TASK</span> keyword indicates that statistics are to be reported for individual tasks (this is the default option) whereas the <span Class="bold">CHILD</span> keyword indicates that statistics are to be globally reported for the selected tasks and all their children. The <span Class="bold">ALL</span> keyword indicates that statistics are to be reported for individual tasks and globally for the selected tasks and their children. </p>
+<p class="level1">Note: Global statistics for tasks and all their children are not available for all options of <span Class="bold">pidstat.</span> Also these statistics are not necessarily relevant to current time interval: The statistics of a child process are collected only when it finishes or it is killed. </p>
+<p class="level1"><span Class="bold">-t</span> Also display statistics for threads associated with selected tasks. </p>
+<p class="level1">This option adds the following values to the reports: </p>
+<p class="level1"><a name="TGID"></a><span class="nroffip">TGID</span> </p>
+<p class="level2">The identification number of the thread group leader. </p>
+<p class="level1"><a name="TID"></a><span class="nroffip">TID</span> </p>
+<p class="level2">The identification number of the thread being monitored. </p>
+<p class="level1"><span Class="bold">-U [ </span><span Class="emphasis">username </span><a class="bold" href="#">]</a> Display the real user name of the tasks being monitored instead of the UID. If <span Class="emphasis">username</span> is specified, then only tasks belonging to the specified user are displayed. </p>
+<p class="level1"><span Class="bold">-u</span> Report CPU utilization. </p>
+<p class="level1">When reporting statistics for individual tasks, the following values may be displayed: </p>
+<p class="level1"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level2">The real user identification number of the task being monitored. </p>
+<p class="level1"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level2">The name of the real user owning the task being monitored. </p>
+<p class="level1"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level2">The identification number of the task being monitored. </p>
+<p class="level1"><a name="usr"></a><span class="nroffip">%usr</span> </p>
+<p class="level2">Percentage of CPU used by the task while executing at the user level (application), with or without nice priority. Note that this field does NOT include time spent running a virtual processor. </p>
+<p class="level1"><a name="system"></a><span class="nroffip">%system</span> </p>
+<p class="level2">Percentage of CPU used by the task while executing at the system level (kernel). </p>
+<p class="level1"><a name="guest"></a><span class="nroffip">%guest</span> </p>
+<p class="level2">Percentage of CPU spent by the task in virtual machine (running a virtual processor). </p>
+<p class="level1"><a name="wait"></a><span class="nroffip">%wait</span> </p>
+<p class="level2">Percentage of CPU spent by the task while waiting to run. </p>
+<p class="level1"><a name="CPU"></a><span class="nroffip">%CPU</span> </p>
+<p class="level2">Total percentage of CPU time used by the task. In an SMP environment, the task&#39;s CPU usage will be divided by the total number of CPU&#39;s if option <span Class="bold">-I</span> has been entered on the command line. </p>
+<p class="level1"><a name="CPU"></a><span class="nroffip">CPU</span> </p>
+<p class="level2">Processor number to which the task is attached. </p>
+<p class="level1"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level2">The command name of the task. </p>
+<p class="level0"><a name=""></a><span class="nroffip"></span> </p>
+<p class="level1">When reporting global statistics for tasks and all their children, the following values may be displayed: </p>
+<p class="level1"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level2">The real user identification number of the task which is being monitored together with its children. </p>
+<p class="level1"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level2">The name of the real user owning the task which is being monitored together with its children. </p>
+<p class="level1"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level2">The identification number of the task which is being monitored together with its children. </p>
+<p class="level1"><a name="usr-ms"></a><span class="nroffip">usr-ms</span> </p>
+<p class="level2">Total number of milliseconds spent by the task and all its children while executing at the user level (application), with or without nice priority, and collected during the interval of time. Note that this field does NOT include time spent running a virtual processor. </p>
+<p class="level1"><a name="system-ms"></a><span class="nroffip">system-ms</span> </p>
+<p class="level2">Total number of milliseconds spent by the task and all its children while executing at the system level (kernel), and collected during the interval of time. </p>
+<p class="level1"><a name="guest-ms"></a><span class="nroffip">guest-ms</span> </p>
+<p class="level2">Total number of milliseconds spent by the task and all its children in virtual machine (running a virtual processor). </p>
+<p class="level1"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level2">The command name of the task which is being monitored together with its children. </p>
+<p class="level1"><span Class="bold">-V</span> Print version number then exit. </p>
+<p class="level1"><span Class="bold">-v</span> Report values of some kernel tables. The following values may be displayed: </p>
+<p class="level1"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level2">The real user identification number of the task being monitored. </p>
+<p class="level1"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level2">The name of the real user owning the task being monitored. </p>
+<p class="level1"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level2">The identification number of the task being monitored. </p>
+<p class="level1"><a name="threads"></a><span class="nroffip">threads</span> </p>
+<p class="level2">Number of threads associated with current task. </p>
+<p class="level1"><a name="fd-nr"></a><span class="nroffip">fd-nr</span> </p>
+<p class="level2">Number of file descriptors associated with current task. </p>
+<p class="level1"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level2">The command name of the task. </p>
+<p class="level1"><span Class="bold">-w</span> Report task switching activity (kernels 2.6.23 and later only). The following values may be displayed: </p>
+<p class="level1"><a name="UID"></a><span class="nroffip">UID</span> </p>
+<p class="level2">The real user identification number of the task being monitored. </p>
+<p class="level1"><a name="USER"></a><span class="nroffip">USER</span> </p>
+<p class="level2">The name of the real user owning the task being monitored. </p>
+<p class="level1"><a name="PID"></a><span class="nroffip">PID</span> </p>
+<p class="level2">The identification number of the task being monitored. </p>
+<p class="level1"><a name="cswchs"></a><span class="nroffip">cswch/s</span> </p>
+<p class="level2">Total number of voluntary context switches the task made per second. A voluntary context switch occurs when a task blocks because it requires a resource that is unavailable. </p>
+<p class="level1"><a name="nvcswchs"></a><span class="nroffip">nvcswch/s</span> </p>
+<p class="level2">Total number of non voluntary context switches the task made per second. An involuntary context switch takes place when a task executes for the duration of its time slice and then is forced to relinquish the processor. </p>
+<p class="level1"><a name="Command"></a><span class="nroffip">Command</span> </p>
+<p class="level2">The command name of the task. </p><a name="ENVIRONMENT"></a><h2 class="nroffsh">Environment</h2>
+<p class="level0">The <span Class="bold">pidstat</span> command takes into account the following environment variables: </p>
+<p class="level0"><span Class="bold">S_COLORS</span> By default statistics are displayed in color when the output is connected to a terminal. Use this variable to change the settings. Possible values for this variable are <span Class="emphasis">never</span>, <span Class="emphasis">always </span>or <span Class="emphasis">auto</span> (the latter is equivalent to the default settings). <br>Please note that the color (being red, yellow, or some other color) used to display a value is not indicative of any kind of issue simply because of the color. It only indicates different ranges of values. </p>
+<p class="level0"><span Class="bold">S_COLORS_SGR</span> Specify the colors and other attributes used to display statistics on the terminal. Its value is a colon-separated list of capabilities that defaults to <span Class="bold">I=32;22:N=34;1:W=35;1:X=31;1:Z=34;22</span>. Supported capabilities are: </p>
+<p class="level1"><span Class="bold">I=</span> SGR (Select Graphic Rendition) substring for item values like PID, UID or CPU number. </p>
+<p class="level1"><span Class="bold">N=</span> SGR substring for non-zero statistics values and for tasks names. </p>
+<p class="level1"><span Class="bold">W=</span> (or <span Class="bold">M=</span>) SGR substring for percentage values in the range from 75% to 90% (or in the range 10% to 25% depending on the metric&#39;s meaning). </p>
+<p class="level1"><span Class="bold">X=</span> (or <span Class="bold">H=</span>) SGR substring for percentage values greater than or equal to 90% (or lower than or equal to 10% depending on the metric&#39;s meaning). </p>
+<p class="level1"><span Class="bold">Z=</span> SGR substring for zero values and for threads names. </p>
+<p class="level0"><span Class="bold">S_TIME_FORMAT</span> If this variable exists and its value is <span Class="bold">ISO</span> then the current locale will be ignored when printing the date in the report header. The <span Class="bold">pidstat</span> command will use the ISO 8601 format (YYYY-MM-DD) instead. The timestamp will also be compliant with ISO 8601 format. </p><a name="EXAMPLES"></a><h2 class="nroffsh">Examples</h2>
+<p class="level0"><span Class="bold">pidstat 2 5</span> Display five reports of CPU statistics for every active task in the system at two second intervals. </p>
+<p class="level0"><span Class="bold">pidstat -r -p 1643 2 5</span> Display five reports of page faults and memory statistics for PID 1643 at two second intervals. </p>
+<p class="level0"><span Class="bold">pidstat -C fox|bird -r -p ALL</span> Display global page faults and memory statistics for all the processes whose command name includes the string &quot;fox&quot; or &quot;bird&quot;. </p>
+<p class="level0"><span Class="bold">pidstat -T CHILD -r 2 5</span> Display five reports of page faults statistics at two second intervals for the child processes of all tasks in the system. Only child processes with non-zero statistics values are displayed. </p><a name="BUGS"></a><h2 class="nroffsh">Bugs</h2>
+<p class="level0"><span Class="emphasis">/proc </span>filesystem must be mounted for the <span Class="bold">pidstat </span>command to work. </p>
+<p class="level0">Although <span Class="bold">pidstat</span> speaks of kilobytes (kB), megabytes (MB)..., it actually uses kibibytes (kiB), mebibytes (MiB)... A kibibyte is equal to 1024 bytes, and a mebibyte is equal to 1024 kibibytes. </p><a name="FILES"></a><h2 class="nroffsh">Files</h2>
+<p class="level0"><span Class="emphasis">/proc </span>contains various files with system statistics. </p><a name="AUTHOR"></a><h2 class="nroffsh">Author</h2>
+<p class="level0">Sebastien Godard (sysstat &lt;at&gt; orange.fr) </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
+<p class="level0"><span Class="bold">sar</span>(1), <span Class="bold">top</span>(1), <span Class="bold">ps</span>(1), <span Class="bold">mpstat</span>(1), <span Class="bold">iostat</span>(1), <span Class="bold">vmstat</span>(8) </p>
+<p class="level0"><span Class="emphasis"><a href="https://github.com/sysstat/sysstat">https://github.com/sysstat/sysstat</a></span> </p><p class="roffit">
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.
+</body></html>
