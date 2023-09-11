@@ -23,7 +23,23 @@ Expand below to show test files:
    - pidstat.1
    - quintuslgt.1
    - svnfiltereddump.1
-   - xmllint.1     
+   - xmllint.1
+   - CURLINFO_PROTOCOL.3
+   - CURLINFO_PROXY_SSL_VERIFYRESULT.3
+   - CURLINFO_SSL_VERIFYRESULT.3
+   - CURLOPT_PROXY.3
+   - curl-config.1
+   - curl.1
+   - curl_easy_escape.3
+   - curl_easy_setopt.3
+   - doh.1
+   - libcurl-errors.3
+   - libcurl-thread.3
+   - libcurl-tutorial.3
+   - mk-ca-bundle.1
+   - temp.txt
+   - trurl.1
+
 </details>
 
 I included comments in data-test (*file to build test*) where each of the below steps. They should be hard to miss.
